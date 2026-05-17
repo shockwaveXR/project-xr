@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <!-- referrer policy: no referrer on outbound requests. bulbapedia
+         (cloudflare) hotlink-blocks third-party referers and returns 403
+         when our images.bulbagarden.net urls load from localhost or
+         github pages. dropping the referer entirely lets the HOME 3D
+         renders + leader portraits + badge sprites all load cleanly. -->
+    <meta name="referrer" content="no-referrer" />
     <!-- ios PWA: required for the home-screen icon to launch in true standalone
          mode (matches `display-mode: standalone`). black-translucent puts page
          content behind the status bar / dynamic island so our html bg shows

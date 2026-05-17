@@ -54,6 +54,10 @@ const BASE_FORM_LABELS = {
   'pumpkaboo-average':          'average size',
   // gender forms
   'indeedee-male':              'male',
+  // unown — base entry's sprite is the A letter, so chip label should
+  // read "A" instead of generic "base" (the letter identity is the
+  // whole point of the species' form distinction).
+  'unown':                      'A',
   // mode forms (FORM_SUFFIX_SPECIES — override suffix-stripping to get full label)
   'darmanitan-standard':        'standard mode',
 };
@@ -125,7 +129,10 @@ function inlineFormsFor(p, mode) {
   return [];
 }
 
-// slim shape returned by the list — detail/compare get the full object
+// slim shape returned by the list — detail/compare get the full object.
+// artwork_url / artwork_shiny prefer the HOME 3D-render urls (added by
+// scrape-home-artwork.js) when available, then fall back to the original
+// sugimori-style official-artwork urls, then to small sprite urls.
 function slim(p, formName) {
   const formData = formName ? p.form_data?.[formName] : null;
   return {
@@ -136,8 +143,12 @@ function slim(p, formName) {
     generation:   p.generation,
     sprite_url:   p.sprite_url,
     sprite_shiny: p.sprite_shiny,
-    artwork_url:   formData?.artwork_url || formData?.sprite_url || p.artwork_url,
-    artwork_shiny: formData?.artwork_shiny || formData?.sprite_shiny || p.artwork_shiny,
+    artwork_url:
+      formData?.home_url || formData?.artwork_url || formData?.sprite_url ||
+      p.home_url || p.artwork_url,
+    artwork_shiny:
+      formData?.home_shiny || formData?.artwork_shiny || formData?.sprite_shiny ||
+      p.home_shiny || p.artwork_shiny,
     types:        formData?.types || p.types,
     stats:        p.stats,
     form:         formName || null,
@@ -179,7 +190,7 @@ function matchesClass(p, cls) {
 
 // filtered, sorted, paginated list
 export function getPokemon(filters = {}) {
-  const { search, type, generation, cls, inlineForms, sort = 'id', sortDir = 'asc', limit = 20, offset = 0 } = filters;
+  const { search, type, generation, cls, ability, inlineForms, sort = 'id', sortDir = 'asc', limit = 20, offset = 0 } = filters;
 
   let results = ALL;
 
@@ -187,6 +198,16 @@ export function getPokemon(filters = {}) {
   if (type)       results = results.filter(p => p.types.includes(type));
   if (generation) results = results.filter(p => p.generation === Number(generation));
   if (cls)        results = results.filter(p => matchesClass(p, cls));
+  // ability filter: matches species or any of its forms — gives global search
+  // a useful "all pokemon with this ability" landing instead of dropping the
+  // user on the unfiltered pokedex when they click an ability result.
+  if (ability) {
+    const wanted = ability.toLowerCase();
+    const hasAbility = (entry) => Array.isArray(entry?.abilities)
+      && entry.abilities.some(a => a.ability_name === wanted);
+    results = results.filter(p => hasAbility(p)
+      || (p.form_data && Object.values(p.form_data).some(hasAbility)));
+  }
 
   // sort
   results = [...results].sort((a, b) => {
@@ -556,8 +577,10 @@ export function comparePokemon(entries = []) {
       stats:      fd.stats      || p.stats,
       abilities:  fd.abilities  || p.abilities,
       sprite_url: fd.sprite_url || p.sprite_url,
-      artwork_url: fd.artwork_url || fd.sprite_url || p.artwork_url,
-      artwork_shiny: fd.artwork_shiny || fd.sprite_shiny || p.artwork_shiny,
+      // prefer HOME 3D-render urls when present, with the existing
+      // sugimori urls as fallback.
+      artwork_url:   fd.home_url   || fd.artwork_url   || fd.sprite_url   || p.home_url   || p.artwork_url,
+      artwork_shiny: fd.home_shiny || fd.artwork_shiny || fd.sprite_shiny || p.home_shiny || p.artwork_shiny,
       height:     fd.height     ?? p.height,
       weight:     fd.weight     ?? p.weight,
       _form: form,

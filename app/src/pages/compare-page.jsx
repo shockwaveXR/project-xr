@@ -6,8 +6,11 @@ import { searchWithForms } from '../utils/api';
 import { formatName, formatFormName } from '../utils/format-name';
 import { STAT_LABELS_SHORT as STAT_LABELS } from '../utils/stats';
 import AbilityModal from '../components/ability-modal';
+import { useRetroSprites } from '../hooks/use-retro-sprites';
+import { getRetroPng } from '../utils/retro-sprite';
 
 export default function ComparePage() {
+  const { retro } = useRetroSprites();
   const [entries, setEntries]   = useState([]);
   const [query, setQuery]       = useState('');
   const [results, setResults]   = useState([]);
@@ -89,7 +92,11 @@ export default function ComparePage() {
                       onClick={() => add(p)}
                       onMouseEnter={() => setHlIdx(i)}
                     >
-                      <img src={p.artwork_url || p.sprite_url} alt={p.name} />
+                      <img
+                        src={retro ? (getRetroPng(p.form || p.name) || p.artwork_url || p.sprite_url) : (p.artwork_url || p.sprite_url)}
+                        alt={p.name}
+                        className={retro && getRetroPng(p.form || p.name) ? 'is-retro' : undefined}
+                      />
                       <span>{p.form ? formatFormName(p.form) : formatName(p.name)}</span>
                     </button>
                   </li>
@@ -117,7 +124,11 @@ export default function ComparePage() {
                     <div className="compare-th-inner">
                       <button className="compare-remove-btn" onClick={() => remove(i)}>✕</button>
                       <Link to={p._form ? `/pokemon/${p.id}?form=${p._form}` : `/pokemon/${p.id}`}>
-                        <img src={p.artwork_url || p.sprite_url} alt={p.name} />
+                        <img
+                          src={retro ? (getRetroPng(p._form || p.name) || p.artwork_url || p.sprite_url) : (p.artwork_url || p.sprite_url)}
+                          alt={p.name}
+                          className={retro && getRetroPng(p._form || p.name) ? 'is-retro' : undefined}
+                        />
                         <span>{displayName(p)}</span>
                       </Link>
                       <div className="compare-types">
