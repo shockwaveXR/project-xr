@@ -20,6 +20,18 @@
     height: 170px;
   }
 
+  // tablet — detail-left grid track shrinks to 220px so the gendered
+  // sprite-row also needs smaller sprites to fit two columns + gap.
+  .sprite-row--gendered .detail-sprite {
+    width: 96px;
+    height: 96px;
+  }
+  .sprite-row__loader {
+    width: 170px;
+    height: 170px;
+  }
+
+
   .detail-page {
     max-width: 100%;
     padding: 24px 20px 40px;
@@ -97,9 +109,10 @@
     padding: 12px 16px;
     font-size: 1rem;
 
+    // nested keeps the indent + chevron, drops the size override so it
+    // reads at the same tier as standalone rows on mobile too.
     &--nested {
       padding: 10px 16px 10px 28px;
-      font-size: .95rem;
     }
   }
 
@@ -107,6 +120,20 @@
   // since each row is taller now.
   .settings-modal {
     padding: 8px;
+  }
+
+  // global header search: shrink the input + let the dropdown stretch closer
+  // to viewport width so result rows aren't truncated awkwardly.
+  .global-search {
+    &__input {
+      width: 110px;
+      &:focus { width: 140px; }
+    }
+    &__dropdown {
+      width: calc(100vw - 24px);
+      max-width: 360px;
+      right: -8px;
+    }
   }
 
   // ── home layout ──
@@ -240,9 +267,10 @@
     padding: 14px 14px 20px;
   }
 
-  // `position: relative` (not `static`) so the absolutely-positioned .search-clear-btn inside
-  // still anchors to .search-bar. static would let the clear button escape into the results grid.
-  .search-bar { margin-bottom: 14px; position: relative; top: auto; }
+  // sticky on mobile too — same top:0 as the desktop rule in _home.scss. position: sticky
+  // is still a containing block for the absolutely-positioned .search-clear-btn inside, so
+  // the clear button stays anchored even at narrow viewports.
+  .search-bar { margin-bottom: 14px; }
 
   .pokemon-grid {
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -252,6 +280,11 @@
   .pokemon-sprite {
     width: 88px;
     height: 88px;
+  }
+  // ~10% smaller for retro sprites at mobile breakpoints too
+  .pokemon-sprite--retro {
+    width: 79px;
+    height: 79px;
   }
 
   // ── compare panel ──

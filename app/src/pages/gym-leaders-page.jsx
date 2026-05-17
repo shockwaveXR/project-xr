@@ -7,6 +7,7 @@ import { crossModalNavigate } from '../utils/cross-modal-nav';
 import { STORAGE_KEYS, getString } from '../utils/storage';
 import leaders from '../data/gym-leaders.json';
 import badges from '../data/badges.json';
+import Img from '../components/img';
 
 // region order matches the games' release sequence — kanto first, paldea last.
 // unova merges B/W and B2/W2 into one section at render time, same pattern as
@@ -122,6 +123,7 @@ function LeaderModal({ leader, modalRef, onClose, onPrev, onNext, closing, bump 
 
   const badge = findBadge(leader);
   const cityNames = splitDedup(leader.city);
+  const heroSrc = leader.portrait_url || leader.sprite;
 
   // hand-off across pages — strategy chosen by the visuals settings picker
   // (MOCKUP). each strategy lives in cross-modal-nav.js; this just reads
@@ -169,10 +171,10 @@ function LeaderModal({ leader, modalRef, onClose, onPrev, onNext, closing, bump 
               that the original scraper picked up; keep the grid thumb on `sprite`
               for now since some first-images are group shots (e.g. cilan's first
               image is the BW trio) and would read wrong as a single-leader thumb. */}
-          {(leader.portrait_url || leader.sprite) && (
+          {heroSrc && (
             <div className="ball-modal__hero leader-modal__hero">
-              <img
-                src={leader.portrait_url || leader.sprite}
+              <Img
+                src={heroSrc}
                 alt={leader.name}
                 referrerPolicy="no-referrer"
               />

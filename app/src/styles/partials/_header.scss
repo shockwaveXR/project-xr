@@ -386,6 +386,122 @@
   gap: 8px;
 }
 
+// ─── global site search (header) ──────────────────────────────────────────────
+//
+// inline input + absolutely-positioned dropdown. anchored to .global-search
+// (position: relative) so the dropdown drops directly beneath the input.
+// dropdown z-index sits above the header chrome and below the modal layer.
+.global-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &__input {
+    width: 180px;
+    padding: 5px 10px;
+    font-size: .8rem;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: width .2s ease, border-color .15s ease, box-shadow .15s ease;
+
+    &::placeholder { color: var(--text-subtle); }
+
+    &:focus {
+      outline: none;
+      width: 220px;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    width: 320px;
+    max-height: 70vh;
+    overflow-y: auto;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--text) 18%, transparent);
+    z-index: 90;
+    padding: 6px 0;
+  }
+
+  &__empty {
+    padding: 14px 16px;
+    font-size: .82rem;
+    color: var(--text-subtle);
+    text-align: center;
+  }
+
+  &__group {
+    & + & { border-top: 1px solid var(--border); margin-top: 4px; padding-top: 4px; }
+  }
+
+  &__group-label {
+    padding: 6px 14px 4px;
+    font-size: .62rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+  }
+
+  &__result {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 6px 14px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    color: var(--text);
+    transition: background-color .1s ease;
+
+    &:hover, &:focus-visible {
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      outline: none;
+    }
+  }
+
+  &__result-sprite {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    object-fit: contain;
+    image-rendering: -webkit-optimize-contrast;
+  }
+
+  &__result-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+  }
+
+  &__result-name {
+    font-size: .85rem;
+    font-weight: var(--fw-medium);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__result-subtitle {
+    font-size: .68rem;
+    color: var(--text-subtle);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
 // red "live" pill shown only while the twitch stream is live (mounted by
 // AppHeader behind a useTwitchLive() check). three reinforcing cues:
 //   - twitch glitch icon (platform context for first-time visitors)
@@ -473,18 +589,22 @@
 }
 
 .dropdown-divider {
-  // a visible 1px hairline. earlier 60% opacity + 4px top/bottom margin
-  // collapsed visually inside the flex parent's 16px gap. explicit
-  // flex sizing (`flex: 0 0 1px`) forces 1px height even when the flex
-  // parent's auto sizing would otherwise round it to 0 in some
-  // browsers, and align-self stretches it horizontally regardless of
-  // the parent's align-items default.
-  flex: 0 0 1px;
-  align-self: stretch;
-  background: var(--border);
+  // 1px hairline rendered as a border-top on a zero-height element.
+  // previously this was `flex: 0 0 1px` with a background fill — that
+  // approach landed on subpixel positions depending on what sat above
+  // it, so some dividers rendered as a crisp 1-physical-pixel line while
+  // others got smeared across 2 pixels at 50% opacity each (visibly
+  // "thinner" / lighter). borders get pixel-snapped consistently by every
+  // browser regardless of their host element's Y position, so swapping
+  // to a border-based hairline guarantees every divider in the dropdown
+  // looks identical.
+  height: 0;
+  border-top: 1px solid var(--border);
   margin: 0 6px;
-  opacity: 1;
+  flex-shrink: 0;
+  align-self: stretch;
 }
+
 
 // top-level menu rows — news, browse, tools, lore, about all share this look.
 // labels (browse/tools/lore) inherit the same look but render as click-to-
@@ -494,7 +614,7 @@
   display: block;
   padding: 7px 12px;
   font-size: .82rem;
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-medium);
   color: var(--text);
 
   // when used as a toggle (every labeled section), the label becomes a
@@ -510,12 +630,13 @@
     width: 100%;
     text-align: left;
     font-family: inherit;
-    font-size: inherit;
-    // re-assert bold — without this, the user-agent button stylesheet
-    // (or `font: inherit` resetting weight to body's 400) wipes out the
-    // .nav-section-label's `font-weight: var(--fw-bold)` and the labels
-    // render at regular weight.
-    font-weight: var(--fw-bold);
+    // re-assert size + weight — without this, the user-agent button
+    // stylesheet (or `font: inherit` resetting both) wipes out the
+    // parent .nav-section-label values and the button renders at the
+    // inherited 16px / 400. matches .feature-link so standalone tabs
+    // (news / pokedex / about) and section labels read as one tier.
+    font-size: .82rem;
+    font-weight: var(--fw-medium);
     color: inherit;
     display: flex;
     align-items: center;
@@ -583,7 +704,7 @@
   display: block;
   padding: 7px 12px;
   font-size: .82rem;
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-medium);
   color: var(--text);
   border-radius: var(--radius-sm);
   transition: background .15s ease, color .15s ease;
@@ -609,18 +730,14 @@
     color: var(--accent);
   }
 
-  // nested items (under a label) read as supporting children: indented,
-  // smaller, less weighty, muted color. the contrast against the bolder
-  // top-level rows above is what makes the hierarchy obvious. a `›`
-  // chevron prefix marks each sub-item visually so the label / nested
-  // distinction is unambiguous even at a glance — chevron is in the
-  // text-subtle color so it sits as a hint rather than competing with
-  // the label text.
+  // nested items (under a label) match the top-level rows in size, weight
+  // and color so the dropdown reads as one consistent tier — the previous
+  // .78rem + muted-color treatment made nested rows look "thinner" than
+  // standalone rows, breaking the visual rhythm. hierarchy is carried by
+  // the leading indent + `›` chevron prefix alone, which is enough at a
+  // glance without weight/size variation.
   &--nested {
     padding: 5px 12px 5px 22px;
-    font-size: .78rem;
-    font-weight: var(--fw-medium);
-    color: var(--text-muted);
 
     &::before {
       content: '› ';

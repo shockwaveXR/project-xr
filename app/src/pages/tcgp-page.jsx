@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useModalAnimation } from '../hooks/use-modal-animation';
 import { useModalCycleNav } from '../hooks/use-modal-cycle-nav';
 import { pulseElement } from '../utils/pulse';
+import { STORAGE_KEYS, getString } from '../utils/storage';
 import cards from '../data/tcg-pocket.json';
 
 // flat list of sets in newest-first order. used by:
@@ -377,8 +379,25 @@ export default function TCGPocketPage() {
     && loadedCount < SECTIONED_CARDS.length;
   const nextOlderSet    = canShowPrevious ? SECTIONED_CARDS[loadedCount] : null;
 
-  const { current: currentCard, bump, modalRef, open, close, prev, next } = useModalCycleNav(visibleSections);
+  // cross-page modal auto-open: consume location.state.openId on first
+  // render (same handshake badges + gym-leaders use). lets the global
+  // search jump straight to a card's modal without per-card routes.
+  const location = useLocation();
+  const navigate = useNavigate();
+  const initialOpenId = location.state?.openId ?? null;
+  const { current: currentCard, bump, modalRef, open, close, prev, next } =
+    useModalCycleNav(visibleSections, initialOpenId);
   const { displayed: shownCard, isClosing } = useModalAnimation(currentCard);
+
+  useEffect(() => {
+    if (!initialOpenId) return;
+    navigate(location.pathname, { replace: true, state: null });
+    const mode = getString(STORAGE_KEYS.XFADE_MODE, 'snap');
+    if (mode !== 'view') {
+      setTimeout(() => { if (modalRef.current) pulseElement(modalRef.current); }, 60);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // close whichever dropdown is open on outside-click or Esc — same pattern
   // as the burger / visuals dropdowns in app.jsx. uses openDropdown to know

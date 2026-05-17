@@ -20,7 +20,7 @@
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 14px;
   transition: background-color .25s ease;
   // sticky inside the .app-scroll container — the header is OUTSIDE that
   // container now, so we no longer need to offset 60px to clear it. top: 0
@@ -124,58 +124,99 @@
   display: none;
 }
 
-.filter-toggles {
+// ─── filter-panel groups + unified chip ──────────────────────────────────────
+//
+// the panel splits into three logical zones (filters / sort / display) so
+// the visual hierarchy mirrors the conceptual one — what to include, how
+// to order, how to render. each zone is a `__group` flex column with a
+// faint uppercase label at the top. no extra dividers needed; the labels
+// + the gap between groups carry the eye on their own.
+.filter-panel__group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
-.filter-toggle-row {
+.filter-panel__label {
+  font-size: .62rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  padding-left: 2px;
+  margin-bottom: 2px;
+}
+
+// toggle = sliding-pill on/off control, one per row. the thumb's left vs
+// right position is the primary state cue; the pill fill is the secondary.
+// previous chip implementation kept getting confused-for-each-other across
+// active states despite multiple fill/text tweaks — physically moving a
+// thumb is the universally-recognized "this is on" affordance.
+.filter-toggle {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  width: 100%;
+  padding: 6px 4px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  padding: 4px 0;
+  user-select: none;
+  text-align: left;
+  font: inherit;
+  color: var(--text-muted);
+  transition: color .15s ease, background-color .15s ease;
 
-  input[type='checkbox'] {
-    width: 14px;
-    height: 14px;
-    accent-color: var(--accent);
-    cursor: pointer;
-    margin: 0;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: var(--text);
+      background: color-mix(in srgb, var(--text) 5%, transparent);
+    }
   }
 
-  span {
-    font-size: .78rem;
-    color: var(--text-muted);
+  &.is-active { color: var(--text); }
+}
+
+.filter-toggle__switch {
+  position: relative;
+  width: 32px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--text-subtle);
+  flex-shrink: 0;
+  transition: background-color .2s ease;
+
+  // the thumb — pure white circle inside the pill. inset shadow gives it
+  // physical depth so it reads as a knob rather than a flat dot.
+  &::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 3px color-mix(in srgb, var(--text) 35%, transparent);
+    transition: transform .2s ease;
   }
 }
 
-.sort-options-strip {
-  display: flex;
-  gap: 4px;
+.filter-toggle.is-active .filter-toggle__switch {
+  background: var(--accent);
 
-  button {
-    flex: 1;
-    padding: 6px;
-    font-size: .78rem;
-    font-weight: var(--fw-medium);
-    color: var(--text-muted);
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    transition: color .15s ease, border-color .15s ease, box-shadow .15s ease;
+  &::after { transform: translateX(14px); }
+}
 
-    &:hover { color: var(--text); }
+.filter-toggle__label {
+  font-size: .82rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: .01em;
+}
 
-    &.active {
-      color: var(--accent);
-      border-color: var(--accent);
-      box-shadow: inset 0 -2px 0 var(--accent);
-      font-weight: var(--fw-semibold);
-    }
-  }
+.filter-toggle.is-active .filter-toggle__label {
+  font-weight: var(--fw-semibold);
 }
 
 .reset-btn {
@@ -329,6 +370,19 @@
   height: 110px;
   object-fit: contain;
   image-rendering: auto;
+}
+
+// retro sprite — static PNG in the grid card. animation lives on the
+// detail page only; the on-hover GIF swap was removed because the
+// PNG↔GIF transition felt jarring at scroll. pixel-perfect upscale
+// matches the GBA-era look. ~10% smaller than the default sprite size
+// to better match the gen-2 sprites' canonical scale on screen.
+// (sets width/height directly so the existing hover scale-1.1 still works.)
+.pokemon-sprite--retro {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges; // firefox flavor
+  width: 99px;
+  height: 99px;
 }
 
 .pokemon-name {

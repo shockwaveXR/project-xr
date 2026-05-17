@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useModalAnimation } from '../hooks/use-modal-animation';
 import { useModalCycleNav } from '../hooks/use-modal-cycle-nav';
 import { formatSlugLower } from '../utils/format-name';
 import { pulseElement } from '../utils/pulse';
+import { STORAGE_KEYS, getString } from '../utils/storage';
 import berries from '../data/berries.json';
 
 const FLAVOR_ORDER = ['spicy', 'dry', 'sweet', 'bitter', 'sour'];
@@ -110,8 +112,22 @@ function BerryModal({ berry, modalRef, onClose, onPrev, onNext, closing, bump })
 }
 
 export default function BerriesPage() {
-  const { current: currentBerry, bump, modalRef, open, close, prev, next } = useModalCycleNav(SECTIONED_BERRIES);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const initialOpenId = location.state?.openId ?? null;
+  const { current: currentBerry, bump, modalRef, open, close, prev, next } =
+    useModalCycleNav(SECTIONED_BERRIES, initialOpenId);
   const { displayed: shownBerry, isClosing } = useModalAnimation(currentBerry);
+
+  useEffect(() => {
+    if (!initialOpenId) return;
+    navigate(location.pathname, { replace: true, state: null });
+    const mode = getString(STORAGE_KEYS.XFADE_MODE, 'snap');
+    if (mode !== 'view') {
+      setTimeout(() => { if (modalRef.current) pulseElement(modalRef.current); }, 60);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="items-page">

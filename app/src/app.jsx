@@ -20,10 +20,13 @@ import GymLeadersPage from './pages/gym-leaders-page';
 import TCGPocketPage from './pages/tcgp-page';
 import TCGPocketAccessoriesPage from './pages/tcgp-accessories-page';
 import AboutPage from './pages/about-page';
+import SearchPage from './pages/search-page';
 import TransitionVeil from './components/transition-veil';
 import TwitchLiveBadge from './components/twitch-live-badge';
 import TwitchGlitch from './components/twitch-glitch';
+import GlobalSearch from './components/global-search';
 import { useTwitchLive } from './hooks/use-twitch-live';
+import { RetroProvider } from './hooks/use-retro-sprites';
 
 // section flags:
 //   `divider: true` draws a hairline above the section. dividers go above
@@ -432,6 +435,7 @@ function AppHeader({ theme, setTheme, a11y, setA11y, xfadeMode, setXfadeMode }) 
       </div>
 
       <div className="header-right">
+        <GlobalSearch />
         {isLive && <TwitchLiveBadge />}
         <div className="settings-anchor" ref={visualsRef}>
           <button className="settings-btn settings-cog" onClick={() => setVisualsOpen(o => !o)} aria-label="settings">
@@ -583,6 +587,7 @@ export default function App() {
   }, []);
 
   return (
+    <RetroProvider>
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <ScrollManager />
       <AppHeader
@@ -608,6 +613,7 @@ export default function App() {
           <Route path="/team"        element={<TeamPage />} />
           <Route path="/lore"        element={<LorePage />} />
           <Route path="/about"       element={<AboutPage />} />
+          <Route path="/search"      element={<SearchPage />} />
         </Routes>
       </main>
       {/* footer chrome strip — rendered as a body-portal sibling of #root so
@@ -647,5 +653,6 @@ export default function App() {
         document.body,
       )}
     </BrowserRouter>
+    </RetroProvider>
   );
 }

@@ -250,8 +250,58 @@ a:focus-visible,
   from { width: 0; }
 }
 
+// retro sprite imagery — applied wherever a small <img.is-retro> is
+// rendered (compare page rows, compare panel column heads, etc.). the
+// pokemon-card grid + detail page have their own scoped rules.
+img.is-retro {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
 // shared by twitch-live-badge dot + about-page embed pulse marker.
 @keyframes live-pulse {
   0%, 100% { opacity: 1;   transform: scale(1);   }
   50%      { opacity: .55; transform: scale(.85); }
+}
+
+// ─── global <Img> wrapper (components/img.jsx) ───────────────────────────────
+//
+// drop-in replacement for <img>. while the underlying image is loading we
+// hide the img (opacity 0) and overlay a small spinner. once `onLoad` fires
+// the image fades in and the spinner is removed. the wrapper is
+// `inline-flex` so it occupies the same flow space the bare <img> would
+// have, and the inner <img> keeps whatever sizing CSS the caller had on it.
+.g-img {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0; // strips the inline-baseline gap so the wrapper hugs the img tightly
+
+  // the inner img is always visible — the browser renders nothing/blank
+  // while loading anyway. previously we hid it via opacity:0 and only
+  // flipped to 1 once an onLoad handler fired, but that introduced a race
+  // (cached images fired load before React attached the handler) that
+  // left images permanently invisible. overlaying a spinner is simpler
+  // and never fails — once the browser has bytes, the image appears in
+  // place; until then, the spinner is what the user sees.
+
+  // until the image has natural dimensions, the wrapper would collapse to
+  // 0×0 and the spinner would render at top-left. reserve a small box
+  // during the loading state so the spinner is centered visibly.
+  &:not(.g-img--loaded):not(.g-img--errored) {
+    min-width: 36px;
+    min-height: 36px;
+  }
+}
+
+.g-img__spinner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 3px solid color-mix(in srgb, var(--text-subtle) 35%, transparent);
+  border-top-color: var(--accent);
+  animation: ptr-spin .9s linear infinite;
+  pointer-events: none;
 }

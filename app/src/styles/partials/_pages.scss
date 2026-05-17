@@ -507,6 +507,124 @@
   color: var(--text-muted);
 }
 
+// ─── search results page (/search?q=…) ──────────────────────────────────────
+//
+// reached by pressing Enter in the header search box. groups of results
+// stack vertically (pokemon, abilities, moves, leaders, …) with a thin
+// horizontal divider between categories. each result row reuses the same
+// shape as the header dropdown (sprite + name + subtitle) just at a
+// slightly larger comfortable size.
+.search-page {
+  max-width: 900px;
+  margin: 32px auto 80px;
+  padding: 0 20px;
+  color: var(--text);
+
+  &__title {
+    font-size: 1.6rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: .04em;
+    margin: 0 0 4px;
+  }
+
+  &__query {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  &__count {
+    font-size: .78rem;
+    color: var(--text-muted);
+    margin: 0 0 24px;
+  }
+
+  &__empty {
+    color: var(--text-muted);
+  }
+
+  &__group {
+    margin-bottom: 16px;
+  }
+
+  &__divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 16px 0;
+  }
+
+  &__group-label {
+    font-size: .85rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    margin: 0 0 10px;
+  }
+
+  &__group-count {
+    color: var(--text-muted);
+    font-weight: var(--fw-medium);
+    margin-left: 4px;
+    letter-spacing: 0;
+  }
+
+  &__results {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 6px;
+  }
+
+  &__result {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-align: left;
+    color: var(--text);
+    transition: background-color .12s ease, border-color .12s ease;
+
+    &:hover, &:focus-visible {
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+      outline: none;
+    }
+  }
+
+  &__result-sprite {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  &__result-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+  }
+
+  &__result-name {
+    font-size: .92rem;
+    font-weight: var(--fw-medium);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__result-subtitle {
+    font-size: .72rem;
+    color: var(--text-subtle);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
 // ─── item pages (pokeballs, berries) ─────────────────────────────────────────
 
 .items-page {
@@ -1161,6 +1279,7 @@
     object-fit: contain;
   }
 }
+
 
 // badge link inside the leader modal — small inline pill with sprite + name
 // that navigates to the badges gallery on click.

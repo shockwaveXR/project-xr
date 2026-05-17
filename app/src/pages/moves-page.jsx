@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { formatSlugLower } from '../utils/format-name';
 import moves from '../data/moves.json';
 
@@ -30,11 +31,23 @@ function MoveRow({ move }) {
 }
 
 export default function MovesPage() {
+  const [searchParams] = useSearchParams();
   const [typeFilter, setTypeFilter] = useState('');
   const [classFilter, setClassFilter] = useState('');
-  const [search, setSearch] = useState('');
+  // seed the search input from ?q=… so global-search arrivals land
+  // pre-filtered. only the very first render — clearing the input afterward
+  // shouldn't be undone by the param.
+  const [search, setSearch] = useState(() => searchParams.get('q') || '');
   const [sortKey, setSortKey] = useState('name');
   const [sortDir, setSortDir] = useState('asc');
+
+  // re-arrival from global search (when navigating between /search?q=A and
+  // /moves?q=B) needs to refresh the search input even though the component
+  // is already mounted. compare against the current url param.
+  useEffect(() => {
+    const q = searchParams.get('q');
+    if (q !== null) setSearch(q);
+  }, [searchParams]);
 
   const handleSort = (key) => {
     if (sortKey === key) {

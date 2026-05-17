@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useModalAnimation } from '../hooks/use-modal-animation';
 import { useModalCycleNav } from '../hooks/use-modal-cycle-nav';
 import { formatSlugLower } from '../utils/format-name';
 import { pulseElement } from '../utils/pulse';
+import { STORAGE_KEYS, getString } from '../utils/storage';
 import balls from '../data/pokeballs.json';
 
 const STANDARD_ORDER = ['poke-ball', 'great-ball', 'ultra-ball', 'master-ball', 'safari-ball', 'sport-ball'];
@@ -71,8 +73,22 @@ function BallModal({ ball, modalRef, onClose, onPrev, onNext, closing, bump }) {
 }
 
 export default function PokeballsPage() {
-  const { current: currentBall, bump, modalRef, open, close, prev, next } = useModalCycleNav(SECTIONED_BALLS);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const initialOpenId = location.state?.openId ?? null;
+  const { current: currentBall, bump, modalRef, open, close, prev, next } =
+    useModalCycleNav(SECTIONED_BALLS, initialOpenId);
   const { displayed: shownBall, isClosing } = useModalAnimation(currentBall);
+
+  useEffect(() => {
+    if (!initialOpenId) return;
+    navigate(location.pathname, { replace: true, state: null });
+    const mode = getString(STORAGE_KEYS.XFADE_MODE, 'snap');
+    if (mode !== 'view') {
+      setTimeout(() => { if (modalRef.current) pulseElement(modalRef.current); }, 60);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="items-page">

@@ -78,7 +78,14 @@
   // stat bars: no width transition (already killed above)
   .stat-fill { transition: none !important; }
 
-  // stat bars use diagonal stripes for non-color distinction
+  // stat bars — white "empty" track with hard black outline; filled
+  // portion keeps its semantic color (green/yellow/accent) plus the
+  // diagonal-stripe pattern for colorblind disambiguation.
+  .stat-track {
+    background: #fff;
+    border: 1px solid #000;
+  }
+
   .stat-fill {
     background-image: repeating-linear-gradient(
       45deg,
@@ -91,6 +98,28 @@
     &.high { background-color: #5cb85c; }
     &.mid  { background-color: #e8c030; }
     &.low  { background-color: var(--accent); }
+  }
+
+  // gender ratio bar — same high-contrast treatment as stats. taller,
+  // white-empty, black outline. only the majority gender's segment
+  // fills with its light color; the minority side stays blank so the
+  // bar reads as a horizontal progress indicator for "% of the dominant
+  // gender". ties default to male-filled. label colors below the bar
+  // still carry the M/F semantic.
+  .gender-ratio__bar {
+    height: 11px;
+    background: #fff;
+    border: 1px solid #000;
+  }
+
+  // default: male leads (or 50/50 tie) — fill male, leave female blank.
+  .gender-ratio__male   { background: #a8c4ed; } // light blue
+  .gender-ratio__female { background: transparent; }
+
+  // female-majority flip — fill female pink, leave male blank.
+  .gender-ratio__bar--female-lead {
+    .gender-ratio__male   { background: transparent; }
+    .gender-ratio__female { background: #f0b3c8; } // light pink
   }
 
   // boost text contrast
