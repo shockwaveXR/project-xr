@@ -8,7 +8,7 @@ import SearchBar from '../components/search-bar';
 import FilterPanel from '../components/filter-panel';
 
 const PAGE_SIZE = 60;
-const FILTER_KEYS = ['search', 'type', 'generation', 'cls', 'sort', 'sortDir'];
+const FILTER_KEYS = ['search', 'type', 'generation', 'cls', 'ability', 'sort', 'sortDir'];
 
 export default function HomePage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -44,7 +44,7 @@ export default function HomePage() {
     appScrollTo(0, 'instant');
   }, [searchParams.toString(), inlineForms]);
 
-  const CONTENT_KEYS  = ['search', 'type', 'generation', 'cls'];
+  const CONTENT_KEYS  = ['search', 'type', 'generation', 'cls', 'ability'];
   const hasFilters    = CONTENT_KEYS.some(k => filters[k]);
   const displayed     = hasFilters ? pokemon : pokemon.slice(0, visible);
   const hasMore       = !hasFilters && visible < pokemon.length;

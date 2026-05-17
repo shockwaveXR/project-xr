@@ -7,6 +7,7 @@ export const STORAGE_KEYS = {
   THEME:         'theme',
   A11Y:          'a11y',
   SHINY_SPRITES: 'shinySprites',
+  RETRO_SPRITES: 'retroSprites',
   INLINE_FORMS:  'inlineForms',
   NAV_EXPANDED:  'navExpanded',  // {[label]: boolean} per labeled nav section
   XFADE_MODE:    'xfadeMode',    // cross-modal nav transition: 'snap' | 'view' | 'dip' | 'curtain' — mockup only

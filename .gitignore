@@ -162,3 +162,22 @@ CLAUDE.md
 # iterating on heuristics against live upstream data, not part of the
 # production pipeline
 scripts/news/probe-*.js
+
+# gen2 sprite curator — local-only tool for assembling the 4-color
+# pixel sprites that ship under app/public/gen2-sprites/. the tool
+# itself + its 85MB working data (candidates/manifests/decisions)
+# stay local; only the finalized outputs are committed.
+scripts/gen2-sprites/
+
+# one-off data patch + scrape scripts kept locally for reference but
+# not part of the committed pipeline (already-applied, won't re-run).
+# the production patches/scrapers (patch-evolutions, patch-stats,
+# scrape-flavor, scrape-badges, scrape-gym-leaders) remain tracked.
+scripts/db/dedupe-default-forms.js
+scripts/db/patch-cleanup-form-home-female.js
+scripts/db/patch-female-sprites.js
+scripts/db/patch-gender-form-sprites.js
+scripts/db/patch-missing-forms.js
+scripts/db/scrape-female-artwork.js
+scripts/db/scrape-home-artwork.js
+scripts/db/scrape-home-female.js
