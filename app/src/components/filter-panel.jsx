@@ -1,23 +1,43 @@
+import { useEffect, useState } from 'react';
 import { useTypes } from '../hooks/use-pokemon';
 import { useRetroSprites } from '../hooks/use-retro-sprites';
+import { useBodyScrollLock } from '../hooks/use-body-scroll-lock';
+import { STORAGE_KEYS, getBool, setBool } from '../utils/storage';
 
 const GENERATIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const CLASSES = [
+
+// the `cls` URL param holds a single category-style filter. it's split
+// across three dropdowns (categories / regionals / forms) so each select
+// shows a semantically coherent slice. only one value can be active at
+// any time — picking from one dropdown clears the others. each list's
+// "all" entry maps back to `cls = undefined`.
+const CATEGORIES = [
   { value: 'legendary',        label: 'legendary' },
   { value: 'mythical',         label: 'mythical' },
   { value: 'ultra-beast',      label: 'ultra beast' },
   { value: 'paradox',          label: 'paradox' },
   { value: 'pseudo-legendary', label: 'pseudo-legendary' },
   { value: 'baby',             label: 'baby' },
-  { value: 'has-mega',         label: 'mega evolution' },
-  { value: 'has-gmax',         label: 'gigantamax' },
-  { value: 'has-regional',     label: 'regional variant' },
-  { value: 'regional-alola',   label: 'alolan form' },
-  { value: 'regional-galar',   label: 'galarian form' },
-  { value: 'regional-hisui',   label: 'hisuian form' },
-  { value: 'regional-paldea',  label: 'paldean form' },
-  { value: 'has-forms',        label: 'has alternate forms' },
+  { value: 'starter',          label: 'starter' },
 ];
+const REGIONALS = [
+  // "all regionals" surfaces any species with at least one regional
+  // form, regardless of which region — sits at the top of the list
+  // since it's the umbrella option and reads naturally above the
+  // region-specific entries.
+  { value: 'has-regional',     label: 'all regionals' },
+  { value: 'regional-alola',   label: 'alolan' },
+  { value: 'regional-galar',   label: 'galarian' },
+  { value: 'regional-hisui',   label: 'hisuian' },
+  { value: 'regional-paldea',  label: 'paldean' },
+];
+const FORMS = [
+  { value: 'has-mega',         label: 'has mega' },
+  { value: 'has-gmax',         label: 'has gigantamax' },
+];
+const CATEGORY_VALUES  = new Set(CATEGORIES.map(o => o.value));
+const REGIONAL_VALUES  = new Set(REGIONALS.map(o => o.value));
+const FORM_VALUES      = new Set(FORMS.map(o => o.value));
 const SORT_OPTIONS = [
   { value: 'id',               label: 'number' },
   { value: 'name',             label: 'name' },
@@ -33,6 +53,46 @@ const SORT_OPTIONS = [
 export default function FilterPanel({ filters, onChange, shiny, onShinyToggle, inlineForms = '', onInlineFormsChange }) {
   const types = useTypes();
   const { retro, setRetro } = useRetroSprites();
+  // mobile-only collapsed/expanded state. on desktop the panel always renders
+  // its controls (the toggle header is hidden via css), so this state only
+  // matters at narrow viewports. persisted so the user's preference survives
+  // a reload.
+  const [mobileOpen, setMobileOpen] = useState(() => getBool(STORAGE_KEYS.FILTERS_OPEN, false));
+  const toggleMobile = () => setMobileOpen(v => { setBool(STORAGE_KEYS.FILTERS_OPEN, !v); return !v; });
+
+  // track whether we're at the mobile breakpoint so the scroll lock below
+  // only engages when the panel is actually presented as a collapsible
+  // overlay (desktop renders the full panel inline as a sidebar — locking
+  // there would freeze the page for no visible reason).
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia?.('(max-width: 640px)').matches
+  );
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mql = window.matchMedia('(max-width: 640px)');
+    const handler = () => setIsMobile(mql.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
+
+  // while the expanded panel is showing on mobile, freeze .app-scroll so
+  // finger swipes inside the panel don't chain through to the page scroll
+  // beneath. matches the lock pattern used by the header dropdowns.
+  useBodyScrollLock(mobileOpen && isMobile);
+
+  // small badge that appears in the mobile toggle header when one or more
+  // filters / sort overrides are active. gives the user a glanceable cue
+  // that the panel below is currently narrowing or reordering the grid
+  // even while it's collapsed.
+  const activeCount =
+    (filters.generation ? 1 : 0) +
+    (filters.type       ? 1 : 0) +
+    (filters.cls        ? 1 : 0) +
+    (filters.sort && filters.sort !== 'id' ? 1 : 0) +
+    (filters.sortDir === 'desc' ? 1 : 0) +
+    (shiny ? 1 : 0) +
+    (retro ? 1 : 0) +
+    (inlineForms ? 1 : 0);
 
   const update = (key, value) => onChange({ ...filters, [key]: value || undefined });
   const sort    = filters.sort    || 'id';
@@ -57,7 +117,21 @@ export default function FilterPanel({ filters, onChange, shiny, onShinyToggle, i
   );
 
   return (
-    <aside className="filter-panel">
+    <aside className={`filter-panel${mobileOpen ? ' is-mobile-open' : ''}`}>
+      {/* mobile-only collapse/expand header. hidden on desktop where the
+          panel is always fully expanded as a left sidebar. */}
+      <button
+        type="button"
+        className={`filter-panel__toggle${mobileOpen ? ' is-open' : ''}`}
+        onClick={toggleMobile}
+        aria-expanded={mobileOpen}
+        aria-controls="filter-panel-body"
+      >
+        <span>filters{activeCount > 0 && <span className="filter-panel__toggle-count">{activeCount}</span>}</span>
+        <span className="filter-panel__toggle-chevron" aria-hidden="true">›</span>
+      </button>
+
+      <div id="filter-panel-body" className="filter-panel__body">
       {/* ─── filters: narrow the visible set ─────────────────────────── */}
       <div className="filter-panel__group">
         <span className="filter-panel__label">filters</span>
@@ -71,9 +145,31 @@ export default function FilterPanel({ filters, onChange, shiny, onShinyToggle, i
           {types.map(t => <option key={t} value={t}>{t}</option>)}
         </select>
 
-        <select value={filters.cls || ''} onChange={e => update('cls', e.target.value)}>
+        {/* category / regional / form dropdowns all bind to the single
+            `cls` filter — picking from any one clears the other two so
+            we never present an impossible combination. */}
+        <select
+          value={CATEGORY_VALUES.has(filters.cls) ? filters.cls : ''}
+          onChange={e => update('cls', e.target.value)}
+        >
           <option value="">all categories</option>
-          {CLASSES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
+          {CATEGORIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
+        </select>
+
+        <select
+          value={REGIONAL_VALUES.has(filters.cls) ? filters.cls : ''}
+          onChange={e => update('cls', e.target.value)}
+        >
+          <option value="">all regions</option>
+          {REGIONALS.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
+        </select>
+
+        <select
+          value={FORM_VALUES.has(filters.cls) ? filters.cls : ''}
+          onChange={e => update('cls', e.target.value)}
+        >
+          <option value="">all forms</option>
+          {FORMS.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
         </select>
       </div>
 
@@ -161,6 +257,7 @@ export default function FilterPanel({ filters, onChange, shiny, onShinyToggle, i
         if (retro) setRetro(false);
         if (inlineForms && onInlineFormsChange) onInlineFormsChange('');
       }}>reset</button>
+      </div>
     </aside>
   );
 }

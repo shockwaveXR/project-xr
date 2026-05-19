@@ -10,6 +10,7 @@ export const STORAGE_KEYS = {
   RETRO_SPRITES: 'retroSprites',
   INLINE_FORMS:  'inlineForms',
   NAV_EXPANDED:  'navExpanded',  // {[label]: boolean} per labeled nav section
+  FILTERS_OPEN:  'filtersOpen',  // boolean — mobile filter panel expanded/collapsed
   XFADE_MODE:    'xfadeMode',    // cross-modal nav transition: 'snap' | 'view' | 'dip' | 'curtain' — mockup only
 };
 

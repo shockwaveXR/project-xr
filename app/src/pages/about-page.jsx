@@ -41,12 +41,6 @@ export default function AboutPage() {
         </p>
         <p>please, enjoy</p>
         <p>— jackson</p>
-        <p className="news-about__credits">
-          retro sprite mode uses the{' '}
-          <a href="https://www.smogon.com/forums/threads/smogon-sprite-project.3647722/" target="_blank" rel="noopener noreferrer">smogon sprite project</a>
-          {' '}— official gen-5 (B/W) sprites for gens 1–5, plus community-made continuations for gens 6–9. served via{' '}
-          <a href="https://play.pokemonshowdown.com/" target="_blank" rel="noopener noreferrer">pokémon showdown</a>.
-        </p>
         <ul className="news-about__links">
           <li>
             <a href="https://github.com/voltage770" target="_blank" rel="noopener noreferrer">

@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { useParams, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import { formatName, formatFormName, formatSlug } from '../utils/format-name';
 import { usePokemonDetail } from '../hooks/use-pokemon';
 import { useModalAnimation } from '../hooks/use-modal-animation';
-import { NAME_TO_ID, FORM_DATA, FORM_TO_BASE_ID, EXCLUDED_FORMS, getBaseFormLabel, FORM_SUFFIX_SPECIES } from '../utils/api';
+import { NAME_TO_ID, FORM_DATA, FORM_TO_BASE_ID, EXCLUDED_FORMS, getBaseFormLabel, FORM_SUFFIX_SPECIES, getOrderedIds } from '../utils/api';
 import { STAT_LABELS_FULL as STAT_LABELS, EV_STAT_LABELS } from '../utils/stats';
 import { defensiveMatchups, MATCHUP_ORDER } from '../utils/type-chart';
 import { pulseElement } from '../utils/pulse';
@@ -12,6 +12,7 @@ import { useRetroSprites } from '../hooks/use-retro-sprites';
 import { useSpritesReady } from '../hooks/use-sprites-ready';
 import { getRetroGif, getRetroPng, getRetroCredit, cleanRetroCredit, displaySourceLabel } from '../utils/retro-sprite';
 import Img from '../components/img';
+import SpriteModal from '../components/sprite-modal';
 
 // returns a tier class for stat bar color
 function statTier(val) {
@@ -491,11 +492,49 @@ function FormPickerModal({ pokemon, chips, activeForm, onSelect, onClose }) {
 export default function PokemonPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const { pokemon, loading, error } = usePokemonDetail(id);
   const [selectedAbility, setSelectedAbility] = useState(null);
   const { displayed: abilityShown, isClosing: abilityClosing } = useModalAnimation(selectedAbility);
   const { retro } = useRetroSprites();
+
+  // ── prev/next navigation, optionally filtered by the dex view the
+  // user came from. when location.state.from points at /pokedex with
+  // search params, parse those out and use the same ordering api.js
+  // produces for that filter set so left/right on /pokemon advance
+  // through the filtered list rather than blindly id-1/id+1. forwards
+  // the same `from` state on each step so chaining left/right keeps
+  // the filter context intact.
+  const orderedIds = useMemo(() => {
+    const from = location.state?.from;
+    if (typeof from !== 'string' || !from.startsWith('/pokedex')) return null;
+    const search = from.split('?')[1] || '';
+    if (!search) return null;
+    const params = new URLSearchParams(search);
+    const filterKeys = ['search', 'type', 'generation', 'cls', 'ability', 'sort', 'sortDir'];
+    const filters = {};
+    let any = false;
+    for (const k of filterKeys) {
+      const v = params.get(k);
+      if (v) { filters[k] = v; any = true; }
+    }
+    if (!any) return null;
+    return getOrderedIds(filters);
+  }, [location.state?.from]);
+
+  const currentIdNum = pokemon ? pokemon.id : Number(id);
+  const filteredIdx  = orderedIds ? orderedIds.indexOf(currentIdNum) : -1;
+  const prevId = orderedIds && filteredIdx > 0
+    ? orderedIds[filteredIdx - 1]
+    : (orderedIds ? null : (currentIdNum > 1 ? currentIdNum - 1 : null));
+  const nextId = orderedIds && filteredIdx >= 0 && filteredIdx < orderedIds.length - 1
+    ? orderedIds[filteredIdx + 1]
+    : (orderedIds ? null : currentIdNum + 1);
+  const goTo = (targetId) => navigate(`/pokemon/${targetId}`, {
+    replace: true,
+    state: location.state, // preserve the `from` so the chain keeps filter context
+  });
 
   const formParam = searchParams.get('form');
 
@@ -510,12 +549,12 @@ export default function PokemonPage() {
       // ignore arrow keys when the user is typing in an input/textarea/etc.
       const tag = e.target?.tagName;
       if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.target?.isContentEditable) return;
-      if (e.key === 'ArrowLeft')       navigate(`/pokemon/${pokemon.id - 1}`, { replace: true });
-      else if (e.key === 'ArrowRight') navigate(`/pokemon/${pokemon.id + 1}`, { replace: true });
+      if (e.key === 'ArrowLeft'  && prevId != null) goTo(prevId);
+      else if (e.key === 'ArrowRight' && nextId != null) goTo(nextId);
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [pokemon, abilityShown, navigate]);
+  }, [pokemon, abilityShown, prevId, nextId]);
 
   // visual cue when the detail content updates — same scale pulse used by
   // the cycling modals (berry / pokeball / badge). consistent feel across
@@ -640,6 +679,36 @@ export default function PokemonPage() {
     : [normalSrc, shinySrc].filter(Boolean);
   const spritesReady = useSpritesReady(slotSrcs);
 
+  // slots for the enlarge-on-tap sprite modal — same set of urls the
+  // sprite-row renders, paired with their gender + shiny flags so the
+  // modal can show the matching pill badge for each variant. nulls are
+  // filtered out so the modal only ever cycles through actually-existing
+  // images.
+  // gendered ordering pairs by shiny-state rather than by gender —
+  // normal-male → normal-female → shiny-male → shiny-female. cycling
+  // through the modal then reads as "see both genders, then see both
+  // shinies" which matches the visual pairing of the sprite-row above.
+  const spriteSlots = (showGenderVariant
+    ? [
+        { src: spriteMaleNormal,   gender: 'male',   shiny: false },
+        { src: spriteFemaleNormal, gender: 'female', shiny: false },
+        { src: spriteMaleShiny,    gender: 'male',   shiny: true  },
+        { src: spriteFemaleShiny,  gender: 'female', shiny: true  },
+      ]
+    : [
+        { src: normalSrc, gender: null, shiny: false },
+        { src: shinySrc,  gender: null, shiny: true  },
+      ]
+  ).filter(s => !!s.src);
+  // index inside spriteSlots for each of the sprite-row's <img> tags.
+  // -1 = not present (e.g. shiny when retro is on). used to seed the
+  // modal at the slot the user actually tapped.
+  const slotIndex = (gender, shiny) => spriteSlots.findIndex(s => (s.gender || null) === gender && !!s.shiny === !!shiny);
+
+  const [spriteModalIdx, setSpriteModalIdx] = useState(null);
+  const { displayed: spriteModalShown, isClosing: spriteModalClosing } = useModalAnimation(spriteModalIdx !== null);
+  const openSpriteModal = (i) => { if (i >= 0) setSpriteModalIdx(i); };
+
   if (loading) return <div className="page-center">loading...</div>;
   if (error)   return <div className="page-center error">error: {error}</div>;
   if (!pokemon) return null;
@@ -676,10 +745,12 @@ export default function PokemonPage() {
       <div className="detail-top-row">
         <button className="back-link" onClick={() => navigate(-1)}>← back</button>
         <div className="detail-nav">
-          {pokemon.id > 1 && (
-            <button onClick={() => navigate(`/pokemon/${pokemon.id - 1}`, { replace: true })}>← #{String(pokemon.id - 1).padStart(3, '0')}</button>
+          {prevId != null && (
+            <button onClick={() => goTo(prevId)}>← #{String(prevId).padStart(3, '0')}</button>
           )}
-          <button onClick={() => navigate(`/pokemon/${pokemon.id + 1}`, { replace: true })}>#{String(pokemon.id + 1).padStart(3, '0')} →</button>
+          {nextId != null && (
+            <button onClick={() => goTo(nextId)}>#{String(nextId).padStart(3, '0')} →</button>
+          )}
         </div>
       </div>
 
@@ -699,29 +770,54 @@ export default function PokemonPage() {
             ) : showGenderVariant ? (
               <>
                 <div className="sprite-row__col">
-                  <img src={spriteMaleNormal} alt={`${pokemon.name} male`} className="detail-sprite" />
-                  <div className="sprite-row__gender" aria-label="male">♂</div>
+                  <img
+                    src={spriteMaleNormal}
+                    alt={`${pokemon.name} male`}
+                    className="detail-sprite"
+                    onClick={() => openSpriteModal(slotIndex('male', false))}
+                  />
+                  {/* the trailing U+FE0E variation selector forces text-style
+                      rendering of the ♂ glyph — without it ios swaps in a
+                      tall color-emoji presentation whose metrics push above
+                      the pill's outline on mobile. */}
+                  <div className="sprite-row__gender" aria-label="male">{'♂︎'}</div>
                   {spriteMaleShiny && <>
-                    <img src={spriteMaleShiny} alt={`${pokemon.name} male shiny`} className="detail-sprite" />
+                    <img
+                      src={spriteMaleShiny}
+                      alt={`${pokemon.name} male shiny`}
+                      className="detail-sprite"
+                      onClick={() => openSpriteModal(slotIndex('male', true))}
+                    />
                     <div className="sprite-row__shiny-label" aria-label="shiny" title="shiny variant"><ShinySparkle /></div>
                   </>}
                 </div>
                 <div className="sprite-row__col">
-                  <img src={spriteFemaleNormal} alt={`${pokemon.name} female`} className="detail-sprite" />
-                  <div className="sprite-row__gender sprite-row__gender--f" aria-label="female">♀</div>
+                  <img
+                    src={spriteFemaleNormal}
+                    alt={`${pokemon.name} female`}
+                    className="detail-sprite"
+                    onClick={() => openSpriteModal(slotIndex('female', false))}
+                  />
+                  <div className="sprite-row__gender sprite-row__gender--f" aria-label="female">{'♀︎'}</div>
                   {spriteFemaleShiny && <>
-                    <img src={spriteFemaleShiny} alt={`${pokemon.name} female shiny`} className="detail-sprite" />
+                    <img
+                      src={spriteFemaleShiny}
+                      alt={`${pokemon.name} female shiny`}
+                      className="detail-sprite"
+                      onClick={() => openSpriteModal(slotIndex('female', true))}
+                    />
                     <div className="sprite-row__shiny-label" aria-label="shiny" title="shiny variant"><ShinySparkle /></div>
                   </>}
                 </div>
               </>
             ) : (
               <>
-                <div>
+                <div className="sprite-row__shiny-stack">
                   <img
                     src={normalSrc}
                     alt={pokemon.name}
                     className={retro && retroNormal ? 'detail-artwork detail-artwork--retro' : 'detail-artwork'}
+                    onClick={() => openSpriteModal(slotIndex(null, false))}
                   />
                   {retro && retroNormal && (() => {
                     const credit = getRetroCredit(formSlug, pokemon.name);
@@ -742,6 +838,19 @@ export default function PokemonPage() {
                       </div>
                     );
                   })()}
+                  {/* mobile-only placeholder — on mobile the row flips
+                      side-by-side, and without this the shiny column
+                      (which carries the ✨ label below it) is taller
+                      than the bare normal column, so flex centering
+                      pushes the normal sprite down out of alignment.
+                      desktop hides the placeholder since the columns
+                      stack vertically and the misalignment doesn't
+                      occur. */}
+                  {shinySrc && (
+                    <div className="sprite-row__shiny-label sprite-row__shiny-label--placeholder" aria-hidden="true">
+                      <ShinySparkle />
+                    </div>
+                  )}
                 </div>
                 {shinySrc && (
                   <div className="sprite-row__shiny-stack">
@@ -749,6 +858,7 @@ export default function PokemonPage() {
                       src={shinySrc}
                       alt={`${pokemon.name} shiny`}
                       className={retro && retroShiny ? 'detail-artwork detail-artwork--retro' : 'detail-artwork'}
+                      onClick={() => openSpriteModal(slotIndex(null, true))}
                     />
                     <div className="sprite-row__shiny-label" aria-label="shiny" title="shiny variant">
                       <ShinySparkle />
@@ -915,6 +1025,16 @@ export default function PokemonPage() {
 
       {abilityShown && (
         <AbilityModal ability={abilityShown} closing={abilityClosing} onClose={() => setSelectedAbility(null)} />
+      )}
+
+      {spriteModalShown && (
+        <SpriteModal
+          slots={spriteSlots}
+          startIndex={spriteModalIdx ?? 0}
+          pokemonName={pokemon.name}
+          closing={spriteModalClosing}
+          onClose={() => setSpriteModalIdx(null)}
+        />
       )}
     </div>
   );

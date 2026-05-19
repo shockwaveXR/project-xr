@@ -7,6 +7,23 @@
   min-height: calc(100vh - 60px);
 }
 
+// wraps the filter panel + a mobile-only copy of the search bar. on desktop
+// it's just a passthrough grid cell (the search bar inside is hidden via
+// .search-bar-slot--mobile) and the filter-panel keeps its existing sticky-
+// sidebar behavior. on mobile, this wrapper becomes the unified sticky
+// strip so the search input + (collapsible) filter controls always pin to
+// the top of .app-scroll together — see _responsive.scss for the mobile
+// overrides.
+.home-controls {
+  display: contents;
+}
+
+// the search bar normally lives in a wrapper so we can toggle which copy is
+// visible per breakpoint. desktop hides the mobile slot; mobile hides the
+// desktop slot. defaults below cover the desktop case.
+.search-bar-slot--mobile { display: none; }
+.search-bar-slot--desktop { display: block; }
+
 .home-main {
   padding: 24px;
   animation: fade-in .3s ease;
@@ -37,7 +54,9 @@
     width: 100%;
     padding: 7px 10px;
     font-family: inherit;
-    font-size: .82rem;
+    // 16px floor prevents ios safari from auto-zooming the page on focus
+    // (any smaller triggers it; user has no way to zoom back out).
+    font-size: max(16px, .82rem);
     color: var(--text);
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -52,6 +71,80 @@
     }
   }
 
+  // body wrapper holds every control group. on desktop it always renders
+  // as a normal flex column. on mobile the toggle button collapses it.
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  // collapse/expand toggle — hidden on desktop, visible on mobile only.
+  // mirrors the .settings-btn translucent look so it sits naturally
+  // alongside the rest of the header chrome.
+  &__toggle {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    padding: 9px 14px;
+    font-family: inherit;
+    font-size: .85rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: color-mix(in srgb, var(--text) 6%, transparent);
+    border: 1px solid color-mix(in srgb, var(--text) 30%, transparent);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: color .15s ease, border-color .15s ease, background-color .15s ease;
+
+    &:active {
+      transform: scale(.98);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    &.is-open {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 10%, transparent);
+    }
+  }
+
+  &__toggle-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    margin-left: 8px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: .68rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: 0;
+    text-transform: none;
+    vertical-align: middle;
+  }
+
+  &__toggle-chevron {
+    font-size: 1.4rem;
+    line-height: 1;
+    color: inherit;
+    transform: rotate(90deg);
+    transition: transform .2s ease;
+  }
+
+  &__toggle.is-open &__toggle-chevron {
+    transform: rotate(-90deg);
+  }
 }
 
 .filter-divider {
@@ -78,40 +171,51 @@
   select {
     flex: 1 1 0;
     min-width: 0;
-    padding-right: 36px;
+    // extra right padding so the chip-shaped direction button sits
+    // entirely inside the select's right edge with breathing room
+    // (chip width 36 + 14 inset + ~6 gap ≈ 56).
+    padding-right: 58px;
   }
 
-  // bare clickable arrow — no border, no bg, no chrome. just a glyph
-  // sitting in the right padding the select cleared for it. tap = flip
-  // direction; tap anywhere else on the select = open dropdown.
+  // direction toggle reads as a discrete clickable chip — same chrome
+  // tokens (var(--bg-card), var(--border), var(--radius-sm)) as the
+  // surrounding select so it visually belongs to the same control
+  // family. width kept wide enough that the 14px radius reads as a
+  // rounded rectangle rather than collapsing to a circle, and the
+  // chip is inset 14px from the select's right edge so its border
+  // never kisses the select's outer border.
   &__direction {
     position: absolute;
-    right: 8px;
+    right: 14px;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
+    width: 36px;
     height: 24px;
     padding: 0;
-    background: transparent;
-    border: none;
     color: var(--text-muted);
-    font-size: 1.2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: var(--fw-bold);
     line-height: 1;
     cursor: pointer;
-    transition: color .15s ease, transform .15s ease;
+    transition: color .15s ease, background-color .15s ease, border-color .15s ease, transform .15s ease, box-shadow .15s ease;
 
     @media (hover: hover) and (pointer: fine) {
       &:hover {
         color: var(--accent);
+        border-color: var(--accent);
       }
     }
 
     &:active {
-      transform: translateY(-50%) scale(.85);
+      transform: translateY(-50%) scale(.92);
       color: var(--accent);
+      border-color: var(--accent);
     }
   }
 }
@@ -282,7 +386,10 @@
   width: 100%;
   padding: 10px 72px 10px 16px;
   font-family: inherit;
-  font-size: .95rem;
+  // 16px floor on the font size keeps ios safari from auto-zooming the
+  // page on focus — any smaller triggers it and the user has no way to
+  // zoom back out. desktop visual size is roughly unchanged.
+  font-size: max(16px, .95rem);
   color: var(--text);
   background: var(--bg-card);
   border: 1px solid var(--border);

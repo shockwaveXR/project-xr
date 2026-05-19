@@ -150,18 +150,25 @@
   // unified pill treatment shared by ♂/♀ gender labels + the shiny
   // sparkle label. same neutral bg + thin black outline across all
   // three; only the SYMBOL color differs (♂ blue, ♀ pink, ✨ black).
+  // `font-variant-emoji: text` belt-and-suspenders alongside the
+  // U+FE0E variation selector in the JSX — ios otherwise picks the
+  // emoji presentation for ♂/♀ whose glyph metrics blow past the
+  // pill outline. min-height + generous line-height give breathing
+  // room on devices that still render the glyphs slightly tall.
   &__gender,
   &__shiny-label {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    font-size: .95rem;
     font-weight: var(--fw-bold);
-    line-height: 1;
-    padding: 2px 10px;
+    line-height: 1.3;
+    min-height: 26px;
+    padding: 4px 12px;
     border-radius: 999px;
     background: var(--bg-card);
     border: 1px solid #111;
+    font-variant-emoji: text;
   }
 
   &__gender {
@@ -174,6 +181,15 @@
 
   &__shiny-label {
     color: #111; // black sparkle (svg inherits currentColor)
+  }
+
+  // placeholder variant: matches the shiny-label's exact box geometry
+  // so the normal sprite's column ends up the same height as the
+  // shiny one when sprite-row flips to side-by-side on mobile. only
+  // ever rendered when a shiny exists; desktop hides it (columns
+  // stack and the spacer would just add an awkward bottom gap).
+  &__shiny-label--placeholder {
+    display: none;
   }
 
   // wrapper for the shiny stack in non-gendered mode — keeps the label
@@ -724,6 +740,186 @@
 }
 
 // ability modal overlay + card
+
+// ─── sprite modal ─────────────────────────────────────────────────────
+// tapping any sprite on the detail page opens this modal so the user can
+// see the artwork at a larger size and cycle through all available
+// variants (normal / shiny / male / female combinations) with the right
+// label badge underneath.
+.sprite-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .6);
+  z-index: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: modal-backdrop .2s ease;
+
+  &.closing { animation: modal-backdrop-out .25s ease forwards; }
+  &.closing .sprite-modal { animation: modal-pop-out .25s ease-in forwards; }
+}
+
+.sprite-modal {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 28px 24px 22px;
+  width: min(420px, 92vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: modal-pop .25s cubic-bezier(.34, 1.56, .64, 1);
+
+  &__close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--text-subtle);
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: color .15s ease, background-color .15s ease;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover { color: var(--text); background: color-mix(in srgb, var(--text) 8%, transparent); }
+    }
+  }
+
+  &__stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 260px;
+  }
+
+  &__img {
+    max-width: 320px;
+    max-height: 320px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    image-rendering: -webkit-optimize-contrast;
+    animation: modal-pop .2s ease;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-muted);
+    font-size: 1.6rem;
+    font-weight: var(--fw-semibold);
+    line-height: 1;
+    cursor: pointer;
+    transition: color .15s ease, border-color .15s ease, background-color .15s ease, transform .15s ease;
+
+    &--prev { left: 0; }
+    &--next { right: 0; }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+    }
+
+    &:active { transform: translateY(-50%) scale(.92); color: var(--accent); border-color: var(--accent); }
+  }
+
+  // mirrors the .sprite-row__shiny-label pill geometry so the badge in
+  // the modal feels identical to the inline label on the detail page.
+  &__badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 28px;
+  }
+
+  &__pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .95rem;
+    font-weight: var(--fw-bold);
+    line-height: 1.3;
+    min-height: 26px;
+    padding: 4px 14px;
+    border-radius: 999px;
+    background: var(--bg-card);
+    border: 1px solid #111;
+    font-variant-emoji: text;
+
+    &--male    { color: #5b8dd9; }
+    &--female  { color: #d34f7a; }
+    // "shiny" as plain text rather than the ✨ glyph — the sparkle is
+    // near-invisible against the white pill bg, especially on retro /
+    // ereader themes. var(--text) auto-resolves to the theme's primary
+    // foreground (black on light / ereader, off-white on dark, etc.)
+    // so it reads cleanly everywhere.
+    &--shiny {
+      color: var(--text);
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    &--default { color: var(--text-muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; }
+  }
+
+  &__dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--text) 22%, transparent);
+    cursor: pointer;
+    transition: background-color .15s ease, transform .15s ease;
+
+    &.is-active {
+      background: var(--accent);
+      transform: scale(1.2);
+    }
+  }
+}
+
+// tapping any sprite in the detail page's sprite-row should feel
+// interactive. cursor + subtle scale-up on hover communicate that.
+.detail-artwork,
+.detail-sprite {
+  cursor: zoom-in;
+  transition: transform .2s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { transform: scale(1.04); }
+  }
+}
 
 .ability-modal-overlay {
   position: fixed;

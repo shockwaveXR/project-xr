@@ -55,21 +55,38 @@ export default function HomePage() {
 
   return (
     <div className="home-layout">
-      <FilterPanel
-        filters={filters}
-        onChange={setFilters}
-        shiny={shiny}
-        onShinyToggle={() => setShiny(s => { setBool(STORAGE_KEYS.SHINY_SPRITES, !s); return !s; })}
-        inlineForms={inlineForms}
-        onInlineFormsChange={updateInlineForms}
-      />
+      {/* mobile: this wrapper is the single sticky strip — search input on
+          top, filter panel (collapsible) directly beneath it, so both pin
+          to the top of .app-scroll as one visual unit. desktop: the wrapper
+          is the left sidebar grid cell; the mobile search bar inside is
+          hidden via css and the desktop search bar lives at the top of
+          .home-main as before. */}
+      <div className="home-controls">
+        <div className="search-bar-slot search-bar-slot--mobile">
+          <SearchBar
+            value={filters.search || ''}
+            onSearch={handleSearch}
+            onEnter={() => { if (displayed.length > 0) navigate(`/pokemon/${displayed[0].id}`); }}
+          />
+        </div>
+        <FilterPanel
+          filters={filters}
+          onChange={setFilters}
+          shiny={shiny}
+          onShinyToggle={() => setShiny(s => { setBool(STORAGE_KEYS.SHINY_SPRITES, !s); return !s; })}
+          inlineForms={inlineForms}
+          onInlineFormsChange={updateInlineForms}
+        />
+      </div>
 
       <main className="home-main">
-        <SearchBar
-          value={filters.search || ''}
-          onSearch={handleSearch}
-          onEnter={() => { if (displayed.length > 0) navigate(`/pokemon/${displayed[0].id}`); }}
-        />
+        <div className="search-bar-slot search-bar-slot--desktop">
+          <SearchBar
+            value={filters.search || ''}
+            onSearch={handleSearch}
+            onEnter={() => { if (displayed.length > 0) navigate(`/pokemon/${displayed[0].id}`); }}
+          />
+        </div>
 
         {error   && <p className="error">error: {error}</p>}
         {loading && <p className="loading">loading pokémon...</p>}

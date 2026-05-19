@@ -123,11 +123,19 @@
   }
 
   // global header search: shrink the input + let the dropdown stretch closer
-  // to viewport width so result rows aren't truncated awkwardly.
+  // to viewport width so result rows aren't truncated awkwardly. font-size
+  // bumped to 16px specifically so ios safari does NOT zoom the page on
+  // focus — anything smaller triggers the autozoom, and there's no
+  // user-initiated way to zoom back out once it fires.
   .global-search {
     &__input {
       width: 110px;
-      &:focus { width: 140px; }
+      // matches the bumped mobile tap-target size of the cog/burger
+      // buttons (padding 11 + 22 svg + 11 + 2 = 46px), keeping the
+      // header row aligned across all three controls.
+      height: 46px;
+      font-size: 16px;
+      &:focus { width: 150px; }
     }
     &__dropdown {
       width: calc(100vw - 24px);
@@ -137,115 +145,166 @@
   }
 
   // ── home layout ──
-  // single column: filter strip on top, main below, compare at bottom
+  // single column: sticky controls strip on top, main below
   .home-layout {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
     min-height: calc(100vh - 60px);
   }
 
-  // filter panel on mobile: flex-wrap row that grows vertically as needed
-  // instead of horizontal scrolling. previous design hid options off-screen
-  // and required side-scrolling to reach them — visible-by-default reads
-  // better at small widths even though it costs vertical space.
-  //
-  // sticky to the top of .app-scroll (top:0). previously top:52px to clear
-  // the body-level sticky header, but in the new scroll-container architecture
-  // the header lives outside .app-scroll, so there's nothing to offset for.
-  .filter-panel {
+  // unified sticky strip: search input + collapsible filter panel pinned
+  // to the top of .app-scroll as one block. desktop has this as
+  // `display: contents` (passthrough); mobile turns it into a real block
+  // so the children stack and the whole thing scrolls together.
+  .home-controls {
+    display: block;
     position: sticky;
     top: 0;
-    z-index: 20;
+    z-index: 25;
+    background: var(--bg-sidebar);
+    border-bottom: 1px solid var(--border);
+  }
+
+  // swap which search-bar slot renders. the desktop slot above the grid
+  // disappears on mobile; the slot inside .home-controls takes its place
+  // so the input lives in the sticky strip.
+  .search-bar-slot--mobile  { display: block; }
+  .search-bar-slot--desktop { display: none; }
+
+  // the mobile search-bar lives inside the .home-controls sticky wrapper,
+  // so it no longer needs its own sticky/offset treatment. background is
+  // also inherited from the wrapper.
+  .search-bar-slot--mobile .search-bar {
+    position: static;
+    margin: 0;
+    padding: 10px 14px 8px;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  // filter panel on mobile: now a collapsible card-like strip below the
+  // search input. when closed (default) only the toggle button shows;
+  // when open the controls slide into view directly underneath. no more
+  // sticky positioning here — the parent .home-controls handles that
+  // for both children.
+  .filter-panel {
+    position: static;
+    top: auto;
     height: auto;
     overflow: visible;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 10px 14px;
-    gap: 8px 10px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 0 14px 10px;
+    gap: 10px;
     border-right: none;
-    border-bottom: 1px solid var(--border);
+    border-bottom: none;
     align-items: stretch;
+    background: transparent;
 
-    // zero-height row break inserted in the JSX between the sort select
-    // and the action buttons. flex-basis 100% forces a wrap, pinning the
-    // sort-options-strip + reset-btn to their own dedicated row regardless
-    // of how the selects above wrapped. invisible on desktop (display: none
-    // by default below) so the column-flex layout there is unaffected.
-    .filter-panel__break {
-      display: block;
-      flex-basis: 100%;
-      width: 100%;
-      height: 0;
-      margin: 0;
+    // mobile-only collapse/expand toggle button.
+    &__toggle {
+      display: flex;
     }
 
-    // .filter-toggles is `flex-direction: column` by default (vertical stack
-    // of checkbox rows). when it lands in the same flex-wrap row as a select,
-    // its taller height gets propagated via `align-items: stretch`, making
-    // the selects look unnecessarily tall. forcing it onto its own full-
-    // width row keeps select rows compact.
-    .filter-toggles {
+    // body holds the three filter groups + reset. on mobile it starts
+    // collapsed (display:none); when the toggle flips on, it reappears
+    // as a flex-wrap row that grows vertically as needed.
+    &__body {
+      display: none;
       flex-direction: row;
       flex-wrap: wrap;
-      flex-basis: 100%;
-      width: 100%;
-      gap: 4px 16px;
+      gap: 8px 10px;
+      padding-top: 10px;
+      align-items: stretch;
     }
 
+    &.is-mobile-open &__body {
+      display: flex;
+    }
+
+    // each group spans the full row — its label sits on its own line at
+    // the top, then its controls wrap two-per-row beneath so the panel
+    // stays vertically compact even with five dropdowns in the filters
+    // group.
+    .filter-panel__group {
+      flex: 1 1 100%;
+      min-width: 0;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 6px 8px;
+      align-items: stretch;
+    }
+
+    // label takes its own full-width row above the controls.
+    .filter-panel__label {
+      flex: 1 1 100%;
+      width: 100%;
+      margin-bottom: 0;
+    }
+
+    // half-width controls — two fit per row. `min-width: 0` lets long
+    // option labels truncate inside the select rather than blow out
+    // the column width.
     select,
     input[type='number'],
     .sort-control {
+      flex: 1 1 calc(50% - 4px);
       width: auto;
-      // flex-shrink: 0 — siblings on the same wrap-row can't squeeze the
-      // sort-control narrower than 50% - 5px (gap-half). flex-grow: 1
-      // still allows growing if extra space appears. flex-basis pins the
-      // 2x2 grid to exact halves.
-      flex: 1 0 calc(50% - 5px);
       min-width: 0;
-      font-size: .82rem;
     }
 
     select,
     input[type='number'] {
-      padding: 5px 10px;
+      padding: 8px 12px;
     }
 
-    // inner select of .sort-control: takes flex: 1 1 0 from the wrapper's
-    // own flex layout (set in _home.scss), so width is automatic. only
-    // padding needs the mobile-specific tightening to match siblings.
+    // .sort-control is a wrapper for the select + the absolutely-
+    // positioned direction chip. it has no padding of its own — that
+    // would shift the chip's `right` offset inward by the padding
+    // amount, leaving the chip looking flush against the select's
+    // right border. the inner select handles its own padding-right
+    // to make room for the chip.
     .sort-control select {
-      padding: 5px 32px 5px 10px;
+      width: 100%;
+      padding: 8px 64px 8px 12px;
     }
+
     .sort-control__direction {
-      right: 6px;
-      width: 22px;
-      height: 22px;
+      right: 14px;
+      width: 40px;
+      // size up the chip on mobile so it reads as substantial relative
+      // to the taller mobile select (font-size: 16px → ~42px-tall
+      // select). top/bottom insets fill the vertical space so chip
+      // height tracks the select height with even breathing room.
+      top: 4px;
+      bottom: 4px;
+      height: auto;
+      transform: none;
       font-size: 1.1rem;
+
+      &:active { transform: scale(.92); }
     }
 
-    .filter-divider {
-      display: none; // dividers don't make sense in a wrapping multi-row layout
-    }
-
-    .sort-options-strip {
+    // toggle pills (display group) should also nestle into the half-
+    // width layout so the visual rhythm matches the dropdowns above.
+    .filter-toggle {
+      flex: 1 1 calc(50% - 4px);
       width: auto;
-      gap: 6px;
-
-      // wider tap targets for the sort direction buttons + match the
-      // visual height of the sibling selects.
-      button { padding: 6px 14px; font-size: .82rem; }
+      min-width: 0;
+      padding: 6px 8px;
     }
 
-    // reset on mobile gets accent-color distinction so it's findable next
-    // to the shiny toggle (which is itself prominent when active).
+    .filter-divider { display: none; }
+    .filter-panel__break { display: none; }
+
+    // reset gets accent distinction + spans the row at the bottom of
+    // the expanded body.
     .reset-btn {
-      margin-top: 0;
-      width: auto;
-      padding: 6px 14px;
-      font-size: .78rem;
+      margin-top: 4px;
+      width: 100%;
+      padding: 9px;
+      font-size: .82rem;
       font-weight: var(--fw-semibold);
-      flex-shrink: 0;
-      white-space: nowrap;
       color: var(--accent);
       background: color-mix(in srgb, var(--accent) 10%, transparent);
       border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
@@ -258,19 +317,12 @@
         border-color: var(--accent);
       }
     }
-
-    .stat-input { margin-top: 0; }
   }
 
   // ── main content ──
   .home-main {
     padding: 14px 14px 20px;
   }
-
-  // sticky on mobile too — same top:0 as the desktop rule in _home.scss. position: sticky
-  // is still a containing block for the absolutely-positioned .search-clear-btn inside, so
-  // the clear button stays anchored even at narrow viewports.
-  .search-bar { margin-bottom: 14px; }
 
   .pokemon-grid {
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -332,6 +384,16 @@
     flex-direction: row;
     justify-content: center;
     gap: 24px;
+  }
+
+  // mobile only: reveal the placeholder pill under the normal sprite
+  // as an invisible block. takes the same dimensions as the real
+  // shiny-label below the shiny sprite, so the two columns end up
+  // the same height and `align-items: center` no longer pushes the
+  // normal sprite down relative to the shiny one.
+  .sprite-row__shiny-label--placeholder {
+    display: inline-flex;
+    visibility: hidden;
   }
 
   .detail-artwork {

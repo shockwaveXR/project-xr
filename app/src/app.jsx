@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigationType, useSearchParams } from 'react-router-dom';
 import { useModalAnimation } from './hooks/use-modal-animation';
 import { useBodyScrollLock } from './hooks/use-body-scroll-lock';
-import { getAppScroller } from './utils/app-scroll';
+import { getAppScroller, scrollPositions } from './utils/app-scroll';
 import { STORAGE_KEYS, getString, setString, getBool, setBool, getJSON, setJSON } from './utils/storage';
 import HomePage from './pages/home-page';
 import PokemonPage from './pages/pokemon-page';
@@ -221,13 +221,12 @@ function HeaderSprites({ a11y }) {
 function ScrollManager() {
   const location   = useLocation();
   const navType    = useNavigationType();
-  const positions  = useRef({});
   const prevPath   = useRef(location.pathname);
 
   useEffect(() => {
     const scroller = getAppScroller();
     if (!scroller) return;
-    const save = () => { positions.current[location.key] = scroller.scrollTop; };
+    const save = () => { scrollPositions.set(location.key, scroller.scrollTop); };
     scroller.addEventListener('scroll', save, { passive: true });
     return () => scroller.removeEventListener('scroll', save);
   }, [location.key]);
@@ -237,10 +236,13 @@ function ScrollManager() {
     if (!scroller) return;
     if (navType === 'POP') {
       // back/forward → restore saved scroll instantly so the user lands
-      // exactly where they left off.
-      scroller.scrollTo(0, positions.current[location.key] ?? 0);
+      // exactly where they left off. note: pages that load content async
+      // (e.g. HomePage's pokemon grid) re-apply this themselves once
+      // their data renders, since the initial commit here is too short
+      // to seek a deep saved offset.
+      scroller.scrollTo(0, scrollPositions.get(location.key) ?? 0);
     } else {
-      // forward navigation → smooth scroll to top when (a) pathname changed
+      // forward navigation → reset scroll to top when (a) pathname changed
       // or (b) the navigation explicitly opted in via state.scrollTop.
       // (b) covers mega-evo card clicks where only ?form= changes — same
       // pathname but the user expects to land at the top of the new view.
@@ -248,14 +250,13 @@ function ScrollManager() {
       const explicitTop = location.state?.scrollTop === true;
       const optedOut    = location.state?.noScroll === true;
       if (!optedOut && (pathChanged || explicitTop)) {
-        // defer one frame so the new page component has time to render its
-        // content. firing scrollTo({behavior:'smooth'}) before the content
-        // settles can race with mid-render scrollHeight changes (e.g. brief
-        // loading placeholder → full detail) and either cancel the animation
-        // or land somewhere other than the top.
-        requestAnimationFrame(() => {
-          scroller.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        // INSTANT, synchronous reset — must happen before the browser
+        // paints the new route or the user sees the old scrollTop bleed
+        // through (e.g. clicking a card from a deep scroll on /pokedex
+        // would briefly show /pokemon/:id halfway down its detail page).
+        // smooth-scroll-from-old-position was the previous behavior and
+        // is what produced that flash.
+        scroller.scrollTop = 0;
       }
     }
     prevPath.current = location.pathname;
@@ -265,7 +266,7 @@ function ScrollManager() {
 }
 
 // header lives inside BrowserRouter so it can use useSearchParams
-function AppHeader({ theme, setTheme, a11y, setA11y, xfadeMode, setXfadeMode }) {
+function AppHeader({ theme, setTheme, a11y, setA11y }) {
   const [visualsOpen,  setVisualsOpen]  = useState(false);
   const [featuresOpen, setFeaturesOpen] = useState(false);
   const { isLive } = useTwitchLive();
@@ -481,26 +482,6 @@ function AppHeader({ theme, setTheme, a11y, setA11y, xfadeMode, setXfadeMode }) 
                 <p className="settings-hint">adds patterns to stat bars, removes animations, increases font size and spacing, boosts contrast</p>
               </div>
 
-              <div className="dropdown-divider" />
-
-              {/* MOCKUP — cross-modal transition picker. delete this section
-                  along with the xfadeMode plumbing when one mode wins. */}
-              <div className="settings-section">
-                <span className="settings-sublabel">cross-modal transition</span>
-                <div className="xfade-pills">
-                  {['snap', 'view', 'dip', 'curtain'].map(m => (
-                    <button
-                      key={m}
-                      className={`xfade-pill${xfadeMode === m ? ' is-active' : ''}`}
-                      onClick={() => setXfadeMode(m)}
-                    >
-                      {m}
-                    </button>
-                  ))}
-                </div>
-                <p className="settings-hint">try each on a leader↔badge link. snap = current. view = browser-native crossfade with shared box morph. dip = brief dim flash. curtain = held dim cover.</p>
-              </div>
-
             </div>
           )}
         </div>
@@ -547,23 +528,8 @@ function useVisualSettings() {
   return { theme, setTheme, a11y, setA11y };
 }
 
-// MOCKUP — cross-modal transition mode. lives in the visuals dropdown so
-// the user can flip between styles and feel each one. drop this hook + the
-// settings UI when one wins.
-const XFADE_MODES = ['snap', 'view', 'dip', 'curtain'];
-
-function useXfadeMode() {
-  const [mode, setMode] = useState(() => {
-    const saved = getString(STORAGE_KEYS.XFADE_MODE, 'snap');
-    return XFADE_MODES.includes(saved) ? saved : 'snap';
-  });
-  useEffect(() => { setString(STORAGE_KEYS.XFADE_MODE, mode); }, [mode]);
-  return [mode, setMode];
-}
-
 export default function App() {
   const { theme, setTheme, a11y, setA11y } = useVisualSettings();
-  const [xfadeMode, setXfadeMode] = useXfadeMode();
   // channel comes from the cloudflare worker via use-twitch-live (single
   // source of truth — same hook the about page reads). twitch link is
   // hidden until channel resolves so we never render a broken
@@ -593,7 +559,6 @@ export default function App() {
       <AppHeader
         theme={theme} setTheme={setTheme}
         a11y={a11y} setA11y={setA11y}
-        xfadeMode={xfadeMode} setXfadeMode={setXfadeMode}
       />
       <TransitionVeil />
       <main className="app-scroll">

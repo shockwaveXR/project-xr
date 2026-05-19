@@ -95,7 +95,8 @@
   opacity: 1;
 }
 [data-a11y='true'] .site-logo,
-[data-a11y='true'] .settings-btn {
+[data-a11y='true'] .settings-btn,
+[data-a11y='true'] .global-search__input {
   background: var(--bg-header);
 }
 
@@ -396,23 +397,45 @@
   display: flex;
   align-items: center;
 
+  // input mimics the header buttons (.settings-btn) — same translucent
+  // bg + border + radius so the scrolling sprite strip shows through.
+  // explicit `height` is needed because inputs add a few pixels of native
+  // widget chrome (intrinsic min-height from font metrics) on top of
+  // padding+line-height; without it the search box ends up 1-2px taller
+  // than the icon buttons, which read as 30px (padding 6 + 16 svg + 6 +
+  // 2 border). font-size stays ≥16px on mobile to prevent ios safari's
+  // focus-zoom — see the mobile override in _responsive.scss.
   &__input {
+    box-sizing: border-box;
     width: 180px;
-    padding: 5px 10px;
-    font-size: .8rem;
-    color: var(--text);
-    background: var(--bg);
-    border: 1px solid var(--border);
+    height: 30px;
+    padding: 0 12px;
+    font-family: inherit;
+    font-size: .75rem;
+    line-height: 1;
+    font-weight: var(--fw-medium);
+    color: var(--text-muted);
+    background: color-mix(in srgb, var(--text) 6%, transparent);
+    border: 1px solid color-mix(in srgb, var(--text) 30%, transparent);
     border-radius: var(--radius-sm);
-    transition: width .2s ease, border-color .15s ease, box-shadow .15s ease;
+    transition: width .2s ease, color .15s ease, border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
 
     &::placeholder { color: var(--text-subtle); }
 
     &:focus {
       outline: none;
       width: 220px;
+      color: var(--text);
       border-color: var(--accent);
       box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover:not(:focus) {
+        color: var(--accent);
+        border-color: var(--accent);
+        box-shadow: 0 0 0 1px var(--accent);
+      }
     }
   }
 

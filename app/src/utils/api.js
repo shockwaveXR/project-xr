@@ -168,6 +168,26 @@ function getStat(p, name) {
 // ultra beast pokedex IDs (no dedicated field in data)
 const ULTRA_BEAST_IDS = new Set([793,794,795,796,797,798,799,803,804,805,806]);
 
+// starter pokemon base form IDs, gen 1 through 9. add gen-10 starters here
+// once the gen-10 species ship.
+const STARTER_IDS = new Set([
+  1, 4, 7,           // gen 1: bulbasaur, charmander, squirtle
+  152, 155, 158,     // gen 2: chikorita, cyndaquil, totodile
+  252, 255, 258,     // gen 3: treecko, torchic, mudkip
+  387, 390, 393,     // gen 4: turtwig, chimchar, piplup
+  495, 498, 501,     // gen 5: snivy, tepig, oshawott
+  650, 653, 656,     // gen 6: chespin, fennekin, froakie
+  722, 725, 728,     // gen 7: rowlet, litten, popplio
+  810, 813, 816,     // gen 8: grookey, scorbunny, sobble
+  906, 909, 912,     // gen 9: sprigatito, fuecoco, quaxly
+]);
+
+// for the form-availability cases below we go through highlightFormsFor()
+// rather than raw `*_forms.length > 0` so the same EXCLUDED_FORMS list
+// + form_data presence check that gates which cards are SHOWN also gates
+// which species MATCH. otherwise species like pikachu (whose only
+// regional entry is the excluded `pikachu-alola-cap`) would surface in
+// the regionals dropdown despite never producing a visible card.
 function matchesClass(p, cls) {
   switch (cls) {
     case 'legendary':        return p.is_legendary && !p.is_mythical;
@@ -176,16 +196,51 @@ function matchesClass(p, cls) {
     case 'ultra-beast':      return ULTRA_BEAST_IDS.has(p.id);
     case 'pseudo-legendary': return !p.is_legendary && !p.is_mythical && totalStats(p) === 600;
     case 'baby':             return !!p.is_baby;
-    case 'has-mega':         return p.mega_forms?.length > 0;
-    case 'has-gmax':         return p.gmax_forms?.length > 0;
-    case 'has-regional':     return p.regional_forms?.length > 0;
-    case 'regional-alola':   return p.regional_forms?.some(n => /-alola(-|$)/.test(n));
-    case 'regional-galar':   return p.regional_forms?.some(n => /-galar(-|$)/.test(n));
-    case 'regional-hisui':   return p.regional_forms?.some(n => /-hisui(-|$)/.test(n));
-    case 'regional-paldea':  return p.regional_forms?.some(n => /-paldea(-|$)/.test(n));
-    case 'has-forms':        return p.alt_forms?.length > 0;
+    case 'starter':          return STARTER_IDS.has(p.id);
+    case 'has-mega':
+    case 'has-gmax':
+    case 'has-regional':
+    case 'regional-alola':
+    case 'regional-galar':
+    case 'regional-hisui':
+    case 'regional-paldea':  return highlightFormsFor(p, cls).length > 0;
     default: return true;
   }
+}
+
+// returns the filtered + sorted list of species ids (deduped, preserving
+// sort order) for a given filter set. used by PokemonPage to compute
+// prev/next within the same filter context the user was browsing on
+// /pokedex — synchronous because every call site needs the result inline
+// during render. unique-only (form-inline duplicates collapsed to their
+// species id) since prev/next nav is keyed off species id.
+export function getOrderedIds(filters = {}) {
+  const { search, type, generation, cls, ability, sort = 'id', sortDir = 'asc' } = filters;
+  let results = ALL;
+  if (search)     results = results.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
+  if (type)       results = results.filter(p => p.types.includes(type));
+  if (generation) results = results.filter(p => p.generation === Number(generation));
+  if (cls)        results = results.filter(p => matchesClass(p, cls));
+  if (ability) {
+    const wanted = ability.toLowerCase();
+    const hasAbility = (entry) => Array.isArray(entry?.abilities)
+      && entry.abilities.some(a => a.ability_name === wanted);
+    results = results.filter(p => hasAbility(p)
+      || (p.form_data && Object.values(p.form_data).some(hasAbility)));
+  }
+  results = [...results].sort((a, b) => {
+    if (sort === 'name') {
+      return sortDir === 'desc'
+        ? b.name.localeCompare(a.name)
+        : a.name.localeCompare(b.name);
+    }
+    let aVal, bVal;
+    if (sort === 'total')       { aVal = totalStats(a); bVal = totalStats(b); }
+    else if (sort === 'id')     { aVal = a.id; bVal = b.id; }
+    else                        { aVal = getStat(a, sort); bVal = getStat(b, sort); }
+    return sortDir === 'desc' ? bVal - aVal : aVal - bVal;
+  });
+  return results.map(p => p.id);
 }
 
 // filtered, sorted, paginated list

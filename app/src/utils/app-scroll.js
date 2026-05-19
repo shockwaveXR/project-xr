@@ -21,3 +21,12 @@ export const appScrollTo = (top, behavior = 'auto') => {
 export const appScrollBy = (delta, behavior = 'auto') => {
   getAppScroller()?.scrollBy({ top: delta, behavior });
 };
+
+// shared per-history-key scroll cache. populated by ScrollManager via a
+// scroll listener; consumed by ScrollManager on POP nav for the generic
+// restore path, AND by HomePage (which loads its grid asynchronously)
+// so it can re-apply the saved position once its data actually renders
+// — the synchronous post-commit scrollTo in ScrollManager fires before
+// the pokemon list resolves and lands at a too-short scroll-height
+// otherwise.
+export const scrollPositions = new Map();
