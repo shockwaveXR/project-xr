@@ -378,6 +378,21 @@ export function parseSerebii(html) {
       const deptMatch = subcatBlock.match(/<h3>([\s\S]*?)<\/h3>/i);
       const dept = deptMatch ? stripHtml(deptMatch[1]) : '';
 
+      // skip serebii's recurring "Pokémon of the Week" feature — it's
+      // a templated weekly write-up on a single mon (compiled by their
+      // writer Mestorn) rather than actual pokemon news. each entry is
+      // boilerplate-heavy and crowds out genuine news in the feed.
+      // three reinforcing signals so we catch wording or markup tweaks:
+      //   - department heading "In The Pokémon of the Week Department"
+      //   - subcat title "Who's That Pokémon"
+      //   - the /potw-champions/ url namespace these always link into
+      const isPotW =
+        /pok[eé]mon of the week/i.test(dept) ||
+        /who'?s that pok[eé]mon/i.test(topicTitle) ||
+        /\/potw-champions\//i.test(picHref || '') ||
+        /\/potw-champions\//i.test(image  || '');
+      if (isPotW) { subIndex++; continue; }
+
       let bodyHtml = subcatBlock
         .replace(/<h3>[\s\S]*?<\/h3>/i, '')
         .replace(/<p class="title">[\s\S]*?<\/p>/i, '');
