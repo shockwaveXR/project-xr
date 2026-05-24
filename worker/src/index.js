@@ -50,7 +50,13 @@ function jsonResponse(obj, extraHeaders = {}) {
     status: 200,
     headers: {
       'content-type':  'application/json; charset=utf-8',
-      'cache-control': `public, max-age=${CACHE_TTL_SECONDS}`,
+      // BROWSER cache window — kept short (2 min) so a parser-side fix
+      // doesn't get pinned in visitor browsers for half an hour. the
+      // edge cache (CACHE_TTL_SECONDS, ~30 min) still handles the heavy
+      // lifting of keeping upstream calls rare; browsers just re-check
+      // freshness more often, which is cheap because the edge usually
+      // returns within ~60ms.
+      'cache-control': 'public, max-age=120',
       ...CORS_HEADERS,
       ...extraHeaders,
     },
@@ -90,15 +96,15 @@ export default {
 
     // edge cache: caches.default is cloudflare's per-data-center cache, used
     // like a key/value store of Request → Response. cache key is the bare
-    // origin + pathname — ?refresh=1 is intentionally stripped so a refresh
-    // OVERWRITES the same entry the un-suffixed url reads. earlier the key
-    // was `url.toString()`, which meant a refresh hit wrote to a different
-    // slot and left the bare-url's stale payload untouched (the parser
-    // change would still be served to bare-url visitors until the 30-min
-    // ttl expired naturally — exactly the bug that made the PotW entries
-    // keep appearing post-deploy).
+    // origin + pathname + a CACHE_VERSION suffix — ?refresh=1 is stripped
+    // so a refresh OVERWRITES the same entry the un-suffixed url reads.
+    // bumping CACHE_VERSION effectively invalidates every region's cached
+    // payload in one shot (old key no longer matches; next request misses
+    // and rebuilds fresh). bump this when a parser change ships and we
+    // can't wait for the 30-min ttl in each colo to expire naturally.
+    const CACHE_VERSION = 'v2';
     const cache    = caches.default;
-    const cacheKey = new Request(url.origin + url.pathname, { method: 'GET' });
+    const cacheKey = new Request(`${url.origin}${url.pathname}?cv=${CACHE_VERSION}`, { method: 'GET' });
     const bypass   = url.searchParams.get('refresh') === '1';
 
     if (!bypass) {
