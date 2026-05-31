@@ -88,16 +88,18 @@
 //   - .header-sprites img opacity reset, so the universal
 //     `[data-a11y='true'] img { opacity: .85 }` rule doesn't compound with
 //     the strip's own .9 parent opacity and dim the sprites further.
-//   - solid .site-logo / .settings-btn backgrounds, so the scrolling sprites
-//     don't bleed through the control surfaces and focus targets stay
-//     high-contrast.
+//   - solid backgrounds on the logo / nav buttons / search input so the
+//     scrolling sprites don't bleed through the control surfaces and
+//     focus targets stay high-contrast. uses --bg (the body bg) so the
+//     chips read as distinct surfaces against --bg-header, matching the
+//     non-a11y default for .settings-btn + .global-search__input.
 [data-a11y='true'] .header-sprites img {
   opacity: 1;
 }
 [data-a11y='true'] .site-logo,
 [data-a11y='true'] .settings-btn,
 [data-a11y='true'] .global-search__input {
-  background: var(--bg-header);
+  background: var(--bg);
 }
 
 .site-logo {
@@ -130,10 +132,12 @@
   font-size: .75rem;
   font-weight: var(--fw-medium);
   color: var(--text-muted);
-  // color-mix against --text so boundaries stay visible in every theme —
-  // the raw --border token collapses against --bg-header in nitro (identical
-  // yellow) and dark (near-identical charcoal).
-  background: color-mix(in srgb, var(--text) 6%, transparent);
+  // body bg (not header bg) so the button reads as a distinct surface
+  // against the header. --bg is darker/contrasting in every theme: cream
+  // vs lighter cream (light), charcoal vs near-black (dark), white-on-
+  // yellow (nitro). border still uses --text 30% so the edge stays
+  // visible in themes where --bg and --bg-header are close in value.
+  background: var(--bg);
   border: 1px solid color-mix(in srgb, var(--text) 30%, transparent);
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -415,7 +419,9 @@
     line-height: 1;
     font-weight: var(--fw-medium);
     color: var(--text-muted);
-    background: color-mix(in srgb, var(--text) 6%, transparent);
+    // body bg so the input reads as a distinct surface against --bg-header
+    // (same reasoning + caveats as .settings-btn above).
+    background: var(--bg);
     border: 1px solid color-mix(in srgb, var(--text) 30%, transparent);
     border-radius: var(--radius-sm);
     transition: width .2s ease, color .15s ease, border-color .15s ease, background-color .15s ease, box-shadow .15s ease;

@@ -594,7 +594,7 @@ export default function App() {
       {typeof document !== 'undefined' && createPortal(
         <footer className="site-footer-strip">
           <a
-            href="https://github.com/voltage770"
+            href="https://github.com/shockwaveXR"
             target="_blank"
             rel="noopener noreferrer"
             className="site-footer-strip__link"

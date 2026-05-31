@@ -7,7 +7,7 @@ import { useTwitchLive } from '../hooks/use-twitch-live';
 const TWITCH_PARENTS = [
   'localhost',
   '127.0.0.1',
-  'voltage770.github.io',
+  'shockwavexr.github.io',
 ];
 
 const twitchEmbedUrl = (channel) => {
@@ -43,7 +43,7 @@ export default function AboutPage() {
         <p>— jackson</p>
         <ul className="news-about__links">
           <li>
-            <a href="https://github.com/voltage770" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/shockwaveXR" target="_blank" rel="noopener noreferrer">
               github
             </a>
           </li>

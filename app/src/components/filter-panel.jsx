@@ -38,10 +38,17 @@ const FORMS = [
 const CATEGORY_VALUES  = new Set(CATEGORIES.map(o => o.value));
 const REGIONAL_VALUES  = new Set(REGIONALS.map(o => o.value));
 const FORM_VALUES      = new Set(FORMS.map(o => o.value));
+// disabled `__sep__` option renders as a horizontal-bar string in the
+// native dropdown — works as a visual separator across browsers without
+// needing <hr> (not universally supported inside <select> yet) or the
+// extra heading row that <optgroup> would inject. user can't pick it
+// because of the disabled attribute on the rendered <option>.
 const SORT_OPTIONS = [
   { value: 'id',               label: 'number' },
   { value: 'name',             label: 'name' },
-  { value: 'total',            label: 'total stats' },
+  { value: 'total',            label: 'stat total' },
+  { value: 'random',           label: 'random' },
+  { value: '__sep__',          label: '──────────',           disabled: true },
   { value: 'hp',               label: 'hp' },
   { value: 'attack',           label: 'attack' },
   { value: 'defense',          label: 'defense' },
@@ -49,6 +56,13 @@ const SORT_OPTIONS = [
   { value: 'special-defense',  label: 'sp. def' },
   { value: 'speed',            label: 'speed' },
 ];
+
+// fresh uint32 seed for the deterministic 'random' sort. handed to the URL
+// (filters.randomSeed) so the order survives re-renders, show-more, and
+// route round-trips; clicking the reshuffle button regenerates it.
+function genRandomSeed() {
+  return Math.floor(Math.random() * 0xffffffff);
+}
 
 export default function FilterPanel({ filters, onChange, shiny, onShinyToggle, inlineForms = '', onInlineFormsChange }) {
   const types = useTypes();
@@ -183,20 +197,44 @@ export default function FilterPanel({ filters, onChange, shiny, onShinyToggle, i
         <div className="sort-control">
           <select
             value={sort}
-            onChange={e => onChange({ ...filters, sort: e.target.value })}
+            onChange={e => {
+              const next = e.target.value;
+              // switching INTO random mints a fresh seed; otherwise the
+              // URL would carry an empty randomSeed and seededShuffle
+              // would fall back to seed=1 (boring same-every-time order).
+              const patch = next === 'random'
+                ? { sort: next, randomSeed: String(genRandomSeed()) }
+                : { sort: next };
+              // leaving random clears the seed so the URL doesn't carry
+              // a stale param around when it no longer matters.
+              if (sort === 'random' && next !== 'random') patch.randomSeed = undefined;
+              onChange({ ...filters, ...patch });
+            }}
           >
             {SORT_OPTIONS.map(o => (
-              <option key={o.value} value={o.value}>{o.label}</option>
+              <option key={o.value} value={o.value} disabled={o.disabled}>{o.label}</option>
             ))}
           </select>
-          <button
-            type="button"
-            className="sort-control__direction"
-            onClick={() => onChange({ ...filters, sortDir: sortDir === 'asc' ? 'desc' : 'asc' })}
-            aria-label={`sort ${sortDir === 'asc' ? 'ascending — tap to switch to descending' : 'descending — tap to switch to ascending'}`}
-          >
-            {sortDir === 'asc' ? '↑' : '↓'}
-          </button>
+          {sort === 'random' ? (
+            <button
+              type="button"
+              className="sort-control__direction"
+              onClick={() => onChange({ ...filters, randomSeed: String(genRandomSeed()) })}
+              aria-label="reshuffle"
+              title="reshuffle"
+            >
+              ⟳
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="sort-control__direction"
+              onClick={() => onChange({ ...filters, sortDir: sortDir === 'asc' ? 'desc' : 'asc' })}
+              aria-label={`sort ${sortDir === 'asc' ? 'ascending — tap to switch to descending' : 'descending — tap to switch to ascending'}`}
+            >
+              {sortDir === 'asc' ? '↑' : '↓'}
+            </button>
+          )}
         </div>
       </div>
 

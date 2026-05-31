@@ -1,0 +1,307 @@
+// ─── Daily Pokémon Spotlight ─────────────────────────────────────────────────
+// hero card on the news page (above the page header). visual treatment is
+// theme-driven (var(--accent) border, matching news entry thumbnails) —
+// type info lives entirely in the type chips next to the name. card has
+// two states: a thin minimized strip that's clickable across its whole
+// width, and a fuller expanded body. body height animates via the
+// grid-template-rows 1fr↔0fr trick.
+
+$potd-transition: .35s cubic-bezier(.4, 0, .2, 1);
+
+.potd {
+  position: relative;
+  background: var(--bg-card);
+  // match news thumbnails — 3px accent-colored frame so the spotlight
+  // reads as a "framed feature" rather than a hairline chrome bubble.
+  border: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin: 0 0 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+
+  transition: padding $potd-transition;
+}
+
+.potd--minimized {
+  padding: 10px 16px;
+}
+
+// ─── header (always visible — clickable toggle) ──────────────────────────────
+.potd__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border: none;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover .potd__chev { color: var(--text); border-color: var(--text); }
+  }
+}
+
+.potd__header-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.potd--minimized .potd__header-text {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 14px;
+  white-space: nowrap;
+}
+
+// ─── text fields ─────────────────────────────────────────────────────────────
+// hierarchy: title (label/muted), strip-name (the star, bold + text color),
+// date (tabular metadata, muted). no inline · separators — whitespace +
+// font weight + color carry the rhythm.
+.potd__title {
+  font-size: .72rem;
+  font-weight: var(--fw-medium);
+  color: var(--text-subtle);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  flex: 0 0 auto;
+}
+
+.potd__date {
+  font-size: .72rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  flex: 0 0 auto;
+}
+
+// in the strip the date floats to the far right, separating temporal
+// metadata from the editorial label + name on the left.
+.potd--minimized .potd__date {
+  margin-left: auto;
+}
+
+// strip-only inline name. takes the prime visual weight in the strip
+// since it's the most interesting bit ("which pokémon is today?").
+.potd__strip-name {
+  display: none;
+  color: var(--text);
+  font-weight: var(--fw-bold);
+  text-transform: capitalize;
+  font-size: .92rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  letter-spacing: .01em;
+}
+
+.potd--minimized .potd__strip-name { display: inline; }
+
+// chevron chips. right chevron is always visible (icon swaps based on
+// state). left chevron only renders in minimized for visual symmetry.
+.potd__chev {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-muted);
+  transition: color .15s ease, border-color .15s ease;
+}
+
+.potd__chev--left { display: none; }
+.potd--minimized .potd__chev--left { display: inline-flex; }
+
+// ─── body wrap (animated) ────────────────────────────────────────────────────
+.potd__body-wrap {
+  display: grid;
+  grid-template-rows: 1fr;
+  margin-top: 14px;
+  transition:
+    grid-template-rows $potd-transition,
+    margin-top         $potd-transition,
+    opacity            $potd-transition;
+}
+
+.potd__body-wrap > .potd__body {
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.potd--minimized .potd__body-wrap {
+  grid-template-rows: 0fr;
+  margin-top: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+// ─── body contents ───────────────────────────────────────────────────────────
+.potd__artwork-link {
+  flex: 0 0 auto;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  text-decoration: none;
+  transition: transform .15s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { transform: scale(1.02); }
+  }
+  &:active { transform: scale(.98); }
+}
+
+.potd__artwork {
+  max-width: 88%;
+  max-height: 88%;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 12px color-mix(in srgb, var(--text) 20%, transparent));
+}
+
+.potd__info {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.potd__id-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 4px;
+}
+
+.potd__id {
+  font-size: .8rem;
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+// gen + region — clustered with #id at the top of the info column as
+// "this pokémon's locator info". subtle so it doesn't compete with the
+// name + types row below.
+.potd__origin {
+  font-size: .75rem;
+  color: var(--text-subtle);
+  letter-spacing: .03em;
+}
+
+.potd__cry {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color .15s ease, border-color .15s ease, background-color .15s ease, transform .12s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+    }
+  }
+  &:active { transform: scale(.92); }
+}
+
+// name + type chips share a row so the type info reads as part of the
+// pokémon's identity, not a separate section below it.
+.potd__name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 0 4px;
+}
+
+.potd__name {
+  margin: 0;
+  font-size: 1.7rem;
+  font-weight: var(--fw-bold);
+  text-transform: capitalize;
+  line-height: 1.1;
+}
+
+.potd__types {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.potd__subtitle {
+  margin: 4px 0 12px;
+  font-size: .78rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.potd__flavor {
+  margin: 0 0 14px;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-size: .85rem;
+}
+
+.potd__cta {
+  align-self: flex-start;
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: var(--fw-semibold);
+  font-size: .78rem;
+  text-transform: lowercase;
+  letter-spacing: .03em;
+  transition: opacity .15s ease, transform .12s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { opacity: .88; }
+  }
+  &:active { transform: scale(.96); }
+}
+
+// ─── responsive ──────────────────────────────────────────────────────────────
+@media (max-width: 520px) {
+  .potd { padding: 14px 16px; }
+  .potd--minimized { padding: 8px 14px; }
+  .potd__body-wrap > .potd__body { flex-direction: column; align-items: center; gap: 14px; }
+  .potd__artwork-link { width: 140px; height: 140px; }
+  .potd__name { font-size: 1.5rem; }
+  .potd--minimized .potd__header-text { gap: 10px; }
+}
+
+// reduced motion — kill the body-wrap animation; instantaneous snap.
+@media (prefers-reduced-motion: reduce) {
+  .potd,
+  .potd__body-wrap { transition: none; }
+}

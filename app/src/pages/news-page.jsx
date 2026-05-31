@@ -6,6 +6,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import PullToRefresh from '../components/pull-to-refresh';
+import PokemonOfTheDay from '../components/pokemon-of-the-day';
 import bundledNews from '../data/news.json';
 
 // the live news endpoint served by the cloudflare worker. the worker's
@@ -188,6 +189,7 @@ export default function NewsPage() {
   return (
     <div className="news-page">
       <PullToRefresh onRefresh={refreshFresh} />
+      <PokemonOfTheDay />
       <header className="news-page__header">
         <h1>news</h1>
         <p className="news-page__meta">

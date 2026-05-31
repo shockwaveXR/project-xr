@@ -4,6 +4,11 @@
     "name_jp": "てきおうりょく",
     "romaji": null
   },
+  "aerilate": {
+    "effect": "Turns the bearer's Normal moves into Flying moves and strengthens them to 1.3× their power.",
+    "name_jp": "スカイスキン",
+    "romaji": null
+  },
   "aftermath": {
     "effect": "Damages the attacker for 1/4 its max HP when knocked out by a contact move.",
     "name_jp": "ゆうばく",
@@ -49,6 +54,16 @@
     "name_jp": "アロマベール",
     "romaji": null
   },
+  "as-one-glastrier": {
+    "effect": null,
+    "name_jp": "じんばいったい",
+    "romaji": null
+  },
+  "as-one-spectrier": {
+    "effect": null,
+    "name_jp": "じんばいったい",
+    "romaji": null
+  },
   "aura-break": {
     "effect": "Makes Dark Aura and Fairy Aura weaken moves of their respective types.",
     "name_jp": "オーラブレイク",
@@ -72,6 +87,11 @@
   "battle-armor": {
     "effect": "Protects against critical hits.",
     "name_jp": "カブトアーマー",
+    "romaji": null
+  },
+  "battle-bond": {
+    "effect": "Transforms this Pokémon into Ash-Greninja after fainting an opponent.  Water Shuriken's power is 20 and always hits three times.",
+    "name_jp": "きずなへんげ",
     "romaji": null
   },
   "beads-of-ruin": {
@@ -179,6 +199,11 @@
     "name_jp": "はんすう",
     "romaji": null
   },
+  "curious-medicine": {
+    "effect": "Resets all stat changes upon entering battlefield.",
+    "name_jp": "きみょうなくすり",
+    "romaji": null
+  },
   "cursed-body": {
     "effect": "Has a 30% chance of Disabling any move that hits the Pokémon.",
     "name_jp": "のろわれボディ",
@@ -224,6 +249,16 @@
     "name_jp": "まけんき",
     "romaji": null
   },
+  "delta-stream": {
+    "effect": "Creates a mysterious air current, which cannot be replaced and causes moves to never be super effective against Flying Pokémon.",
+    "name_jp": "デルタストリーム",
+    "romaji": null
+  },
+  "desolate-land": {
+    "effect": "Creates extremely harsh sunlight, which has all the properties of Sunny Day, cannot be replaced, and causes damaging Water moves to fail.",
+    "name_jp": "おわりのだいち",
+    "romaji": null
+  },
   "disguise": {
     "effect": "Prevents the first instance of battle damage.",
     "name_jp": "ばけのかわ",
@@ -232,6 +267,11 @@
   "download": {
     "effect": "Raises the attack stat corresponding to the opponents' weaker defense one stage upon entering battle.",
     "name_jp": "ダウンロード",
+    "romaji": null
+  },
+  "dragonize": {
+    "effect": "The Pokémon's Normal-type moves become Dragon-type moves and their power is boosted by 20%.",
+    "name_jp": "ドラゴンスキン",
     "romaji": null
   },
   "dragons-maw": {
@@ -359,6 +399,11 @@
     "name_jp": "はやてのつばさ",
     "romaji": null
   },
+  "galvanize": {
+    "effect": "This Pokémon's Normal moves are Electric and have their power increased to 1.2×.",
+    "name_jp": "エレキスキン",
+    "romaji": null
+  },
   "gluttony": {
     "effect": "Makes the Pokémon eat any held Berry triggered by low HP below 1/2 its max HP.",
     "name_jp": "くいしんぼう",
@@ -372,6 +417,11 @@
   "gooey": {
     "effect": "Lowers attacking Pokémon's Speed by one stage on contact.",
     "name_jp": "ぬめぬめ",
+    "romaji": null
+  },
+  "gorilla-tactics": {
+    "effect": "Boosts the Pokémon's Attack stat but only allows the use of the first selected move.",
+    "name_jp": "ごりむちゅう",
     "romaji": null
   },
   "grass-pelt": {
@@ -639,9 +689,24 @@
     "name_jp": "メガランチャー",
     "romaji": null
   },
+  "mega-sol": {
+    "effect": "The Pokémon can use its moves as if the weather were harsh sunlight.",
+    "name_jp": "メガソーラー",
+    "romaji": null
+  },
   "merciless": {
     "effect": "This Pokémon's moves critical hit against poisoned targets.",
     "name_jp": "ひとでなし",
+    "romaji": null
+  },
+  "mimicry": {
+    "effect": "Changes type depending on the terrain.",
+    "name_jp": "ぎたい",
+    "romaji": null
+  },
+  "minds-eye": {
+    "effect": "The Pokémon ignores changes to opponents' evasiveness, its accuracy can't be lowered, and it can hit Ghost types with Normal- and Fighting-type moves.",
+    "name_jp": "しんがん",
     "romaji": null
   },
   "minus": {
@@ -704,6 +769,11 @@
     "name_jp": "しぜんかいふく",
     "romaji": null
   },
+  "neuroforce": {
+    "effect": "Increases super-effective damage dealt to 1.25×.",
+    "name_jp": "ブレインフォース",
+    "romaji": null
+  },
   "neutralizing-gas": {
     "effect": "Neutralizes abilities of all Pokémon in battle.",
     "name_jp": "かがくへんかガス",
@@ -749,6 +819,16 @@
     "name_jp": "マイペース",
     "romaji": null
   },
+  "parental-bond": {
+    "effect": "Lets the bearer hit twice with damaging moves.  The second hit has half power.",
+    "name_jp": "おやこあい",
+    "romaji": null
+  },
+  "pastel-veil": {
+    "effect": "Prevents the Pokémon and its allies from being poisoned.",
+    "name_jp": "パステルベール",
+    "romaji": null
+  },
   "perish-body": {
     "effect": "When hit by a move that makes direct contact, the Pokémon and the attacker will faint after three turns unless they switch out of battle.",
     "name_jp": "ほろびのボディ",
@@ -762,6 +842,11 @@
   "pickup": {
     "effect": "Picks up other Pokémon's used and Flung held items.  May also pick up an item after battle.",
     "name_jp": "ものひろい",
+    "romaji": null
+  },
+  "piercing-drill": {
+    "effect": "When the Pokémon uses contact moves, it can hit even targets that are protecting themselves.",
+    "name_jp": "かんつうドリル",
     "romaji": null
   },
   "pixilate": {
@@ -799,6 +884,11 @@
     "name_jp": "スワームチェンジ",
     "romaji": null
   },
+  "power-of-alchemy": {
+    "effect": "When an ally faints, this Pokémon gains its Ability.",
+    "name_jp": "かがくのちから",
+    "romaji": null
+  },
   "power-spot": {
     "effect": "Just being next to the Pokémon powers up moves.",
     "name_jp": "パワースポット",
@@ -812,6 +902,11 @@
   "pressure": {
     "effect": "Increases the PP cost of moves targetting the Pokémon by one.",
     "name_jp": "プレッシャー",
+    "romaji": null
+  },
+  "primordial-sea": {
+    "effect": "Creates heavy rain, which has all the properties of Rain Dance, cannot be replaced, and causes damaging Fire moves to fail.",
+    "name_jp": "はじまりのうみ",
     "romaji": null
   },
   "prism-armor": {
@@ -862,6 +957,11 @@
   "queenly-majesty": {
     "effect": "Opposing Pokémon cannot use priority attacks.",
     "name_jp": "じょおうのいげん",
+    "romaji": null
+  },
+  "quick-draw": {
+    "effect": "Enables the Pokémon to move first occasionally.",
+    "name_jp": "クイックドロウ",
     "romaji": null
   },
   "quick-feet": {
@@ -1089,6 +1189,11 @@
     "name_jp": "かそく",
     "romaji": null
   },
+  "spicy-spray": {
+    "effect": "When the Pokémon takes damage from a move, it burns the attacker.",
+    "name_jp": "とびだすハバネロ",
+    "romaji": null
+  },
   "stakeout": {
     "effect": "This Pokémon's moves have double power against Pokémon that switched in this turn.",
     "name_jp": "はりこみ",
@@ -1184,6 +1289,11 @@
     "name_jp": "そうだいしょう",
     "romaji": null
   },
+  "surge-surfer": {
+    "effect": "Doubles this Pokémon's Speed on Electric Terrain.",
+    "name_jp": "サーフテール",
+    "romaji": null
+  },
   "swarm": {
     "effect": "Strengthens Bug moves to inflict 1.5× damage at 1/3 max HP or less.",
     "name_jp": "むしのしらせ",
@@ -1224,6 +1334,11 @@
     "name_jp": "ちどりあし",
     "romaji": null
   },
+  "tangling-hair": {
+    "effect": "When this Pokémon takes regular damage from a contact move, the attacking Pokémon's Speed lowers by one stage.",
+    "name_jp": "カーリーヘアー",
+    "romaji": null
+  },
   "technician": {
     "effect": "Strengthens moves of 60 base power or less to 1.5× their power.",
     "name_jp": "テクニシャン",
@@ -1234,9 +1349,19 @@
     "name_jp": "テレパシー",
     "romaji": null
   },
+  "tera-shell": {
+    "effect": "All damage-dealing moves that hit the Pokémon when its HP is full will not be very effective.",
+    "name_jp": "テラスシェル",
+    "romaji": null
+  },
   "tera-shift": {
     "effect": "When Terapagos enters the battle, it turns into its Terastal Form until the end of the battle. ",
     "name_jp": "テラスチェンジ",
+    "romaji": null
+  },
+  "teraform-zero": {
+    "effect": "As soon as Terapagos assumes its Stellar Form, it will immediately neutralize weather and terrain effects. ",
+    "name_jp": "ゼロフォーミング",
     "romaji": null
   },
   "teravolt": {

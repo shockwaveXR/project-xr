@@ -2,7 +2,7 @@
 
 a fully static pokemon browser. no backend, no database — all data is bundled from committed json files.
 
-live at [voltage770.github.io/pokedex](https://voltage770.github.io/pokedex)
+live at [shockwavexr.github.io/pokedex](https://shockwavexr.github.io/pokedex)
 
 ## stack
 

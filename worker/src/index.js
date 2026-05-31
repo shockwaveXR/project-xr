@@ -36,7 +36,7 @@ const CACHE_TTL_SECONDS = 30 * 60;
 // trades a small amount of freshness lag for keeping helix calls bounded.
 const LIVE_CACHE_TTL_SECONDS = 60;
 
-// the frontend lives at voltage770.github.io and the worker lives at
+// the frontend lives at shockwavexr.github.io and the worker lives at
 // *.workers.dev — cross-origin, so the browser blocks responses without
 // these headers. '*' is fine because we serve public data with no credentials.
 const CORS_HEADERS = {

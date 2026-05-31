@@ -208,6 +208,30 @@ function matchesClass(p, cls) {
   }
 }
 
+// mulberry32 — small, fast, deterministic 32-bit PRNG. used by the
+// 'random' sort to seed a Fisher-Yates shuffle. paired with a seed value
+// kept in the URL (filters.randomSeed), the order is stable across
+// re-renders / show-more / route round-trips, and shareable across users.
+function mulberry32(seed) {
+  let t = seed >>> 0;
+  return function () {
+    t = (t + 0x6D2B79F5) | 0;
+    let r = Math.imul(t ^ (t >>> 15), 1 | t);
+    r = (r + Math.imul(r ^ (r >>> 7), 61 | r)) ^ r;
+    return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function seededShuffle(arr, seed) {
+  const rng = mulberry32(seed || 1);
+  const out = [...arr];
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+
 // returns the filtered + sorted list of species ids (deduped, preserving
 // sort order) for a given filter set. used by PokemonPage to compute
 // prev/next within the same filter context the user was browsing on
@@ -215,7 +239,7 @@ function matchesClass(p, cls) {
 // during render. unique-only (form-inline duplicates collapsed to their
 // species id) since prev/next nav is keyed off species id.
 export function getOrderedIds(filters = {}) {
-  const { search, type, generation, cls, ability, sort = 'id', sortDir = 'asc' } = filters;
+  const { search, type, generation, cls, ability, sort = 'id', sortDir = 'asc', randomSeed } = filters;
   let results = ALL;
   if (search)     results = results.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
   if (type)       results = results.filter(p => p.types.includes(type));
@@ -228,24 +252,28 @@ export function getOrderedIds(filters = {}) {
     results = results.filter(p => hasAbility(p)
       || (p.form_data && Object.values(p.form_data).some(hasAbility)));
   }
-  results = [...results].sort((a, b) => {
-    if (sort === 'name') {
-      return sortDir === 'desc'
-        ? b.name.localeCompare(a.name)
-        : a.name.localeCompare(b.name);
-    }
-    let aVal, bVal;
-    if (sort === 'total')       { aVal = totalStats(a); bVal = totalStats(b); }
-    else if (sort === 'id')     { aVal = a.id; bVal = b.id; }
-    else                        { aVal = getStat(a, sort); bVal = getStat(b, sort); }
-    return sortDir === 'desc' ? bVal - aVal : aVal - bVal;
-  });
+  if (sort === 'random') {
+    results = seededShuffle(results, parseInt(randomSeed, 10) || 1);
+  } else {
+    results = [...results].sort((a, b) => {
+      if (sort === 'name') {
+        return sortDir === 'desc'
+          ? b.name.localeCompare(a.name)
+          : a.name.localeCompare(b.name);
+      }
+      let aVal, bVal;
+      if (sort === 'total')       { aVal = totalStats(a); bVal = totalStats(b); }
+      else if (sort === 'id')     { aVal = a.id; bVal = b.id; }
+      else                        { aVal = getStat(a, sort); bVal = getStat(b, sort); }
+      return sortDir === 'desc' ? bVal - aVal : aVal - bVal;
+    });
+  }
   return results.map(p => p.id);
 }
 
 // filtered, sorted, paginated list
 export function getPokemon(filters = {}) {
-  const { search, type, generation, cls, ability, inlineForms, sort = 'id', sortDir = 'asc', limit = 20, offset = 0 } = filters;
+  const { search, type, generation, cls, ability, inlineForms, sort = 'id', sortDir = 'asc', randomSeed, limit = 20, offset = 0 } = filters;
 
   let results = ALL;
 
@@ -265,22 +293,26 @@ export function getPokemon(filters = {}) {
   }
 
   // sort
-  results = [...results].sort((a, b) => {
-    let aVal, bVal;
-    if (sort === 'name') {
-      return sortDir === 'desc'
-        ? b.name.localeCompare(a.name)
-        : a.name.localeCompare(b.name);
-    }
-    if (sort === 'total') {
-      aVal = totalStats(a); bVal = totalStats(b);
-    } else if (sort === 'id') {
-      aVal = a.id; bVal = b.id;
-    } else {
-      aVal = getStat(a, sort); bVal = getStat(b, sort);
-    }
-    return sortDir === 'desc' ? bVal - aVal : aVal - bVal;
-  });
+  if (sort === 'random') {
+    results = seededShuffle(results, parseInt(randomSeed, 10) || 1);
+  } else {
+    results = [...results].sort((a, b) => {
+      let aVal, bVal;
+      if (sort === 'name') {
+        return sortDir === 'desc'
+          ? b.name.localeCompare(a.name)
+          : a.name.localeCompare(b.name);
+      }
+      if (sort === 'total') {
+        aVal = totalStats(a); bVal = totalStats(b);
+      } else if (sort === 'id') {
+        aVal = a.id; bVal = b.id;
+      } else {
+        aVal = getStat(a, sort); bVal = getStat(b, sort);
+      }
+      return sortDir === 'desc' ? bVal - aVal : aVal - bVal;
+    });
+  }
 
   return Promise.resolve(
     results

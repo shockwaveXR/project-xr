@@ -43,7 +43,13 @@ function pickJP(names) {
 
 async function main() {
   const pokemon = JSON.parse(fs.readFileSync(IN_POKEMON, 'utf8'));
-  const names   = [...new Set(pokemon.flatMap(p => p.abilities.map(a => a.ability_name)))].sort();
+  // include abilities from both base + form_data; some abilities only appear
+  // on a form (e.g. Mega Kangaskhan's parental-bond, primal Kyogre's
+  // primordial-sea, regional-form-only abilities like gorilla-tactics).
+  const names = [...new Set(pokemon.flatMap(p => [
+    ...p.abilities.map(a => a.ability_name),
+    ...Object.values(p.form_data || {}).flatMap(f => (f.abilities || []).map(a => a.ability_name)),
+  ]))].sort();
 
   console.log(`fetching ${names.length} unique abilities...`);
 

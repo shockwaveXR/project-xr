@@ -36,6 +36,20 @@ const FORM_BASE_NAMES = new Set([
 
 const REGION_ADJECTIVE = { alola: 'Alolan', galar: 'Galarian', hisui: 'Hisuian', paldea: 'Paldean' };
 
+// alt forms whose existence is the destination of a *branching* evolution
+// — a single pre-evo produces multiple post-evos depending on some
+// condition (time of day, environment, nature, tower, etc.). these get
+// wrapped in parens to disambiguate the branch: "Lycanroc (Midday)" vs
+// "Lycanroc (Midnight)". non-branching alt forms (rotom appliances,
+// aegislash blade/shield, wishiwashi school, plain regionals) keep their
+// inline-variant rendering ("Rotom Heat", "Aegislash Shield").
+const BRANCHING_FORMS = new Set([
+  'lycanroc-midday', 'lycanroc-midnight', 'lycanroc-dusk',
+  'wormadam-plant', 'wormadam-sandy', 'wormadam-trash',
+  'toxtricity-amped', 'toxtricity-low-key',
+  'urshifu-single-strike', 'urshifu-rapid-strike',
+]);
+
 function titleCase(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
@@ -143,12 +157,14 @@ export function formatFormName(slug) {
     }
   }
 
-  // alt form: "{base} {variant}" — base first, variant after
+  // alt form: "{base} {variant}" — base first, variant after.
+  // branching-evo destinations get parens around the variant.
   for (let i = 1; i < parts.length; i++) {
     const candidate = parts.slice(0, i).join('-');
     if (FORM_BASE_NAMES.has(candidate) || OVERRIDES[candidate]) {
       const baseName = OVERRIDES[candidate] || parts.slice(0, i).map(titleCase).join(' ');
       const variant  = parts.slice(i).map(titleCase).join(' ');
+      if (variant && BRANCHING_FORMS.has(lower)) return `${baseName} (${variant})`;
       return [baseName, variant].filter(Boolean).join(' ');
     }
   }
