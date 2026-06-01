@@ -6,7 +6,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import PullToRefresh from '../components/pull-to-refresh';
-import PokemonOfTheDay from '../components/pokemon-of-the-day';
+import Spotlight from '../components/spotlight';
 import bundledNews from '../data/news.json';
 
 // the live news endpoint served by the cloudflare worker. the worker's
@@ -181,6 +181,26 @@ export default function NewsPage() {
   useEffect(() => { refresh(); }, [refresh]);
   const refreshFresh = useCallback(() => refresh(true), [refresh]);
 
+  // explicit spin state so the refresh button has a guaranteed feedback
+  // window (≥1.2s) even when the worker's edge cache returns in 60ms.
+  // without this the icon would flash briefly and the user wouldn't see
+  // any visual ack of their click.
+  const [spinning, setSpinning] = useState(false);
+  const handleRefreshClick = useCallback(async () => {
+    if (spinning) return;
+    setSpinning(true);
+    const t0 = Date.now();
+    try { await refreshFresh(); }
+    finally {
+      const elapsed = Date.now() - t0;
+      const MIN_SPIN_MS = 1200;
+      if (elapsed < MIN_SPIN_MS) {
+        await new Promise(r => setTimeout(r, MIN_SPIN_MS - elapsed));
+      }
+      setSpinning(false);
+    }
+  }, [spinning, refreshFresh]);
+
   const { entries = [], updated, sources = [] } = data || {};
   const updatedText = updated
     ? new Date(updated).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }).toLowerCase()
@@ -189,22 +209,40 @@ export default function NewsPage() {
   return (
     <div className="news-page">
       <PullToRefresh onRefresh={refreshFresh} />
-      <PokemonOfTheDay />
+      <Spotlight />
       <header className="news-page__header">
         <h1>news</h1>
-        <p className="news-page__meta">
-          {status === 'loading' ? (
-            <span className="news-page__tag">refreshing…</span>
-          ) : (
-            <>
-              {updatedText && <>updated {updatedText}</>}
-              {sources.length > 0 && (
-                <>{updatedText && ' || '}sources: {sources.map(s => s.name).join(', ')}</>
-              )}
-              {status === 'fallback' && <> · <span className="news-page__tag news-page__tag--warn">using cached copy</span></>}
-            </>
-          )}
-        </p>
+        <button
+          type="button"
+          className="news-page__refresh"
+          onClick={handleRefreshClick}
+          disabled={spinning || status === 'loading'}
+          aria-label={spinning || status === 'loading' ? 'fetching news' : 'refresh news'}
+          title="refresh"
+        >
+          <span className="news-page__refresh-label">
+            {spinning || status === 'loading' ? 'fetching' : 'refresh'}
+          </span>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M13.5 2.5v4h-4" />
+            <path d="M13.5 6.5a5.5 5.5 0 1 0-1.5 5.7" />
+          </svg>
+        </button>
+        {sources.length > 0 && (
+          <p className="news-page__sources">
+            sources: {sources.map(s => s.name).join(', ')}
+          </p>
+        )}
+        {status === 'loading' ? (
+          <span className="news-page__updated news-page__tag">refreshing…</span>
+        ) : updatedText ? (
+          <p className="news-page__updated">
+            updated {updatedText}
+            {status === 'fallback' && (
+              <> · <span className="news-page__tag news-page__tag--warn">using cached copy</span></>
+            )}
+          </p>
+        ) : null}
       </header>
 
       {status === 'loading' ? (

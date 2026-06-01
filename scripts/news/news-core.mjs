@@ -297,34 +297,30 @@ const SEREBII_BOILERPLATE_PREFIXES = [
   /^as (?:was )?(?:announced|revealed|teased|confirmed)(?: previously| earlier| yesterday)?,\s+/i,
 ];
 
-const SEREBII_GENERIC_OPENERS = [
-  /has (?:announced|begun|started|revealed) (?:the )?(?:next|latest) (?:event|delivery focus|update|patch|run)$/i,
-  /has (?:been )?(?:announced|revealed)$/i,
-  /has received (?:a|an|its) (?:latest )?(?:bug[- ]fix )?(?:update|patch)$/i,
-  /^(?:the )?(?:next|latest) .+ (?:event|update) has (?:been announced|begun|started)$/i,
-  /has announced some(?: big)? changes/i,
-  /has announced the next delivery focus$/i,
-];
+// abbreviations that look like sentence ends but aren't. lookbehind on
+// the sentence-end regex skips a `.` when it follows one of these word
+// stems (so "Mr. Mime appeared." breaks at the second period, not the
+// first). pokemon-news risk surface: "Mr. Mime", "Mr. Rime", "Mime Jr.",
+// "Pokémon Co., Ltd.", "Vol. 1", "Mewtwo vs. Mew".
+const SENTENCE_END_RE = /(?<!\b(?:Mr|Mrs|Ms|Dr|Jr|Sr|Inc|Co|Ltd|Vol|No|vs|etc))[.!?](?=\s+[A-Z]|\s*$)/;
 
 export function serebiiFirstSentenceEnd(text) {
-  const m = text.match(/[.!?](?=\s+[A-Z]|\s*$)/);
+  const m = text.match(SENTENCE_END_RE);
   return m ? m.index + 1 : -1;
 }
 
+// hard first-sentence cut. previous version concatenated a second
+// sentence when the first read as "generic boilerplate" (e.g. "X has
+// been announced.") — that path produced lengthy two-sentence titles
+// that ellipsis-clipped awkwardly in the news card. dropped entirely;
+// short generic openers just become short titles, which read fine.
 export function inferSerebiiTitle(topicTitle, bodyText) {
   if (!bodyText) return topicTitle;
   const stripTerminal = (s) => s.replace(/[.!?]+$/, '').trim();
 
   const end1 = serebiiFirstSentenceEnd(bodyText);
-  let sentence = end1 >= 0 ? bodyText.slice(0, end1) : bodyText;
-  let candidate = stripTerminal(sentence);
-
-  if (SEREBII_GENERIC_OPENERS.some(re => re.test(candidate)) && end1 >= 0) {
-    const rest = bodyText.slice(end1).replace(/^\s+/, '');
-    const end2 = serebiiFirstSentenceEnd(rest);
-    const tail = end2 >= 0 ? rest.slice(0, end2) : rest;
-    candidate = stripTerminal(bodyText.slice(0, end1) + ' ' + tail);
-  }
+  const foundSentence = end1 >= 0;
+  let candidate = stripTerminal(foundSentence ? bodyText.slice(0, end1) : bodyText);
 
   let stripped = false;
   for (const re of SEREBII_BOILERPLATE_PREFIXES) {
@@ -335,11 +331,19 @@ export function inferSerebiiTitle(topicTitle, bodyText) {
     candidate = candidate.charAt(0).toUpperCase() + candidate.slice(1);
   }
 
-  const MAX = 110;
-  if (candidate.length > MAX) {
-    const cut = candidate.slice(0, MAX);
-    const lastSpace = cut.lastIndexOf(' ');
-    candidate = (lastSpace > MAX * 0.6 ? cut.slice(0, lastSpace) : cut).trimEnd() + '…';
+  // safety net ONLY when no sentence boundary was found in the body
+  // (rare — serebii blurbs almost always have proper punctuation). when
+  // we DID find a sentence end, return the whole first sentence intact
+  // and let css handle multi-line wrap; truncating a complete sentence
+  // mid-thought (the previous 110-char cap behavior) read worse than a
+  // slightly long but coherent title.
+  if (!foundSentence) {
+    const MAX = 200;
+    if (candidate.length > MAX) {
+      const cut = candidate.slice(0, MAX);
+      const lastSpace = cut.lastIndexOf(' ');
+      candidate = (lastSpace > MAX * 0.6 ? cut.slice(0, lastSpace) : cut).trimEnd() + '…';
+    }
   }
 
   if (candidate.length < 18) return topicTitle;

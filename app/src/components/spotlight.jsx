@@ -1,4 +1,4 @@
-// ─── PokemonOfTheDay ─────────────────────────────────────────────────────────
+// ─── Spotlight ───────────────────────────────────────────────────────────────
 //
 // daily-rotating spotlight on the news page. pick is deterministic per
 // LOCAL calendar day — universal pick given a date string, but each
@@ -33,7 +33,7 @@ import { formatName } from '../utils/format-name';
 
 const POOL = ALL.filter(p => p.id <= 1025).map(p => p.id);
 
-const STORAGE_KEY = 'potd-minimize';
+const STORAGE_KEY = 'spotlight-minimize';
 
 // gen → region. nothing else in the app needs this mapping (region maps
 // page is still a deferred TODO), so it lives locally rather than as a
@@ -126,7 +126,7 @@ const CRY_BASE_VOLUME = 0.5;
 const CRY_VOLUME_MODIFIER = 0.75;
 const CRY_VOLUME = CRY_BASE_VOLUME * CRY_VOLUME_MODIFIER;
 
-export default function PokemonOfTheDay() {
+export default function Spotlight() {
   const dateKey     = useMemo(todayKey, []);
   const dateDisplay = useMemo(formatDisplay, []);
   const todayId     = useMemo(() => pickTodayId(dateKey), [dateKey]);
@@ -177,7 +177,7 @@ export default function PokemonOfTheDay() {
   const displayName = formatName(pokemon.name);
 
   return (
-    <article className={`potd ${minimized ? 'potd--minimized' : ''}`}>
+    <article className={`spotlight ${minimized ? 'spotlight--minimized' : ''}`}>
       {/* whole header is the toggle button. minimized: clicking anywhere
           on the strip expands (more forgiving target than a tiny chevron-
           only hit area). expanded: clicking the title bar collapses, while
@@ -185,20 +185,19 @@ export default function PokemonOfTheDay() {
           own click handlers because they live outside this button. */}
       <button
         type="button"
-        className="potd__header"
+        className="spotlight__header"
         onClick={toggleMinimize}
         aria-label={minimized ? 'expand daily pokémon spotlight' : 'minimize daily pokémon spotlight'}
         title={minimized ? 'expand' : 'minimize'}
       >
-        <span className="potd__chev potd__chev--left" aria-hidden="true">
+        <span className="spotlight__chev spotlight__chev--left" aria-hidden="true">
           <ChevronDown />
         </span>
-        <span className="potd__header-text">
-          <span className="potd__title">daily pokémon spotlight</span>
-          <span className="potd__strip-name">{displayName}</span>
-          <span className="potd__date">{dateDisplay}</span>
+        <span className="spotlight__header-text">
+          <span className="spotlight__title">daily pokémon spotlight</span>
         </span>
-        <span className="potd__chev potd__chev--right" aria-hidden="true">
+        <span className="spotlight__date">{dateDisplay}</span>
+        <span className="spotlight__chev spotlight__chev--right" aria-hidden="true">
           {minimized ? <ChevronDown /> : <ChevronUp />}
         </span>
       </button>
@@ -206,11 +205,11 @@ export default function PokemonOfTheDay() {
       {/* grid-template-rows 1fr ↔ 0fr animates to/from intrinsic height.
           inner min-height:0 + overflow:hidden are critical — without them
           the row track ignores grid-template-rows on collapse. */}
-      <div className="potd__body-wrap">
-        <div className="potd__body">
+      <div className="spotlight__body-wrap">
+        <div className="spotlight__body">
           <Link
             to={`/pokemon/${pokemon.id}`}
-            className="potd__artwork-link"
+            className="spotlight__artwork-link"
             aria-label={`open ${displayName} full pokédex page`}
             tabIndex={minimized ? -1 : 0}
           >
@@ -218,28 +217,28 @@ export default function PokemonOfTheDay() {
               <img
                 src={artwork}
                 alt={displayName}
-                className="potd__artwork"
+                className="spotlight__artwork"
                 loading="lazy"
               />
             )}
           </Link>
 
-          <div className="potd__info">
-            <div className="potd__id-row">
-              <span className="potd__id">
+          <div className="spotlight__info">
+            <div className="spotlight__id-row">
+              <span className="spotlight__id">
                 #{String(pokemon.id).padStart(3, '0')}
               </span>
               {pokemon.generation && (() => {
                 const region = REGION_OVERRIDES[pokemon.name] || GEN_TO_REGION[pokemon.generation];
                 return (
-                  <span className="potd__origin">
+                  <span className="spotlight__origin">
                     gen {pokemon.generation}{region && ` · ${region}`}
                   </span>
                 );
               })()}
               <button
                 type="button"
-                className="potd__cry"
+                className="spotlight__cry"
                 onClick={playCry}
                 aria-label={`play ${displayName} cry`}
                 title="play cry"
@@ -249,9 +248,9 @@ export default function PokemonOfTheDay() {
               </button>
             </div>
 
-            <div className="potd__name-row">
-              <h2 className="potd__name">{displayName}</h2>
-              <div className="potd__types">
+            <div className="spotlight__name-row">
+              <h2 className="spotlight__name">{displayName}</h2>
+              <div className="spotlight__types">
                 {pokemon.types?.map(t => (
                   <span key={t} className={`type-badge type-${t}`}>{t}</span>
                 ))}
@@ -259,7 +258,7 @@ export default function PokemonOfTheDay() {
             </div>
 
             {(pokemon.name_jp || pokemon.romaji || pokemon.genus) && (
-              <div className="potd__subtitle">
+              <div className="spotlight__subtitle">
                 {pokemon.name_jp && <span>{pokemon.name_jp}</span>}
                 {pokemon.romaji  && <span>· {pokemon.romaji}</span>}
                 {pokemon.genus   && <span>· {pokemon.genus}</span>}
@@ -267,12 +266,12 @@ export default function PokemonOfTheDay() {
             )}
 
             {pokemon.flavor_text && (
-              <p className="potd__flavor">"{pokemon.flavor_text}"</p>
+              <p className="spotlight__flavor">"{pokemon.flavor_text}"</p>
             )}
 
             <Link
               to={`/pokemon/${pokemon.id}`}
-              className="potd__cta"
+              className="spotlight__cta"
               tabIndex={minimized ? -1 : 0}
             >
               view full pokédex →

@@ -74,22 +74,99 @@
   padding: 0 20px;
   color: var(--text);
 
+  // 2×2 grid so the title + refresh button share a row (centered against
+  // each other), and the sources + updated lines share the row below
+  // (also centered). row heights are independently determined by their
+  // tallest cell, so no manual h1-vs-button alignment math.
   &__header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 16px;
+    row-gap: 6px;
     margin-bottom: 24px;
 
+    // explicit 30px height matches the refresh button so the row-1
+    // tracks are visually identical regardless of font metrics / browser
+    // baseline quirks. flex-center the text inside so it sits at the
+    // same vertical midline as the button glyph.
     h1 {
       font-size: 1.6rem;
       font-weight: var(--fw-bold);
       letter-spacing: .04em;
-      margin: 0 0 4px;
+      margin: 0;
       color: var(--text);
+      height: 30px;
+      display: flex;
+      align-items: center;
+      line-height: 1;
+      grid-column: 1;
+      grid-row: 1;
     }
   }
 
-  &__meta {
+  &__sources,
+  &__updated {
     font-size: .78rem;
     color: var(--text-muted);
     margin: 0;
+    grid-row: 2;
+  }
+
+  &__sources { grid-column: 1; }
+  &__updated { grid-column: 2; justify-self: end; text-align: right; }
+
+  &__refresh {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    height: 30px;
+    padding: 0 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg);
+    border: 1px solid color-mix(in srgb, var(--text) 30%, transparent);
+    border-radius: 999px;
+    color: var(--text-muted);
+    font-size: .76rem;
+    font-weight: var(--fw-semibold);
+    text-transform: lowercase;
+    letter-spacing: .04em;
+    cursor: pointer;
+    transition:
+      color .15s ease,
+      border-color .15s ease,
+      background-color .15s ease,
+      transform .12s ease,
+      opacity .15s ease;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover:not(:disabled) {
+        color: var(--accent);
+        border-color: var(--accent);
+        box-shadow: 0 0 0 1px var(--accent);
+      }
+    }
+    // press-feedback. on touch this is the primary affordance since
+    // hover isn't sticky on ios. transform scale gives a tactile bounce.
+    &:active:not(:disabled) {
+      transform: scale(.94);
+      background: color-mix(in srgb, var(--accent) 10%, var(--bg));
+    }
+
+    // while a refresh is in flight, the button dims slightly + spins the
+    // icon. opacity .7 (not .55) keeps the label legible so users can
+    // see "fetching" clearly.
+    &:disabled {
+      cursor: wait;
+      opacity: .7;
+      svg { animation: news-refresh-spin .9s linear infinite; }
+    }
+  }
+
+  &__refresh-label {
+    line-height: 1;
   }
 
   &__tag {
@@ -154,6 +231,10 @@
 @keyframes news-dot-pulse {
   0%, 80%, 100% { opacity: .25; transform: scale(.8); }
   40% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes news-refresh-spin {
+  to { transform: rotate(360deg); }
 }
 
 .news-list {

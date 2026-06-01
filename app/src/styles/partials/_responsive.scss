@@ -206,20 +206,38 @@
       display: flex;
     }
 
-    // body holds the three filter groups + reset. on mobile it starts
-    // collapsed (display:none); when the toggle flips on, it reappears
-    // as a flex-wrap row that grows vertically as needed.
+    // body becomes a grid track that animates 0fr ↔ 1fr for smooth
+    // expand/collapse. the inner is the actual flex-wrap layout for the
+    // groups — overflow:hidden + min-height:0 are required for the grid
+    // row trick to clip + animate properly. opacity fades the contents
+    // so the transition doesn't look like a sudden reveal.
     &__body {
-      display: none;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .28s ease;
+    }
+
+    &__body-inner {
+      display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       gap: 8px 10px;
       padding-top: 10px;
       align-items: stretch;
+      min-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .22s ease;
     }
 
     &.is-mobile-open &__body {
-      display: flex;
+      grid-template-rows: 1fr;
+    }
+
+    &.is-mobile-open &__body-inner {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     // each group spans the full row — its label sits on its own line at

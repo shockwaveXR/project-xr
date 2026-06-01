@@ -146,6 +146,12 @@ export default function FilterPanel({ filters, onChange, shiny, onShinyToggle, i
       </button>
 
       <div id="filter-panel-body" className="filter-panel__body">
+      {/* inner wrapper enables the grid-template-rows 0fr↔1fr smooth
+          height transition on mobile (parent toggles the row track,
+          inner is the overflow-clipped content). on desktop the wrapper
+          inherits the parent's flex column layout via display:contents
+          so it doesn't affect spacing. */}
+      <div className="filter-panel__body-inner">
       {/* ─── filters: narrow the visible set ─────────────────────────── */}
       <div className="filter-panel__group">
         <span className="filter-panel__label">filters</span>
@@ -295,6 +301,7 @@ export default function FilterPanel({ filters, onChange, shiny, onShinyToggle, i
         if (retro) setRetro(false);
         if (inlineForms && onInlineFormsChange) onInlineFormsChange('');
       }}>reset</button>
+      </div>
       </div>
     </aside>
   );

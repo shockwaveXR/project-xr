@@ -71,14 +71,19 @@
     }
   }
 
-  // body wrapper holds every control group. on desktop it always renders
-  // as a normal flex column. on mobile the toggle button collapses it.
+  // body wrapper holds every control group. on desktop it's a passive
+  // layout container; the inner flex column lives on __body-inner. on
+  // mobile the body becomes a grid track (for height animation) and the
+  // inner switches to a flex-wrap row.
   &__body {
+    flex: 1;
+    min-height: 0;
+  }
+
+  &__body-inner {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    flex: 1;
-    min-height: 0;
   }
 
   // collapse/expand toggle — hidden on desktop, visible on mobile only.
