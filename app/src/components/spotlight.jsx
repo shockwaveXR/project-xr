@@ -12,8 +12,11 @@
 // data fetched via getPokemonById so flavor text + genus + jp/romaji are
 // all there.
 //
-// cry audio: PokeAPI hosts ogg files at a stable github raw url per id.
-// played on click of the speaker icon, never autoplayed.
+// cry audio: PokeAPI cries hosted via jsdelivr (github raw doesn't set
+// CORS headers needed by Web Audio's createMediaElementSource). played
+// on click of the speaker icon, never autoplayed. routed through a
+// GainNode for true volume control on iOS where HTMLAudioElement.volume
+// is a no-op.
 //
 // minimize: card *defaults to collapsed* on first visit and whenever the
 // date rolls over (less intrusive; expansion is a deliberate engagement).
@@ -23,9 +26,8 @@
 // transition: collapsed/expanded share the same DOM. body wraps in a
 // grid-template-rows 1fr ↔ 0fr animation (modern CSS trick that lets us
 // transition to/from intrinsic height without measuring at runtime).
-// header content reflows from stacked → inline via flex-direction.
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ALL from '../data/pokemon.json';
 import { getPokemonById } from '../utils/api';
@@ -115,15 +117,19 @@ function writeMinimizeState(state) {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
 }
 
+// jsdelivr cdn mirror of PokeAPI/cries (github raw doesn't set
+// Access-Control-Allow-Origin: *, which is required when routing the
+// audio through Web Audio API's createMediaElementSource).
 const CRY_URL = (id) =>
-  `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`;
+  `https://cdn.jsdelivr.net/gh/PokeAPI/cries@main/cries/pokemon/latest/${id}.ogg`;
 
-// cries are mastered hot — even at 0.5 (50% of source) they read as "a bit
-// loud" in casual listening contexts. apply a 0.75 modifier on top so the
-// effective playback is 0.5 × 0.75 = 0.375 (~37.5% of source). errs on the
-// side of caution for headphone listeners.
-const CRY_BASE_VOLUME = 0.5;
-const CRY_VOLUME_MODIFIER = 0.75;
+// cries are mastered very hot — even at 0.375 (37.5% of source) they
+// still read as loud in casual contexts. current default of 0.4 × 0.25
+// = 0.1 (~10% of source) errs on the side of caution for headphone
+// listeners. adjust the modifier (or base) if you need finer tuning;
+// the gain is re-read on every play, so changes hot-reload immediately.
+const CRY_BASE_VOLUME = 0.4;
+const CRY_VOLUME_MODIFIER = 0.25;
 const CRY_VOLUME = CRY_BASE_VOLUME * CRY_VOLUME_MODIFIER;
 
 export default function Spotlight() {
@@ -132,7 +138,11 @@ export default function Spotlight() {
   const todayId     = useMemo(() => pickTodayId(dateKey), [dateKey]);
 
   const [pokemon, setPokemon] = useState(null);
-  const [audio,   setAudio]   = useState(null);
+  // audio + ctx + gain all live in refs since none of them drive renders
+  // — they exist only to be reused across cry-button clicks.
+  const audioRef    = useRef(null);
+  const audioCtxRef = useRef(null);
+  const gainRef     = useRef(null);
 
   // default-to-minimized: if the stored lastSeenDate isn't today's, the
   // card greets the user COLLAPSED — same behavior for first visit ever +
@@ -159,11 +169,37 @@ export default function Spotlight() {
   }
 
   function playCry() {
-    let a = audio;
+    let a = audioRef.current;
     if (!a) {
-      a = new Audio(CRY_URL(todayId));
+      a = new Audio();
+      a.crossOrigin = 'anonymous';
+      a.src = CRY_URL(todayId);
+
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (Ctx) {
+        if (!audioCtxRef.current) audioCtxRef.current = new Ctx();
+        const ctx = audioCtxRef.current;
+        const source = ctx.createMediaElementSource(a);
+        gainRef.current = ctx.createGain();
+        source.connect(gainRef.current).connect(ctx.destination);
+      }
+      audioRef.current = a;
+    }
+    // re-apply volume on every play so constant changes (HMR or full
+    // refresh) actually take effect — without this the gain value gets
+    // baked in on first creation and stale forever after.
+    if (gainRef.current) {
+      gainRef.current.gain.value = CRY_VOLUME;
+    } else {
+      // no Web Audio support — fall back to HTMLAudio's .volume (no-op
+      // on ios but at least respected elsewhere).
       a.volume = CRY_VOLUME;
-      setAudio(a);
+    }
+    // ios suspends the audio context until a user gesture explicitly
+    // resumes it. the button click IS a gesture; resume here defensively
+    // in case the context auto-suspended between plays.
+    if (audioCtxRef.current?.state === 'suspended') {
+      audioCtxRef.current.resume();
     }
     a.currentTime = 0;
     a.play().catch(() => {});
@@ -171,10 +207,12 @@ export default function Spotlight() {
 
   if (!pokemon) return null;
 
-  const primary     = pokemon.types?.[0] || 'normal';
-  const secondary   = pokemon.types?.[1] || primary;
   const artwork     = pokemon.home_url || pokemon.artwork_url || pokemon.sprite_url;
   const displayName = formatName(pokemon.name);
+  const region      = REGION_OVERRIDES[pokemon.name] || GEN_TO_REGION[pokemon.generation];
+  const originText  = pokemon.generation
+    ? `gen ${pokemon.generation}${region ? ` · ${region}` : ''}`
+    : null;
 
   return (
     <article className={`spotlight ${minimized ? 'spotlight--minimized' : ''}`}>
@@ -228,14 +266,7 @@ export default function Spotlight() {
               <span className="spotlight__id">
                 #{String(pokemon.id).padStart(3, '0')}
               </span>
-              {pokemon.generation && (() => {
-                const region = REGION_OVERRIDES[pokemon.name] || GEN_TO_REGION[pokemon.generation];
-                return (
-                  <span className="spotlight__origin">
-                    gen {pokemon.generation}{region && ` · ${region}`}
-                  </span>
-                );
-              })()}
+              {originText && <span className="spotlight__origin">{originText}</span>}
               <button
                 type="button"
                 className="spotlight__cry"

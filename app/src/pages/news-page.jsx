@@ -206,6 +206,10 @@ export default function NewsPage() {
     ? new Date(updated).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }).toLowerCase()
     : null;
 
+  // single source of truth for "refresh in flight": either an explicit
+  // click that's still in its min-spin window, or the initial-mount load.
+  const isRefreshing = spinning || status === 'loading';
+
   return (
     <div className="news-page">
       <PullToRefresh onRefresh={refreshFresh} />
@@ -216,12 +220,12 @@ export default function NewsPage() {
           type="button"
           className="news-page__refresh"
           onClick={handleRefreshClick}
-          disabled={spinning || status === 'loading'}
-          aria-label={spinning || status === 'loading' ? 'fetching news' : 'refresh news'}
+          disabled={isRefreshing}
+          aria-label={isRefreshing ? 'fetching news' : 'refresh news'}
           title="refresh"
         >
           <span className="news-page__refresh-label">
-            {spinning || status === 'loading' ? 'fetching' : 'refresh'}
+            {isRefreshing ? 'fetching' : 'refresh'}
           </span>
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M13.5 2.5v4h-4" />

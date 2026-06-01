@@ -59,9 +59,9 @@ $spotlight-transition: .35s cubic-bezier(.4, 0, .2, 1);
 }
 
 // ─── text fields ─────────────────────────────────────────────────────────────
-// hierarchy: title (label/muted), strip-name (the star, bold + text color),
-// date (tabular metadata, muted). no inline · separators — whitespace +
-// font weight + color carry the rhythm.
+// title is a muted editorial label, date is muted tabular metadata.
+// minimized strip intentionally has no name (clicking is what reveals
+// today's pick — more engaging tease).
 .spotlight__title {
   font-size: .72rem;
   font-weight: var(--fw-medium);
@@ -80,7 +80,6 @@ $spotlight-transition: .35s cubic-bezier(.4, 0, .2, 1);
   font-variant-numeric: tabular-nums;
   flex: 0 0 auto;
 }
-
 
 // chevron glyphs. both sides always visible — kept around expanded too
 // so the header text doesn't slide left/right when the card toggles.
