@@ -127,6 +127,13 @@
   position: relative;
 }
 
+// anchoring is carried by three quiet cues instead of a caret (which collided
+// with the panel's rounded corner and read as sloppy): the panel's near edge
+// is flush under its trigger (right:0 cog / left:0 burger), the trigger holds a
+// subtle "open" state while the menu is up (see .settings-btn[aria-expanded]),
+// and the open animation grows out of the trigger's corner (transform-origin
+// on the panels). clean + minimal, no triangle.
+
 .settings-btn {
   padding: 5px 12px;
   font-size: .75rem;
@@ -167,6 +174,15 @@
     color: var(--accent);
   }
 
+  // while its dropdown is open the trigger holds a quiet "engaged" state — a
+  // soft surface fill + accent glyph, no loud ring. understated on purpose:
+  // it just needs to read as the source of the open panel, not shout.
+  &[aria-expanded='true'] {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, var(--bg));
+  }
+
   &.settings-cog,
   &.settings-burger {
     padding: 6px 10px;
@@ -182,18 +198,28 @@
 // at the bottom of this rule.
 .settings-modal {
   position: absolute;
-  top: calc(100% + 10px);
+  // tight 6px gap so the panel reads as dropping straight from its trigger
+  // rather than floating below it.
+  top: calc(100% + 6px);
   right: 0;
   width: 240px;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-lg);
+  // --radius-sm (matches the trigger button + search input) rather than the
+  // larger --radius — a menu panel, not a floating pill. echoing the button's
+  // own corner radius is part of what visually ties the two together.
+  border-radius: var(--radius-sm);
+  // downward-biased shadow — won't bleed up over the header's bottom border.
+  box-shadow: var(--shadow-dropdown);
   padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;
   z-index: 200;
+  // grow the open animation out of the trigger's corner (cog is right-aligned;
+  // the burger override below flips this to the left) so the dropdown visibly
+  // emanates from its button rather than ballooning from its own center.
+  transform-origin: top right;
   // cap to viewport minus the header band + breathing room and scroll
   // internally if entries exceed it. fixes mobile cases where many nav
   // items extended below the screen edge with no way to reach them.
@@ -213,7 +239,7 @@
   // top + bottom of the bar is acceptable and the bar doesn't visually
   // dominate. clip-path on the parent forces the bar to render inside
   // the rounded shape so it doesn't stick out past the corners.
-  clip-path: inset(0 round var(--radius));
+  clip-path: inset(0 round var(--radius-sm));
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -615,6 +641,8 @@
   gap: 0;
   right: auto;
   left: 0;
+  // burger is left-aligned — grow the open animation from the left corner.
+  transform-origin: top left;
 }
 
 .dropdown-divider {

@@ -33,6 +33,9 @@
   --shadow-sm:    0 1px 3px rgba(80, 55, 30, .08);
   --shadow-md:    0 4px 16px rgba(80, 55, 30, .12);
   --shadow-lg:    0 8px 28px rgba(80, 55, 30, .18);
+  // header dropdowns only — downward-biased (negative spread) so the blur
+  // can't bleed UP over the header's bottom border and muddy that line.
+  --shadow-dropdown: 0 16px 24px -12px rgba(80, 55, 30, .3);
   // rounded + friendly default, applied across every theme.
   --radius:       22px;
   --radius-sm:    14px;
@@ -52,6 +55,7 @@
   --shadow-sm:    0 1px 3px rgba(0, 0, 0, .3);
   --shadow-md:    0 4px 16px rgba(0, 0, 0, .45);
   --shadow-lg:    0 8px 28px rgba(0, 0, 0, .6);
+  --shadow-dropdown: 0 16px 24px -12px rgba(0, 0, 0, .72);
 }
 
 [data-theme='retro'] {
@@ -68,6 +72,7 @@
   --shadow-sm:    0 1px 3px rgba(120, 0, 160, .13);
   --shadow-md:    0 4px 16px rgba(120, 0, 160, .2);
   --shadow-lg:    0 8px 28px rgba(120, 0, 160, .28);
+  --shadow-dropdown: 0 16px 24px -12px rgba(120, 0, 160, .36);
 }
 
 [data-theme='ereader'] {
@@ -84,6 +89,7 @@
   --shadow-sm:    none;
   --shadow-md:    none;
   --shadow-lg:    none;
+  --shadow-dropdown: none;
 }
 
 [data-theme='nitro'] {
@@ -100,5 +106,6 @@
   --shadow-sm:    0 1px 3px rgba(255, 136, 0, .2);
   --shadow-md:    0 4px 12px rgba(255, 136, 0, .15);
   --shadow-lg:    0 8px 24px rgba(255, 136, 0, .1);
+  --shadow-dropdown: 0 16px 22px -12px rgba(255, 136, 0, .22);
 }
 

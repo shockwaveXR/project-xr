@@ -66,14 +66,25 @@ const REGION_OVERRIDES = {
   'enamorus-incarnate': 'hisui',
 };
 
-// djb2 hash → non-negative int. small + deterministic.
+// djb2 hash + a murmur3 fmix32 avalanche → non-negative 32-bit int.
+// deterministic per date string (so the pick is universal for a given day).
+//
+// the avalanche is the important part: consecutive day strings differ only
+// in the final character ("…-02" → "…-03"), and plain djb2 maps those to
+// hashes differing by *exactly 1*, so `% POOL.length` returned ADJACENT
+// pokédex ids on consecutive days — that's why cosmog/solgaleo/lunala
+// (789/791/792) showed up back-to-back. fmix32 scrambles near-identical
+// seeds into unrelated buckets so consecutive days look unrelated.
 function hashDate(yyyy_mm_dd) {
   let h = 5381;
   for (let i = 0; i < yyyy_mm_dd.length; i++) {
     h = ((h << 5) + h) + yyyy_mm_dd.charCodeAt(i);
     h |= 0;
   }
-  return Math.abs(h);
+  h ^= h >>> 16; h = Math.imul(h, 0x85ebca6b);
+  h ^= h >>> 13; h = Math.imul(h, 0xc2b2ae35);
+  h ^= h >>> 16;
+  return h >>> 0;
 }
 
 // local date as YYYY-MM-DD. used as both the seed input and the

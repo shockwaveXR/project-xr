@@ -4,6 +4,7 @@ import { useModalAnimation } from '../hooks/use-modal-animation';
 import { useModalCycleNav } from '../hooks/use-modal-cycle-nav';
 import { pulseElement } from '../utils/pulse';
 import { STORAGE_KEYS, getString } from '../utils/storage';
+import Img from '../components/img';
 import cards from '../data/tcg-pocket.json';
 
 // flat list of sets in newest-first order. used by:
@@ -244,7 +245,7 @@ function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump }) {
 
         <div className="tcgp-modal__scroll">
           <div className="tcgp-modal__hero">
-            <img src={card.image_full} alt={card.name} loading="eager" />
+            <Img src={card.image_full} alt={card.name} loading="eager" />
           </div>
 
           {isPokemon && (
@@ -614,7 +615,7 @@ export default function TCGPocketPage() {
                   setTimeout(() => open(sectionIdx, index), 70);
                 }}
               >
-                <img src={c.image_url} alt={c.name} loading="lazy" />
+                <Img src={c.image_url} alt={c.name} loading="lazy" />
               </button>
             ))}
           </div>

@@ -155,18 +155,58 @@
       background: color-mix(in srgb, var(--accent) 10%, var(--bg));
     }
 
-    // while a refresh is in flight, the button dims slightly + spins the
-    // icon. opacity .7 (not .55) keeps the label legible so users can
+    // while a manual refresh is in flight, the button dims slightly + spins
+    // the arrow. opacity .7 (not .55) keeps the label legible so users can
     // see "fetching" clearly.
     &:disabled {
       cursor: wait;
       opacity: .7;
       svg { animation: news-refresh-spin .9s linear infinite; }
     }
+
+    // initial-mount "fetching" pill: not a refresh affordance yet, so it
+    // reads as a passive indicator (no dim, no wait-cursor) rather than a
+    // disabled button. once the first pull lands this class drops and the
+    // control morphs into the real refresh button.
+    &--loading {
+      cursor: default;
+      opacity: 1;
+      border-color: color-mix(in srgb, var(--text) 18%, transparent);
+      color: var(--text-muted);
+    }
   }
 
   &__refresh-label {
     line-height: 1;
+  }
+
+  // fixed-size icon slot so the pill width only changes with the label, not
+  // the glyph — keeps the morph from jumping when spinner↔arrow swap.
+  &__refresh-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+  }
+
+  // the unified minimal arc (matches .g-img__spinner) shown inside the pill
+  // during the initial load — a single thin accent arc on a transparent track.
+  &__refresh-spinner {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: var(--accent);
+    animation: ptr-spin .65s linear infinite;
+  }
+
+  // the circular arrow "settles in" out of the spinner when the initial load
+  // finishes — a quick rotate+scale fade so the pill reads as morphing into a
+  // refresh button rather than abruptly swapping glyphs. mounts exactly once
+  // (when isInitialLoad flips false), so the animation plays a single time.
+  &__refresh-arrow {
+    animation: news-arrow-in .4s cubic-bezier(.34, 1.56, .64, 1) both;
   }
 
   &__tag {
@@ -235,6 +275,12 @@
 
 @keyframes news-refresh-spin {
   to { transform: rotate(360deg); }
+}
+
+// arrow morphing in once the initial fetch completes (see __refresh-arrow)
+@keyframes news-arrow-in {
+  from { opacity: 0; transform: rotate(-150deg) scale(.4); }
+  to   { opacity: 1; transform: rotate(0) scale(1); }
 }
 
 .news-list {

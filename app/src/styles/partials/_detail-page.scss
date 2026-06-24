@@ -215,13 +215,16 @@
     justify-content: center;
   }
 
+  // same minimal arc as the global <Img> spinner (see .g-img__spinner) — a
+  // single thin accent arc on a transparent track — just sized up for the
+  // 200px canvas.
   &__spinner {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
-    border: 3px solid color-mix(in srgb, var(--text-subtle) 35%, transparent);
+    border: 2.5px solid transparent;
     border-top-color: var(--accent);
-    animation: ptr-spin .9s linear infinite;
+    animation: ptr-spin .65s linear infinite;
   }
 }
 

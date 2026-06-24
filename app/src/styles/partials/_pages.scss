@@ -1637,6 +1637,13 @@
   transition: border-color .15s ease, transform .15s ease;
   font-family: inherit;
 
+  // the <Img> wrapper must fill the thumb (it's flex, not block, so the
+  // absolutely-positioned spinner stays centered while the card loads).
+  .g-img {
+    display: flex;
+    width: 100%;
+  }
+
   img {
     display: block;
     width: 100%;

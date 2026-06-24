@@ -206,9 +206,16 @@ export default function NewsPage() {
     ? new Date(updated).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }).toLowerCase()
     : null;
 
+  // the very first mount load is special: there's nothing to "refresh" yet,
+  // so we don't show a refresh affordance. instead the control renders as a
+  // non-interactive "fetching" pill that morphs into the refresh button once
+  // the initial pull lands (the spinner ring swaps to the circular arrow,
+  // which animates in). a manual refresh (status already 'live'/'fallback')
+  // keeps the normal spinning-arrow behavior.
+  const isInitialLoad = status === 'loading';
   // single source of truth for "refresh in flight": either an explicit
   // click that's still in its min-spin window, or the initial-mount load.
-  const isRefreshing = spinning || status === 'loading';
+  const isRefreshing = spinning || isInitialLoad;
 
   return (
     <div className="news-page">
@@ -218,28 +225,34 @@ export default function NewsPage() {
         <h1>news</h1>
         <button
           type="button"
-          className="news-page__refresh"
+          className={`news-page__refresh${isInitialLoad ? ' news-page__refresh--loading' : ''}`}
           onClick={handleRefreshClick}
           disabled={isRefreshing}
           aria-label={isRefreshing ? 'fetching news' : 'refresh news'}
-          title="refresh"
+          title={isInitialLoad ? 'fetching latest news' : 'refresh'}
         >
           <span className="news-page__refresh-label">
             {isRefreshing ? 'fetching' : 'refresh'}
           </span>
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M13.5 2.5v4h-4" />
-            <path d="M13.5 6.5a5.5 5.5 0 1 0-1.5 5.7" />
-          </svg>
+          <span className="news-page__refresh-icon" aria-hidden="true">
+            {isInitialLoad ? (
+              <span className="news-page__refresh-spinner" />
+            ) : (
+              <svg className="news-page__refresh-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M13.5 2.5v4h-4" />
+                <path d="M13.5 6.5a5.5 5.5 0 1 0-1.5 5.7" />
+              </svg>
+            )}
+          </span>
         </button>
         {sources.length > 0 && (
           <p className="news-page__sources">
             sources: {sources.map(s => s.name).join(', ')}
           </p>
         )}
-        {status === 'loading' ? (
-          <span className="news-page__updated news-page__tag">refreshing…</span>
-        ) : updatedText ? (
+        {/* during the initial load the fetching pill (above) is the only
+            status indicator — no redundant "refreshing…" tag here. */}
+        {!isInitialLoad && updatedText ? (
           <p className="news-page__updated">
             updated {updatedText}
             {status === 'fallback' && (

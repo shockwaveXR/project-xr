@@ -3819,7 +3819,12 @@
             "base_value": 110
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "electric-surge",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "It resembles an X as it flies through the air with 50 million volts of electricity sparking from its ears and forked tail.",
         "height": 12,
         "weight": 380,
@@ -3862,7 +3867,12 @@
             "base_value": 130
           }
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "ability_name": "no-guard",
+            "is_hidden": false
+          }
+        ],
         "flavor_text": "It fires bolts of electricity from the tip of its tail and from the spiky tufts of fur growing out of its temples. This electricity forms the letter Y.",
         "height": 10,
         "weight": 260,
