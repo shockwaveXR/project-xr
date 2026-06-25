@@ -288,6 +288,85 @@
   flex-direction: column;
 }
 
+// ─── changelog page ─────────────────────────────────────────────────────────
+// same container + line-segmented rhythm as the news page (shares .news-divider
+// between entries). each entry is a date header + a bulleted list of what
+// shipped that day, newest-first.
+.changelog-page {
+  max-width: 760px;
+  margin: 32px auto 80px;
+  padding: 0 20px;
+  color: var(--text);
+
+  &__header { margin-bottom: 24px; }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: .04em;
+    margin: 0;
+    color: var(--text);
+  }
+
+  &__sub {
+    margin: 6px 0 0;
+    font-size: .82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  &__empty {
+    font-size: .9rem;
+    color: var(--text-muted);
+    padding: 24px 0;
+  }
+}
+
+.changelog-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.changelog-entry {
+  &__date {
+    display: block;
+    font-size: 1rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: .03em;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__item {
+    position: relative;
+    padding-left: 18px;
+    font-size: .88rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+
+    // accent dot bullet, vertically centered on the first line
+    &::before {
+      content: '';
+      position: absolute;
+      left: 3px;
+      top: .6em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+  }
+}
+
 .news-divider {
   border: 0;
   border-top: 1px solid var(--border);
@@ -466,6 +545,15 @@
     font-size: .8rem;
     color: var(--text-subtle);
     margin: 0;
+  }
+
+  // inline cross-link to /changelog — accent link inside the personal note.
+  &__changelog a {
+    color: var(--accent);
+    font-weight: var(--fw-semibold);
+    text-decoration: none;
+
+    &:hover { color: var(--accent-hover); text-decoration: underline; }
   }
 }
 

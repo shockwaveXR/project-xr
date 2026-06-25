@@ -5,6 +5,7 @@ import { useModalCycleNav } from '../hooks/use-modal-cycle-nav';
 import { pulseElement } from '../utils/pulse';
 import { STORAGE_KEYS, getString } from '../utils/storage';
 import Img from '../components/img';
+import TcgpJumpNav from '../components/tcgp-jump-nav';
 import cards from '../data/tcg-pocket.json';
 
 // flat list of sets in newest-first order. used by:
@@ -118,6 +119,31 @@ const COST_LETTER = {
   R: 'fire', W: 'water', G: 'grass', L: 'lightning', P: 'psychic',
   F: 'fighting', D: 'darkness', M: 'metal', C: 'colorless', Y: 'fairy', N: 'dragon',
 };
+
+// official TCG energy symbols committed under public/assets/energy/<element>.png
+// (sourced from bulbagarden archives). letters that map to one of these get the
+// real icon; anything else (e.g. "0" free-cost attacks) falls back to text.
+// fairy isn't in pocket yet so it has no icon — it'd fall back to text too.
+const ENERGY_ICONS = new Set([
+  'fire', 'water', 'grass', 'lightning', 'psychic',
+  'fighting', 'darkness', 'metal', 'colorless', 'dragon',
+]);
+const ENERGY_BASE = `${import.meta.env?.BASE_URL || '/'}assets/energy/`;
+
+function EnergyIcon({ element, className }) {
+  if (!ENERGY_ICONS.has(element)) return null;
+  return (
+    <img
+      className={className}
+      src={`${ENERGY_BASE}${element}.png`}
+      alt={element}
+      title={element}
+      width="18"
+      height="18"
+      loading="lazy"
+    />
+  );
+}
 
 // group + sort options for the page-level controls. options labels match the
 // <option> rendering — keep these arrays as the single source of truth.
@@ -259,7 +285,10 @@ function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump }) {
               {card.element && (
                 <span className="tcgp-stat">
                   <span className="tcgp-stat__label">type</span>
-                  <span className="tcgp-stat__value">{card.element}</span>
+                  <span className="tcgp-stat__value tcgp-stat__value--type">
+                    <EnergyIcon element={card.element} className="tcgp-energy-icon" />
+                    {card.element}
+                  </span>
                 </span>
               )}
               {stageLabel && (
@@ -277,7 +306,10 @@ function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump }) {
               {card.weakness && (
                 <span className="tcgp-stat">
                   <span className="tcgp-stat__label">weakness</span>
-                  <span className="tcgp-stat__value">{card.weakness}</span>
+                  <span className="tcgp-stat__value tcgp-stat__value--type">
+                    <EnergyIcon element={card.weakness} className="tcgp-energy-icon" />
+                    {card.weakness}
+                  </span>
                 </span>
               )}
               {card.retreat != null && (
@@ -302,11 +334,12 @@ function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump }) {
                 <div key={i} className="tcgp-attack">
                   <div className="tcgp-attack__row">
                     <span className="tcgp-attack__cost">
-                      {a.cost.map((letter, j) => (
-                        <span key={j} className={`tcgp-energy tcgp-energy--${COST_LETTER[letter] || 'colorless'}`}>
-                          {letter}
-                        </span>
-                      ))}
+                      {a.cost.map((letter, j) => {
+                        const el = COST_LETTER[letter];
+                        return ENERGY_ICONS.has(el)
+                          ? <EnergyIcon key={j} element={el} className="tcgp-energy-icon" />
+                          : <span key={j} className="tcgp-energy">{letter}</span>;
+                      })}
                     </span>
                     <span className="tcgp-attack__name">{a.name}</span>
                     {a.damage && <span className="tcgp-attack__damage">{a.damage}</span>}
@@ -447,6 +480,22 @@ export default function TCGPocketPage() {
   };
   const clearAttrs = () => setSelectedAttrs(new Set());
 
+  // ── reset everything to defaults ─────────────────────────────────
+  // true when any filter / group / sort differs from the page's initial
+  // state — drives both the reset button's visibility and what it undoes.
+  const isNonDefault =
+    isSetFiltered || isAttrFiltered ||
+    groupBy !== 'set' || sortBy !== 'number' || sortDir !== 'desc';
+  const resetAll = () => {
+    setSelectedSets(new Set());
+    setSelectedAttrs(new Set());
+    setGroupBy('set');
+    setSortBy('number');
+    setSortDir('desc');
+    setLoadedCount(1);
+    setOpenDropdown(null);
+  };
+
   // ── dropdown summary labels ──────────────────────────────────────
   const setsTriggerLabel = (() => {
     if (selectedSets.size === 0) return 'all sets · newest first';
@@ -479,6 +528,11 @@ export default function TCGPocketPage() {
         {visibleCardCount} cards
         {groupBy === 'set' && !isSetFiltered && loadedCount < SECTIONED_CARDS.length
           && ` (showing ${loadedCount} of ${SECTIONED_CARDS.length} sets)`}
+        {isNonDefault && (
+          <button type="button" className="tcgp-reset" onClick={resetAll}>
+            reset filters
+          </button>
+        )}
       </p>
 
       <div className="tcgp-filters">
@@ -602,7 +656,7 @@ export default function TCGPocketPage() {
       </div>
 
       {visibleSections.map((section, sectionIdx) => (
-        <div key={section.slug} className="items-section">
+        <div key={section.slug} id={`tcgp-section-${section.slug}`} className="items-section">
           {section.label && <h2 className="items-section__label">{section.label}</h2>}
           <div className="tcgp-grid">
             {section.items.map((c, index) => (
@@ -630,6 +684,9 @@ export default function TCGPocketPage() {
           show previous set ({nextOlderSet.label})
         </button>
       )}
+
+      {/* hidden while a card modal is open so it doesn't sit over the backdrop */}
+      {!shownCard && <TcgpJumpNav sections={visibleSections} />}
 
       {shownCard && (
         <CardModal

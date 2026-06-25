@@ -35,8 +35,29 @@ const CACHE_PATH  = path.join(__dirname, 'tcgp-card-cache.json');
 const DELAY_MS    = 700;   // throttle limitless requests; ~1.4 req/sec
 const UA          = 'Mozilla/5.0 (compatible; pokedex-scraper)';
 
+// limitless serves promos under different set codes than flibustier: flibustier
+// labels them PROMO-A / PROMO-B, but limitless (both the per-card detail pages
+// AND the image CDN) uses P-A / P-B. compose every limitless url from the mapped
+// code; the stored `set` (used for grouping + the set name) stays on flibustier's
+// code so nothing else in the app has to know about the alias. this mismatch —
+// not a 404 block — is why promos never imported before.
+const LIMITLESS_CODE = { 'PROMO-A': 'P-A', 'PROMO-B': 'P-B' };
+const limitCode = (code) => LIMITLESS_CODE[code] || code;
+
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 function pad3(n)   { return String(n).padStart(3, '0'); }
+
+// metadata-only card detail — used when a card's limitless detail page 404s (or
+// is unparseable). the grid still renders the art (CDN urls are composed, not
+// scraped) and the modal is just sparse. mainly hits the odd promo whose number
+// limitless doesn't host a page for.
+function stubDetails() {
+  return {
+    hp: null, element: null, card_type: null, stage: null, evolves_from: null,
+    weakness: null, retreat: null, attacks: [], ability: null,
+    illustrator: null, flavor_text: null,
+  };
+}
 
 function cdnThumbUrl(set, number) {
   return `${LIMIT_CDN}/pocket/${set}/${set}_${pad3(number)}_EN_SM.webp`;
@@ -243,25 +264,28 @@ async function main() {
           console.log(`  [dry] ${uid} ${idx.name} (${idx.rarity})`);
           continue;
         }
-        const url = `${LIMIT_BASE}/cards/${set.code}/${idx.number}`;
+        const url = `${LIMIT_BASE}/cards/${limitCode(set.code)}/${idx.number}`;
         try {
           const html = await fetchHtml(url);
-          details = parseCardHtml(html);
-          if (!details) {
-            console.warn(`  [warn] ${uid} unparseable; skipping`);
+          details = parseCardHtml(html) || stubDetails();
+        } catch (e) {
+          // 404 = limitless doesn't host this card's page (some promos) → fall
+          // back to a metadata-only stub so it still imports with its image.
+          // any other error is likely transient → skip + retry on the next run.
+          if (e.response?.status === 404) {
+            console.warn(`  [404→stub] ${uid} ${idx.name}`);
+            details = stubDetails();
+          } else {
+            console.warn(`  [err] ${uid} ${e.message}`);
             await sleep(DELAY_MS);
             continue;
           }
-          cache[cacheKey] = details;
-          // persist cache after every card so a mid-run crash doesn't lose work
-          fs.writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 2));
-          scrapedCount++;
-          console.log(`  ${uid} ${idx.name} hp=${details.hp ?? '-'} atk=${details.attacks.length} ${details.ability ? '★' : ''}`);
-        } catch (e) {
-          console.warn(`  [err] ${uid} ${e.message}`);
-          await sleep(DELAY_MS);
-          continue;
         }
+        cache[cacheKey] = details;
+        // persist cache after every card so a mid-run crash doesn't lose work
+        fs.writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 2));
+        scrapedCount++;
+        console.log(`  ${uid} ${idx.name} hp=${details.hp ?? '-'} atk=${details.attacks.length} ${details.ability ? '★' : ''}`);
         await sleep(DELAY_MS);
       }
 
@@ -286,9 +310,9 @@ async function main() {
         ability:      details.ability,
         illustrator:  details.illustrator,
         flavor_text:  details.flavor_text,
-        // images composed from set + number
-        image_url:    cdnThumbUrl(set.code, idx.number),
-        image_full:   cdnFullUrl(set.code, idx.number),
+        // images composed from set + number (promos live under P-A/P-B on the CDN)
+        image_url:    cdnThumbUrl(limitCode(set.code), idx.number),
+        image_full:   cdnFullUrl(limitCode(set.code), idx.number),
       });
     }
   }

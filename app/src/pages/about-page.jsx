@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useTwitchLive } from '../hooks/use-twitch-live';
 
 // twitch player iframe needs `parent` query params for every domain it can be
@@ -41,6 +42,9 @@ export default function AboutPage() {
         </p>
         <p>please, enjoy</p>
         <p>— jackson</p>
+        <p className="news-about__changelog">
+          curious what's changed? see the <Link to="/changelog">changelog</Link> →
+        </p>
         <ul className="news-about__links">
           <li>
             <a href="https://github.com/shockwaveXR" target="_blank" rel="noopener noreferrer">

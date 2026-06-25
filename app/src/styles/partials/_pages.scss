@@ -666,6 +666,115 @@
   }
 }
 
+// inline "reset filters" pill in the tcg pocket sub-line — only rendered when a
+// filter / group / sort is off-default, so the default view stays clean.
+.tcgp-reset {
+  margin-left: 10px;
+  padding: 2px 10px;
+  font-family: inherit;
+  font-size: .72rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: .02em;
+  text-transform: lowercase;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid color-mix(in srgb, var(--text) 24%, transparent);
+  border-radius: 999px;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: color .15s ease, border-color .15s ease, background-color .15s ease, transform .12s ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { color: var(--accent); border-color: var(--accent); }
+  }
+  &:active { transform: scale(.95); border-color: var(--accent); color: var(--accent); }
+}
+
+// ─── tcg pocket floating jump nav (components/tcgp-jump-nav.jsx) ──────────────
+// fixed bottom-right; back-to-top + (when >1 labelled section) a section list.
+.tcgp-jump {
+  position: fixed;
+  right: 18px;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  animation: fade-in .2s ease;
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    transition: color .15s ease, border-color .15s ease, transform .12s ease;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover { color: var(--accent); border-color: var(--accent); }
+    }
+    &:active { transform: scale(.92); }
+    &.is-open { color: var(--accent); border-color: var(--accent); }
+  }
+
+  // section list pops up out of the buttons (list rendered above them in flow).
+  &__list {
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    min-width: 180px;
+    max-width: 260px;
+    max-height: 50vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    transform-origin: bottom right;
+    animation: modal-pop .2s cubic-bezier(.34, 1.56, .64, 1);
+  }
+
+  &__section {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 7px 10px;
+    font-family: inherit;
+    font-size: .8rem;
+    color: var(--text);
+    background: none;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color .12s ease, color .12s ease;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
+    }
+    &:active { background: color-mix(in srgb, var(--accent) 16%, transparent); }
+  }
+}
+
 .ball-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
@@ -1816,6 +1925,24 @@
 // energy cost pip — single-letter code (R/W/G/L/P/F/D/M/C/Y/N) shown as
 // a small colored circle. limitless's `<span class="ptcg-symbol">RCC</span>`
 // is parsed character-by-character; each letter renders here.
+// real TCG energy symbol (components <EnergyIcon>) — used in attack costs and
+// before the type name. self-coloured 85px PNGs scaled down crisp + inline.
+.tcgp-energy-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+// type stat value: energy icon then the type word, baseline-aligned.
+.tcgp-stat__value--type {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+// fallback chip for cost letters with no energy icon (e.g. "0" free attacks).
 .tcgp-energy {
   display: inline-flex;
   align-items: center;
@@ -2024,10 +2151,26 @@
 }
 
 .tcgp-accessory-modal__obtain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
   margin: 0;
-  padding: 8px 12px;
+  padding: 10px 12px;
   background: var(--bg-sidebar);
   border-radius: var(--radius-sm);
+}
+
+.tcgp-accessory-modal__obtain-label {
+  font-size: .6rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.tcgp-accessory-modal__obtain-text {
+  margin: 0;
   font-size: .85rem;
   line-height: 1.45;
   color: var(--text);

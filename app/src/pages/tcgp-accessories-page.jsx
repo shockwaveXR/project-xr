@@ -89,9 +89,10 @@ function AccessoryModal({ item, modalRef, onClose, onPrev, onNext, closing, bump
             />
           </div>
           {item.obtain_method && (
-            <p className="tcgp-accessory-modal__obtain">
-              {item.obtain_method}
-            </p>
+            <div className="tcgp-accessory-modal__obtain">
+              <span className="tcgp-accessory-modal__obtain-label">how to unlock</span>
+              <p className="tcgp-accessory-modal__obtain-text">{item.obtain_method}</p>
+            </div>
           )}
           <p className="tcgp-accessory-modal__meta">
             {item.width}×{item.height}

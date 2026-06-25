@@ -70769,5 +70769,6785 @@
     "retreat": 1,
     "illustrator": "Ayaka Yoshida",
     "flavor_text": "Bombirdier uses the apron on its chest to bundle up food, which it carries back to its nest. It enjoys dropping things that make loud noises."
+  },
+  "B3a-1": {
+    "hp": 60,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Ram",
+        "damage": "10",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "Yoriyuki Ikegami",
+    "flavor_text": "It secretes a thick, sweet-scented syrup from the tip of its head. It lives on weed-choked ponds."
+  },
+  "B3a-2": {
+    "hp": 90,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Surskit",
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Air Slash",
+        "damage": "70",
+        "effect": "Discard a random Energy from this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "kantaro",
+    "flavor_text": "The antennae have distinctive patterns that look like eyes. When it rains, they grow heavy, making flight impossible."
+  },
+  "B3a-3": {
+    "hp": 100,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "G",
+          "C"
+        ],
+        "name": "Spirited Smack",
+        "damage": "90",
+        "effect": "Flip a coin. If tails, this attack does nothing."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 2,
+    "illustrator": "Anesaki Dynamic",
+    "flavor_text": "It bears a slight resemblance to a Pokémon described in a dubious magazine as a cross between a dinosaur and a mushroom."
+  },
+  "PROMO-A-1": {
+    "hp": null,
+    "element": null,
+    "card_type": "item",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "5ban Graphics",
+    "flavor_text": null
+  },
+  "PROMO-A-2": {
+    "hp": null,
+    "element": null,
+    "card_type": "item",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "Toyste Beach",
+    "flavor_text": null
+  },
+  "PROMO-A-3": {
+    "hp": null,
+    "element": null,
+    "card_type": "item",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "Toyste Beach",
+    "flavor_text": null
+  },
+  "PROMO-A-4": {
+    "hp": null,
+    "element": null,
+    "card_type": "item",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "Ryo Ueda",
+    "flavor_text": null
+  },
+  "PROMO-A-5": {
+    "hp": null,
+    "element": null,
+    "card_type": "item",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "Ryo Ueda",
+    "flavor_text": null
+  },
+  "PROMO-A-6": {
+    "hp": null,
+    "element": null,
+    "card_type": "item",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "5ban Graphics",
+    "flavor_text": null
+  },
+  "PROMO-A-7": {
+    "hp": null,
+    "element": null,
+    "card_type": "supporter",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "Naoki Saito",
+    "flavor_text": null
+  },
+  "PROMO-A-8": {
+    "hp": null,
+    "element": null,
+    "card_type": "item",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "Yuu Nishida",
+    "flavor_text": null
+  },
+  "PROMO-A-9": {
+    "hp": 60,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L"
+        ],
+        "name": "Gnaw",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Atsushi Furusawa",
+    "flavor_text": "When it is angered, it immediately discharges the energy stored in the pouches in its cheeks."
+  },
+  "PROMO-A-10": {
+    "hp": 120,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "P",
+          "C",
+          "C"
+        ],
+        "name": "Power Blast",
+        "damage": "120",
+        "effect": "Discard 2 [P] Energy from this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 2,
+    "illustrator": "Krgc",
+    "flavor_text": "It was created by a scientist after years of horrific gene-splicing and DNA-engineering experiments."
+  },
+  "PROMO-A-11": {
+    "hp": 120,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Gentle Slap",
+        "damage": "60",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 3,
+    "illustrator": "sowsow",
+    "flavor_text": "This kindly Pokémon lays highly nutritious eggs and shares them with injured Pokémon or people."
+  },
+  "PROMO-A-12": {
+    "hp": 60,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Pay Day",
+        "damage": "10",
+        "effect": "Draw 1 card."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Shigenori Negishi",
+    "flavor_text": "All it does is sleep during the daytime. At night, it patrols its territory with its eyes aglow."
+  },
+  "PROMO-A-13": {
+    "hp": 120,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Metapod",
+    "attacks": [
+      {
+        "cost": [
+          "G",
+          "C",
+          "C"
+        ],
+        "name": "Gust",
+        "damage": "60",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Powder Heal",
+      "effect": "Once during your turn, you may heal 20 damage from each of your Pokémon."
+    },
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "miki kudo",
+    "flavor_text": "In battle, it flaps its wings at great speed to release highly toxic dust into the air."
+  },
+  "PROMO-A-14": {
+    "hp": 140,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "W",
+          "C"
+        ],
+        "name": "Bubble Drain",
+        "damage": "80",
+        "effect": "Heal 20 damage from this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 3,
+    "illustrator": "PLANETA CG Works",
+    "flavor_text": null
+  },
+  "PROMO-A-15": {
+    "hp": 60,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L"
+        ],
+        "name": "Gnaw",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Kouki Saitou",
+    "flavor_text": "When it is angered, it immediately discharges the energy stored in the pouches in its cheeks."
+  },
+  "PROMO-A-16": {
+    "hp": 60,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P"
+        ],
+        "name": "Slap",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "metal",
+    "retreat": 1,
+    "illustrator": "Shibuzoh.",
+    "flavor_text": "It is said that happiness will come to those who see a gathering of Clefairy dancing under a full moon."
+  },
+  "PROMO-A-17": {
+    "hp": 50,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F"
+        ],
+        "name": "Reckless Charge",
+        "damage": "30",
+        "effect": "This Pokémon also does 10 damage to itself."
+      }
+    ],
+    "ability": null,
+    "weakness": "psychic",
+    "retreat": 1,
+    "illustrator": "Souichirou Gunjima",
+    "flavor_text": "It lives in groups in the treetops. If it loses sight of its group, it becomes infuriated by its loneliness."
+  },
+  "PROMO-A-18": {
+    "hp": 160,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Ivysaur",
+    "attacks": [
+      {
+        "cost": [
+          "G",
+          "G",
+          "C",
+          "C"
+        ],
+        "name": "Mega Drain",
+        "damage": "80",
+        "effect": "Heal 30 damage from this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 3,
+    "illustrator": "Kuroimori",
+    "flavor_text": "Its plant blooms when it is absorbing solar energy. It stays on the move to seek sunlight."
+  },
+  "PROMO-A-19": {
+    "hp": 120,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Frogadier",
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "C"
+        ],
+        "name": "Mist Slash",
+        "damage": "60",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Water Shuriken",
+      "effect": "Once during your turn, you may do 20 damage to 1 of your opponent's Pokémon."
+    },
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Sanosuke Sakuma",
+    "flavor_text": "It creates throwing stars out of compressed water. When it spins them and throws them at high speed, these stars can split metal in two."
+  },
+  "PROMO-A-20": {
+    "hp": 70,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Gastly",
+    "attacks": [
+      {
+        "cost": [
+          "P"
+        ],
+        "name": "Surprise Attack",
+        "damage": "50",
+        "effect": "Flip a coin. If tails, this attack does nothing."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 1,
+    "illustrator": "Mékayu",
+    "flavor_text": "It likes to lurk in the dark and tap shoulders with a gaseous hand. Its touch causes endless shuddering."
+  },
+  "PROMO-A-21": {
+    "hp": 110,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F",
+          "F"
+        ],
+        "name": "Land Crush",
+        "damage": "70",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 4,
+    "illustrator": "Tomokazu Komiya",
+    "flavor_text": "As it digs through the ground, it absorbs many hard objects. This is what makes its body so solid."
+  },
+  "PROMO-A-22": {
+    "hp": 60,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Sing",
+        "damage": "",
+        "effect": "Your opponent's Active Pokémon is now Asleep."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Kurata So",
+    "flavor_text": "When its huge eyes waver, it sings a mysteriously soothing melody that lulls its enemies to sleep."
+  },
+  "PROMO-A-23": {
+    "hp": 70,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "G",
+          "C"
+        ],
+        "name": "Vine Whip",
+        "damage": "40",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "Kouki Saitou",
+    "flavor_text": "There is a plant seed on its back right from the day this Pokémon is born. The seed slowly grows larger."
+  },
+  "PROMO-A-24": {
+    "hp": 60,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L"
+        ],
+        "name": "Lightning Ball",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Miki Tanaka",
+    "flavor_text": "The electromagnetic waves emitted by the units at the sides of its head expel antigravity, which allows it to float."
+  },
+  "PROMO-A-25": {
+    "hp": 140,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "R"
+        ],
+        "name": "Inferno Dance",
+        "damage": "",
+        "effect": "Flip 3 coins. Take an amount of [R] Energy from your Energy Zone equal to the number of heads and attach it to your Benched [R] Pokémon in any way you like."
+      },
+      {
+        "cost": [
+          "R",
+          "C",
+          "C"
+        ],
+        "name": "Heat Blast",
+        "damage": "70",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 2,
+    "illustrator": "PLANETA Igarashi",
+    "flavor_text": null
+  },
+  "PROMO-A-26": {
+    "hp": 60,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L"
+        ],
+        "name": "Gnaw",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Kouki Saitou",
+    "flavor_text": "When it is angered, it immediately discharges the energy stored in the pouches in its cheeks."
+  },
+  "PROMO-A-27": {
+    "hp": 60,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "G"
+        ],
+        "name": "Tackle",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "Yoriyuki Ikegami",
+    "flavor_text": "Being exposed to sunlight makes its movements swifter. It uses vines more adeptly than its hands."
+  },
+  "PROMO-A-28": {
+    "hp": 120,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Larvesta",
+    "attacks": [
+      {
+        "cost": [
+          "R",
+          "R",
+          "C"
+        ],
+        "name": "Volcanic Ash",
+        "damage": "",
+        "effect": "Discard 2 [R] Energy from this Pokémon. This attack does 80 damage to 1 of your opponent's Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "water",
+    "retreat": 2,
+    "illustrator": "Shin Nagasawa",
+    "flavor_text": "Its burning body causes it to be unpopular in hot parts of the world, but in cold ones, Volcarona is revered as an embodiment of the sun."
+  },
+  "PROMO-A-29": {
+    "hp": 150,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Wartortle",
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "W",
+          "C"
+        ],
+        "name": "Hydro Pump",
+        "damage": "80+",
+        "effect": "If this Pokémon has at least 2 extra [W] Energy attached, this attack does 60 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 3,
+    "illustrator": "danciao",
+    "flavor_text": "It crushes its foe under its heavy body to cause fainting. In a pinch, it will withdraw inside its shell."
+  },
+  "PROMO-A-30": {
+    "hp": 60,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Growl",
+        "damage": "",
+        "effect": "During your opponent's next turn, attacks used by the Defending Pokémon do −20 damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "En Morikura",
+    "flavor_text": "Its ability to evolve into many forms allows it to adapt smoothly and perfectly to any environment."
+  },
+  "PROMO-A-31": {
+    "hp": 90,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Minccino",
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Do the Wave",
+        "damage": "30x",
+        "effect": "This attack does 30 damage for each of your Benched Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "MAHOU",
+    "flavor_text": "Its body secretes oil that this Pokémon spreads over its nest as a coating to protect it from dust. Cinccino won’t tolerate even a speck of the stuff."
+  },
+  "PROMO-A-32": {
+    "hp": 60,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "R"
+        ],
+        "name": "Ember",
+        "damage": "30",
+        "effect": "Discard a [R] Energy from this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "water",
+    "retreat": 1,
+    "illustrator": "Naoyo Kimura",
+    "flavor_text": "It has a preference for hot things. When it rains, steam is said to spout from the tip of its tail."
+  },
+  "PROMO-A-33": {
+    "hp": 60,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W"
+        ],
+        "name": "Water Gun",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Kanako Eo",
+    "flavor_text": "When it retracts its long neck into its shell, it squirts out water with vigorous force."
+  },
+  "PROMO-A-34": {
+    "hp": 60,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Nap",
+        "damage": "",
+        "effect": "Heal 20 damage from this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Kariya",
+    "flavor_text": "It doesn’t like to be taken care of. It’s difficult to bond with since it won’t listen to its Trainer."
+  },
+  "PROMO-A-35": {
+    "hp": 80,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "G",
+          "C"
+        ],
+        "name": "Bite",
+        "damage": "30",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 2,
+    "illustrator": "Atsuko Nishida",
+    "flavor_text": "It uses its whole body to photosynthesize when exposed to sunlight. Its shell is made from hardened soil."
+  },
+  "PROMO-A-36": {
+    "hp": 120,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Electabuzz",
+    "attacks": [
+      {
+        "cost": [
+          "L",
+          "L"
+        ],
+        "name": "Exciting Voltage",
+        "damage": "40+",
+        "effect": "If this Pokémon has at least 2 extra [L] Energy attached, this attack does 80 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 3,
+    "illustrator": "Sumiyoshi Kizuki",
+    "flavor_text": "The amount of electrical energy this Pokémon produces is proportional to the rate of its pulse. The voltage jumps while Electivire is battling."
+  },
+  "PROMO-A-37": {
+    "hp": 140,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "P",
+          "C"
+        ],
+        "name": "Psychic Flash",
+        "damage": "80",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Lunar Plumage",
+      "effect": "Whenever you attach a [P] Energy from your Energy Zone to this Pokémon, heal 20 damage from this Pokémon."
+    },
+    "weakness": "darkness",
+    "retreat": 2,
+    "illustrator": "PLANETA Mochizuki",
+    "flavor_text": null
+  },
+  "PROMO-A-38": {
+    "hp": 60,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P"
+        ],
+        "name": "Confuse Ray",
+        "damage": "",
+        "effect": "Your opponent's Active Pokémon is now Confused."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 1,
+    "illustrator": "Miki Tanaka",
+    "flavor_text": "This Pokémon startles people in the middle of the night. It gathers fear as its energy."
+  },
+  "PROMO-A-39": {
+    "hp": 80,
+    "element": "metal",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "M"
+        ],
+        "name": "Metal Arms",
+        "damage": "20+",
+        "effect": "If this Pokémon has a Pokémon Tool attached, this attack does 30 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Anesaki Dynamic",
+    "flavor_text": "People fashion swords from Skarmory’s shed feathers, so this Pokémon is a popular element in heraldic designs."
+  },
+  "PROMO-A-40": {
+    "hp": 60,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "R"
+        ],
+        "name": "Scratch",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "water",
+    "retreat": 1,
+    "illustrator": "sui",
+    "flavor_text": "Its fiery rear end is fueled by gas made in its belly. Even rain can’t extinguish the fire."
+  },
+  "PROMO-A-41": {
+    "hp": 50,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P"
+        ],
+        "name": "Pound",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "metal",
+    "retreat": 1,
+    "illustrator": "Naoyo Kimura",
+    "flavor_text": "The shell seems to be filled with joy. It is said that it will share good luck when treated kindly."
+  },
+  "PROMO-A-42": {
+    "hp": 140,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "D",
+          "D",
+          "C"
+        ],
+        "name": "Dark Prism",
+        "damage": "80",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Nightmare Aura",
+      "effect": "Whenever you attach a [D] Energy from your Energy Zone to this Pokémon, do 20 damage to your opponent's Active Pokémon."
+    },
+    "weakness": "grass",
+    "retreat": 2,
+    "illustrator": "PLANETA Mochizuki",
+    "flavor_text": null
+  },
+  "PROMO-A-43": {
+    "hp": 80,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Cherubi",
+    "attacks": [
+      {
+        "cost": [
+          "G",
+          "G"
+        ],
+        "name": "Leech Seed",
+        "damage": "60",
+        "effect": "Heal 20 damage from this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "MAHOU",
+    "flavor_text": "After absorbing plenty of sunlight, Cherrim takes this form. It’s full of energy while it’s like this, and its liveliness will go on until sundown."
+  },
+  "PROMO-A-44": {
+    "hp": 90,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Pikachu",
+    "attacks": [
+      {
+        "cost": [
+          "L",
+          "L"
+        ],
+        "name": "Spark",
+        "damage": "40",
+        "effect": "This attack also does 20 damage to 1 of your opponent's Benched Pokémon."
+      }
+    ],
+    "ability": {
+      "name": "Ability: Resilience Link",
+      "effect": "If you have Arceus or Arceus ex in play, this Pokémon takes −30 damage from attacks."
+    },
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Kazumasa Yasukuni",
+    "flavor_text": "Its tail discharges electricity into the ground, protecting it from getting shocked."
+  },
+  "PROMO-A-45": {
+    "hp": 60,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Iron Defense",
+        "damage": "",
+        "effect": "Flip a coin. If heads, during your opponent's next turn, prevent all damage done to this Pokémon by attacks."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "Tomokazu Komiya",
+    "flavor_text": "It moves less than an inch a year, but when it’s in a jam, it will spin and drill down into the ground in a split second."
+  },
+  "PROMO-A-46": {
+    "hp": 60,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F"
+        ],
+        "name": "Tackle",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "Uninori",
+    "flavor_text": "It skulks in caves, and when prey or an enemy passes by, it leaps out and chomps them. The force of its attack sometimes chips its teeth."
+  },
+  "PROMO-A-47": {
+    "hp": 140,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Staravia",
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Wing Attack",
+        "damage": "90",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Defensive Whirlwind",
+      "effect": "This Pokémon takes −30 damage from attacks from [F] Pokémon."
+    },
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Hasuno",
+    "flavor_text": "When Staravia evolve into Staraptor, they leave the flock to live alone. They have sturdy wings."
+  },
+  "PROMO-A-48": {
+    "hp": 50,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W"
+        ],
+        "name": "Oceanic Gift",
+        "damage": "",
+        "effect": "Choose 2 of your Benched Pokémon. For each of those Pokémon, take a [W] Energy from your Energy Zone and attach it to that Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "sui",
+    "flavor_text": "It is born with a wondrous power that lets it bond with any kind of Pokémon."
+  },
+  "PROMO-A-49": {
+    "hp": 140,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Collapse",
+        "damage": "100",
+        "effect": "This Pokémon is now Asleep."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 4,
+    "illustrator": "okayamatakatoshi",
+    "flavor_text": "It is not satisfied unless it eats over 880 pounds of food every day. When it is done eating, it goes promptly to sleep."
+  },
+  "PROMO-A-50": {
+    "hp": 150,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "C"
+        ],
+        "name": "Psychic Sphere",
+        "damage": "50",
+        "effect": ""
+      },
+      {
+        "cost": [
+          "P",
+          "P",
+          "C",
+          "C"
+        ],
+        "name": "Psydrive",
+        "damage": "150",
+        "effect": "Discard 2 [P] Energy from this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 2,
+    "illustrator": "PLANETA Mochizuki",
+    "flavor_text": null
+  },
+  "PROMO-A-51": {
+    "hp": 80,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Overacceleration",
+        "damage": "20",
+        "effect": "During your next turn, this Pokémon's Overacceleration attack does +20 damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Shigenori Negishi",
+    "flavor_text": "Apparently Cyclizar has been allowing people to ride on its back since ancient times. Depictions of this have been found in 10,000-year-old murals."
+  },
+  "PROMO-A-52": {
+    "hp": 60,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "G"
+        ],
+        "name": "Cry for Help",
+        "damage": "",
+        "effect": "Put 1 random [G] Pokémon from your deck into your hand."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "MINAMINAMI Take",
+    "flavor_text": "Its fluffy fur is similar in composition to plants. This Pokémon frequently washes its face to keep it from drying out."
+  },
+  "PROMO-A-53": {
+    "hp": 100,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Buizel",
+    "attacks": [
+      {
+        "cost": [
+          "W"
+        ],
+        "name": "Attack the Wound",
+        "damage": "10+",
+        "effect": "If your opponent's Active Pokémon has damage on it, this attack does 60 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Shin Nagasawa",
+    "flavor_text": "With its flotation sac inflated, it can carry people on its back. It deflates the sac before it dives."
+  },
+  "PROMO-A-54": {
+    "hp": 140,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Pawmo",
+    "attacks": [
+      {
+        "cost": [
+          "L",
+          "L"
+        ],
+        "name": "Electric Punch",
+        "damage": "70",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Counterattack",
+      "effect": "If this Pokémon is in the Active Spot and is damaged by an attack from your opponent's Pokémon, do 20 damage to the Attacking Pokémon."
+    },
+    "weakness": "fighting",
+    "retreat": 0,
+    "illustrator": "REND",
+    "flavor_text": "This Pokémon normally is slow to react, but once it enters battle, it will strike down its enemies with lightning-fast movements."
+  },
+  "PROMO-A-55": {
+    "hp": 150,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Machoke",
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F"
+        ],
+        "name": "Power Press",
+        "damage": "70+",
+        "effect": "If this Pokémon has at least 2 extra [F] Energy attached, this attack does 50 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "psychic",
+    "retreat": 2,
+    "illustrator": "Masakazu Fukuda",
+    "flavor_text": "It quickly swings its four arms to rock its opponents with ceaseless punches and chops from all angles."
+  },
+  "PROMO-A-56": {
+    "hp": 60,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "D"
+        ],
+        "name": "Poison Sting",
+        "damage": "",
+        "effect": "Your opponent's Active Pokémon is now Poisoned."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Krgc",
+    "flavor_text": "By dislocating its jaw, it can swallow prey larger than itself. After a meal, it curls up and rests."
+  },
+  "PROMO-A-57": {
+    "hp": 70,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Headbutt",
+        "damage": "30",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 2,
+    "illustrator": "Kouki Saitou",
+    "flavor_text": "With nerves of steel, nothing can perturb it. It is more agile and active than it appears."
+  },
+  "PROMO-A-58": {
+    "hp": 70,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L"
+        ],
+        "name": "Plasma",
+        "damage": "10",
+        "effect": "Take a [L] Energy from your Energy Zone and attach it to 1 of your Benched [L] Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "OOYAMA",
+    "flavor_text": "It’s one of the kinds of Pokémon with electric cheek pouches. It shoots charges from its tail."
+  },
+  "PROMO-A-59": {
+    "hp": 70,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F"
+        ],
+        "name": "Punch",
+        "damage": "40",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "psychic",
+    "retreat": 1,
+    "illustrator": "Akira Komayama",
+    "flavor_text": "They communicate with one another using their auras. They are able to run all through the night."
+  },
+  "PROMO-A-60": {
+    "hp": 50,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Growth Spurt",
+        "damage": "",
+        "effect": "Take a [G] Energy from your Energy Zone and attach it to this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "0313",
+    "flavor_text": "Though it may look like it’s just a bunch of eggs, it’s a proper Pokémon. Exeggcute communicates with others of its kind via telepathy, apparently."
+  },
+  "PROMO-A-61": {
+    "hp": 60,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Flop",
+        "damage": "10",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Sanosuke Sakuma",
+    "flavor_text": "It secretes flexible bubbles from its chest and back. The bubbles reduce the damage it would otherwise take when attacked."
+  },
+  "PROMO-A-62": {
+    "hp": 60,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Leek Slap",
+        "damage": "40",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Eri Yamaki",
+    "flavor_text": "The stalk this Pokémon carries in its wings serves as a sword to cut down opponents. In a dire situation, the stalk can also serve as food."
+  },
+  "PROMO-A-63": {
+    "hp": 100,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Spiral Rush",
+        "damage": "70+",
+        "effect": "Flip a coin until you get tails. This attack does 30 more damage for each heads."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Yoshinobu Saito",
+    "flavor_text": "It lives in the ozone layer far above the clouds and cannot be seen from the ground."
+  },
+  "PROMO-A-64": {
+    "hp": 140,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Draco Meteor",
+        "damage": "",
+        "effect": "1 of your opponent's Pokémon is chosen at random 4 times. For each time a Pokémon was chosen, do 40 damage to it."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 2,
+    "illustrator": "PLANETA CG Works",
+    "flavor_text": null
+  },
+  "PROMO-A-65": {
+    "hp": 140,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Draco Meteor",
+        "damage": "",
+        "effect": "1 of your opponent's Pokémon is chosen at random 4 times. For each time a Pokémon was chosen, do 40 damage to it."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 2,
+    "illustrator": "PLANETA CG Works",
+    "flavor_text": null
+  },
+  "PROMO-A-66": {
+    "hp": 70,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "C"
+        ],
+        "name": "Shadow Hit",
+        "damage": "60",
+        "effect": "This attack also does 20 damage to 1 of your Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 1,
+    "illustrator": "Amelicart",
+    "flavor_text": "There was a scientist who peeked under Mimikyu’s old rag in the name of research. The scientist died of a mysterious disease."
+  },
+  "PROMO-A-67": {
+    "hp": 60,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Teleport",
+        "damage": "",
+        "effect": "Switch this Pokémon with 1 of your Benched Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 1,
+    "illustrator": "Mizue",
+    "flavor_text": "Even though its helpless, gaseous body can be blown away by the slightest breeze, it doesn’t seem to care."
+  },
+  "PROMO-A-68": {
+    "hp": 100,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Rockruff",
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F",
+          "C"
+        ],
+        "name": "Crunch",
+        "damage": "80",
+        "effect": "Flip a coin. If heads, discard a random Energy from your opponent's Active Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "Ryuta Fuse",
+    "flavor_text": "Lycanroc attacks its prey with its sharp claws and fangs. It loyally obeys the instructions of a Trainer it trusts."
+  },
+  "PROMO-A-69": {
+    "hp": 150,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Exeggcute",
+    "attacks": [
+      {
+        "cost": [
+          "G",
+          "C",
+          "C"
+        ],
+        "name": "Tropical Hammer",
+        "damage": "150",
+        "effect": "Flip a coin. If tails, this attack does nothing."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 4,
+    "illustrator": "Satoshi Shirai",
+    "flavor_text": "Blazing sunlight has brought out the true form and powers of this Pokémon."
+  },
+  "PROMO-A-70": {
+    "hp": 110,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Alolan Vulpix",
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "W",
+          "W"
+        ],
+        "name": "Blizzard",
+        "damage": "60",
+        "effect": "This attack also does 20 damage to each of your opponent's Benched Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "metal",
+    "retreat": 1,
+    "illustrator": "tono",
+    "flavor_text": "A deity resides in the snowy mountains where this Pokémon lives. In ancient times, it was worshiped as that deity’s incarnation."
+  },
+  "PROMO-A-71": {
+    "hp": 70,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Punch",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "psychic",
+    "retreat": 2,
+    "illustrator": "Miki Tanaka",
+    "flavor_text": "This Pokémon punches trees and eats the berries that drop down, training itself and getting food at the same time."
+  },
+  "PROMO-A-72": {
+    "hp": 70,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "D"
+        ],
+        "name": "Poison Gas",
+        "damage": "",
+        "effect": "Your opponent's Active Pokémon is now Poisoned."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 2,
+    "illustrator": "Naoki Saito",
+    "flavor_text": "There are a hundred or so of them living in Alola’s waste-disposal site. They’re all hard workers who eat a lot of trash."
+  },
+  "PROMO-A-73": {
+    "hp": 140,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Trumbeak",
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Beak Blast",
+        "damage": "80",
+        "effect": "Flip a coin. If heads, your opponent's Active Pokémon is now Burned."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 2,
+    "illustrator": "Sekio",
+    "flavor_text": "They smack beaks with others of their kind to communicate. The strength and number of hits tell each other how they feel."
+  },
+  "PROMO-A-74": {
+    "hp": 90,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L",
+          "L"
+        ],
+        "name": "Lightning Claw",
+        "damage": "50",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Thunderclap Flash",
+      "effect": "At the end of your first turn, take a [L] Energy from your Energy Zone and attach it to this Pokémon."
+    },
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "GIDORA",
+    "flavor_text": "It electrifies its claws and tears its opponents apart with them. Even if they dodge its attack, they’ll be electrocuted by the flying sparks."
+  },
+  "PROMO-A-75": {
+    "hp": 60,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "G"
+        ],
+        "name": "Thrash Metal",
+        "damage": "40",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "Hasuno",
+    "flavor_text": "This Ultra Beast’s body, which is as thin as paper, is like a sharpened sword."
+  },
+  "PROMO-A-76": {
+    "hp": 100,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "R",
+          "R",
+          "C"
+        ],
+        "name": "Beat Punk",
+        "damage": "130",
+        "effect": "This Pokémon also does 70 damage to itself."
+      }
+    ],
+    "ability": null,
+    "weakness": "water",
+    "retreat": 2,
+    "illustrator": "Hasuno",
+    "flavor_text": "It slithers toward people. Then, without warning, it triggers the explosion of its own head. It’s apparently one kind of Ultra Beast."
+  },
+  "PROMO-A-77": {
+    "hp": 100,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L",
+          "C",
+          "C"
+        ],
+        "name": "Electronica",
+        "damage": "60",
+        "effect": "Your opponent's Active Pokémon is now Confused."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 2,
+    "illustrator": "Shin Nagasawa",
+    "flavor_text": "Although it’s alien to this world and a danger here, it’s apparently a common organism in the world where it normally lives."
+  },
+  "PROMO-A-78": {
+    "hp": 110,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "C",
+          "C"
+        ],
+        "name": "Psychobilly",
+        "damage": "100",
+        "effect": "This Pokémon also does 30 damage to itself."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 2,
+    "illustrator": "nagimiso",
+    "flavor_text": "Lunala no longer has a will of its own. Now under the control of Necrozma, it continuously expels all of its energy."
+  },
+  "PROMO-A-79": {
+    "hp": 110,
+    "element": "metal",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "M",
+          "C",
+          "C"
+        ],
+        "name": "Black Metal",
+        "damage": "100",
+        "effect": "Discard a [M] Energy from this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 2,
+    "illustrator": "nagimiso",
+    "flavor_text": "This is its form while it is devouring the light of Solgaleo. It pounces on foes and then slashes them with the claws on its four limbs and back."
+  },
+  "PROMO-A-80": {
+    "hp": 110,
+    "element": "metal",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "M",
+          "C"
+        ],
+        "name": "Brass Rock",
+        "damage": "40",
+        "effect": "During your opponent's next turn, this Pokémon takes −20 damage from attacks."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 3,
+    "illustrator": "Shin Nagasawa",
+    "flavor_text": "It appeared from an Ultra Wormhole. Each one appears to be made up of many life-forms stacked one on top of each other."
+  },
+  "PROMO-A-81": {
+    "hp": 150,
+    "element": "dragon",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Photon Claw",
+        "damage": "60",
+        "effect": ""
+      },
+      {
+        "cost": [
+          "P",
+          "P",
+          "M",
+          "M"
+        ],
+        "name": "Shoegaze",
+        "damage": "120",
+        "effect": "Discard the top 5 cards of each player's deck."
+      }
+    ],
+    "ability": null,
+    "weakness": "none",
+    "retreat": 2,
+    "illustrator": "PLANETA Tsuji",
+    "flavor_text": null
+  },
+  "PROMO-A-82": {
+    "hp": 60,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "D"
+        ],
+        "name": "2-Step",
+        "damage": "20x",
+        "effect": "Flip 2 coins. This attack does 20 damage for each heads."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Megumi Mizutani",
+    "flavor_text": "This Ultra Beast is well enough liked to be chosen as a first partner in its own world."
+  },
+  "PROMO-A-83": {
+    "hp": 70,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Ram",
+        "damage": "40",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 2,
+    "illustrator": "Kanako Eo",
+    "flavor_text": "Its fluffy fur is a delight to pet, but carelessly reaching out to touch this Pokémon could result in painful retaliation."
+  },
+  "PROMO-A-84": {
+    "hp": 130,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L"
+        ],
+        "name": "Plasma Hurricane",
+        "damage": "20",
+        "effect": "Take a [L] Energy from your Energy Zone and attach it to this Pokémon."
+      },
+      {
+        "cost": [
+          "L",
+          "L",
+          "C"
+        ],
+        "name": "Mach Bolt",
+        "damage": "90",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "PLANETA Tsuji",
+    "flavor_text": null
+  },
+  "PROMO-A-85": {
+    "hp": 60,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W"
+        ],
+        "name": "Sweets Relay",
+        "damage": "10+",
+        "effect": "If 1 of your Pokémon used Sweets Relay during your last turn, this attack does 20 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "metal",
+    "retreat": 1,
+    "illustrator": "OOYAMA",
+    "flavor_text": "Unable to survive in hot areas, it makes itself comfortable by breathing out air cold enough to cause snow. It burrows into the snow to sleep."
+  },
+  "PROMO-A-86": {
+    "hp": 90,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Eevee",
+    "attacks": [
+      {
+        "cost": [
+          "L"
+        ],
+        "name": "Beginning Bolt",
+        "damage": "40+",
+        "effect": "If this Pokémon evolved during this turn, this attack does 20 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Mizue",
+    "flavor_text": "It concentrates the weak electric charges emitted by its cells and launches wicked lightning bolts."
+  },
+  "PROMO-A-87": {
+    "hp": 80,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Milcery",
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Sweets Overload",
+        "damage": "40x",
+        "effect": "This attack does 40 damage for each time your Pokémon used Sweets Relay during this game."
+      }
+    ],
+    "ability": null,
+    "weakness": "metal",
+    "retreat": 1,
+    "illustrator": "Tika Matsuno",
+    "flavor_text": "When it trusts a Trainer, it will treat them to berries it’s decorated with cream."
+  },
+  "PROMO-A-88": {
+    "hp": 100,
+    "element": "dragon",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Dratini",
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Shed Skin",
+        "damage": "",
+        "effect": "Heal 30 damage from this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "none",
+    "retreat": 2,
+    "illustrator": "Shinya Komatsu",
+    "flavor_text": "They say that if it emits an aura from its whole body, the weather will begin to change instantly."
+  },
+  "PROMO-A-89": {
+    "hp": 100,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Drain Slap",
+        "damage": "40",
+        "effect": "Heal 10 damage from this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 2,
+    "illustrator": "MAHOU",
+    "flavor_text": "This Pokémon has a kind heart. By touching with its feelers, Audino can gauge other creatures’ feelings and physical conditions."
+  },
+  "PROMO-A-90": {
+    "hp": 80,
+    "element": "metal",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "M",
+          "M"
+        ],
+        "name": "Bristling Spikes",
+        "damage": "30",
+        "effect": "During your opponent's next turn, if this Pokémon is damaged by an attack, do 30 damage to the Attacking Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "sowsow",
+    "flavor_text": "With the long hairs on its back, this Pokémon takes in electricity from other electric Pokémon. It stores what it absorbs in an electric sac."
+  },
+  "PROMO-A-91": {
+    "hp": 120,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Skwovet",
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Enhanced Fang",
+        "damage": "50+",
+        "effect": "If this Pokémon has a Pokémon Tool attached, this attack does 50 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 2,
+    "illustrator": "HYOGONOSUKE",
+    "flavor_text": "This Pokémon makes off with heaps of fallen berries by wrapping them in its tail, which is roughly twice the length of its body."
+  },
+  "PROMO-A-92": {
+    "hp": 60,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Tackle",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "nisimono",
+    "flavor_text": "Its ability to evolve into many forms allows it to adapt smoothly and perfectly to any environment."
+  },
+  "PROMO-A-93": {
+    "hp": 30,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "0"
+        ],
+        "name": "Twinkly Call",
+        "damage": "",
+        "effect": "Put a random Pokémon from your deck into your hand."
+      }
+    ],
+    "ability": null,
+    "weakness": "none",
+    "retreat": 0,
+    "illustrator": "Tika Matsuno",
+    "flavor_text": "According to local rumors, Cleffa are often seen in places where shooting stars have fallen."
+  },
+  "PROMO-A-94": {
+    "hp": 60,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W"
+        ],
+        "name": "Water Arrow",
+        "damage": "",
+        "effect": "This attack does 10 damage to 1 of your opponent's Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Taira Akitsu",
+    "flavor_text": "Horsea makes its home in oceans with gentle currents. If this Pokémon is under attack, it spits out pitch-black ink and escapes."
+  },
+  "PROMO-A-95": {
+    "hp": 60,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L"
+        ],
+        "name": "Luring Glow",
+        "damage": "",
+        "effect": "Flip a coin. If heads, switch in 1 of your opponent's Benched Pokémon to the Active Spot."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Aya Kusube",
+    "flavor_text": "Its antennae, which evolved from a fin, have both positive and negative charges flowing through them."
+  },
+  "PROMO-A-96": {
+    "hp": 110,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Houndour",
+    "attacks": [
+      {
+        "cost": [
+          "D",
+          "D",
+          "D"
+        ],
+        "name": "Diving Swipe",
+        "damage": "70",
+        "effect": "Discard a random card from your opponent's hand."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 2,
+    "illustrator": "Kagemaru Himeno",
+    "flavor_text": "If you are burned by the flames it shoots from its mouth, the pain will never go away."
+  },
+  "PROMO-A-97": {
+    "hp": 100,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Cross-Cut",
+        "damage": "20+",
+        "effect": "If your opponent's Active Pokémon is an Evolution Pokémon, this attack does 40 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 3,
+    "illustrator": "Kouki Saitou",
+    "flavor_text": "Although it’s carrying its baby in a pouch on its belly, Kangaskhan is swift on its feet. It intimidates its opponents with quick jabs."
+  },
+  "PROMO-A-98": {
+    "hp": 180,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Chansey",
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Happy Punch",
+        "damage": "100",
+        "effect": "Flip a coin. If heads, heal 60 damage from this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 3,
+    "illustrator": "PLANETA CG Works",
+    "flavor_text": null
+  },
+  "PROMO-A-99": {
+    "hp": 60,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Tackle",
+        "damage": "10",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Shibuzoh.",
+    "flavor_text": "The fur on its body naturally repels water. It can stay dry even when it plays in the water."
+  },
+  "PROMO-A-100": {
+    "hp": 80,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Sneasel",
+    "attacks": [
+      {
+        "cost": [
+          "D"
+        ],
+        "name": "Slash",
+        "damage": "50",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 0,
+    "illustrator": "Satoshi Shirai",
+    "flavor_text": "Evolution made it even more devious. It communicates by clawing signs in boulders."
+  },
+  "PROMO-A-101": {
+    "hp": 90,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P"
+        ],
+        "name": "Crossing Flights",
+        "damage": "20+",
+        "effect": "If Latios is on your Bench, this attack does 20 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 1,
+    "illustrator": "Yuu Nishida",
+    "flavor_text": "It communicates using telepathy. Its body is covered in down that refracts light to make it invisible."
+  },
+  "PROMO-A-102": {
+    "hp": 100,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Double Smash",
+        "damage": "40x",
+        "effect": "Flip 2 coins. This attack does 40 damage for each heads."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 2,
+    "illustrator": "sowsow",
+    "flavor_text": "It lives in tropical jungles. The bunch of fruit around its neck is delicious. The fruit grows twice a year."
+  },
+  "PROMO-A-103": {
+    "hp": 60,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Surprise Attack",
+        "damage": "40",
+        "effect": "Flip a coin. If tails, this attack does nothing."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "MAHOU",
+    "flavor_text": "For Poliwag, swimming is easier than walking. The swirl pattern on its belly is actually part of the Pokémon’s innards showing through the skin."
+  },
+  "PROMO-A-104": {
+    "hp": 120,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Feebas",
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "C"
+        ],
+        "name": "Aqua Edge",
+        "damage": "60",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Healing Ripples",
+      "effect": "Once during your turn, when you play this Pokémon from your hand to evolve 1 of your Pokémon, you may heal 60 damage from 1 of your [W] Pokémon."
+    },
+    "weakness": "lightning",
+    "retreat": 2,
+    "illustrator": "Hajime Kusajima",
+    "flavor_text": "Milotic has provided inspiration to many artists. It has even been referred to as the most beautiful Pokémon of all."
+  },
+  "PROMO-A-105": {
+    "hp": 60,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "D"
+        ],
+        "name": "Ram",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "Naoyo Kimura",
+    "flavor_text": "It changes into the forms of others to surprise them. Apparently, it often transforms into a silent child."
+  },
+  "PROMO-A-106": {
+    "hp": 100,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Zorua",
+    "attacks": [
+      {
+        "cost": [
+          "D",
+          "D"
+        ],
+        "name": "Night Daze",
+        "damage": "70",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Illusive Trickery",
+      "effect": "If your opponent's Pokémon is Knocked Out by damage from this Pokémon's attacks, during your opponent's next turn, prevent all damage from—and effects of—attacks done to this Pokémon."
+    },
+    "weakness": "grass",
+    "retreat": 2,
+    "illustrator": "matazo",
+    "flavor_text": "Stories say those who tried to catch Zoroark were trapped in an illusion and punished."
+  },
+  "PROMO-A-107": {
+    "hp": 110,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Rolling Frenzy",
+        "damage": "10",
+        "effect": "Until this Pokémon leaves the Active Spot, this Pokémon's Rolling Frenzy attack does +30 damage. This effect stacks."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 3,
+    "illustrator": "Kanako Eo",
+    "flavor_text": "Miltank produces highly nutritious milk, so it’s been supporting the lives of people and other Pokémon since ancient times."
+  },
+  "PROMO-A-108": {
+    "hp": 70,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F"
+        ],
+        "name": "Flail",
+        "damage": "",
+        "effect": "This attack does damage to your opponent's Active Pokémon equal to the damage this Pokémon has on it."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 2,
+    "illustrator": "Asako Ito",
+    "flavor_text": "This Pokémon lives and nests on a riverbank. After playing in the mud, it won’t be able to settle down unless it washes its body."
+  },
+  "PROMO-A-109": {
+    "hp": 90,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Bite",
+        "damage": "30",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Veevee ’volve",
+      "effect": "This Pokémon can evolve into any Pokémon that evolves from Eevee if you play it from your hand onto this Pokémon. (This Pokémon can't evolve during your first turn or the turn you play it.)"
+    },
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Kanami Ogata",
+    "flavor_text": null
+  },
+  "PROMO-A-110": {
+    "hp": 140,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "R",
+          "R"
+        ],
+        "name": "Blazing Beatdown",
+        "damage": "60+",
+        "effect": "If this Pokémon has at least 2 extra [R] Energy attached, this attack does 60 more damage."
+      }
+    ],
+    "ability": {
+      "name": "Ability: Legendary Pulse",
+      "effect": "At the end of your turn, if this Pokémon is in the Active Spot, draw a card."
+    },
+    "weakness": "water",
+    "retreat": 2,
+    "illustrator": "PLANETA Tsuji",
+    "flavor_text": null
+  },
+  "PROMO-A-111": {
+    "hp": 60,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L",
+          "C"
+        ],
+        "name": "Quick Attack",
+        "damage": "20+",
+        "effect": "Flip a coin. If heads, this attack does 30 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "sui",
+    "flavor_text": "When it is angered, it immediately discharges the energy stored in the pouches in its cheeks."
+  },
+  "PROMO-A-112": {
+    "hp": 140,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Pikachu",
+    "attacks": [
+      {
+        "cost": [
+          "L",
+          "L",
+          "L"
+        ],
+        "name": "Volt Tackle",
+        "damage": "130",
+        "effect": "This Pokémon also does 30 damage to itself."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "PLANETA Mochizuki",
+    "flavor_text": null
+  },
+  "PROMO-A-113": {
+    "hp": 70,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "P"
+        ],
+        "name": "Try to Imitate",
+        "damage": "",
+        "effect": "Flip a coin. If heads, choose 1 of your opponent's Active Pokémon's attacks and use it as this attack."
+      }
+    ],
+    "ability": null,
+    "weakness": "metal",
+    "retreat": 1,
+    "illustrator": "Yuka Morii",
+    "flavor_text": "This Pokémon lives in dark places untouched by sunlight. When it appears before humans, it hides itself under a cloth that resembles a Pikachu."
+  },
+  "PROMO-A-114": {
+    "hp": 150,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Machoke",
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F",
+          "F"
+        ],
+        "name": "Hurricane Punch",
+        "damage": "50x",
+        "effect": "Flip 4 coins. This attack does 50 damage for each heads."
+      }
+    ],
+    "ability": null,
+    "weakness": "psychic",
+    "retreat": 2,
+    "illustrator": "Naoki Saito",
+    "flavor_text": "It quickly swings its four arms to rock its opponents with ceaseless punches and chops from all angles."
+  },
+  "PROMO-A-115": {
+    "hp": 140,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Raging Hammer",
+        "damage": "50+",
+        "effect": "This attack does more damage equal to the damage this Pokémon has on it."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 4,
+    "illustrator": "Ryuta Fuse",
+    "flavor_text": "It is said to have made Pokémon that look like itself from a special ice mountain, rocks, and magma."
+  },
+  "PROMO-A-116": {
+    "hp": 60,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "G",
+          "C"
+        ],
+        "name": "Flop",
+        "damage": "30",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Fragrant Flower Garden",
+      "effect": "Once during your turn, you may heal 10 damage from each of your Pokémon."
+    },
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "Sekio",
+    "flavor_text": "It can dissolve toxins in the air to instantly transform ruined land into a lush field of flowers."
+  },
+  "PROMO-A-117": {
+    "hp": 80,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "D"
+        ],
+        "name": "Leap Over",
+        "damage": "",
+        "effect": "This attack does 30 damage to 1 of your opponent's Benched Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "Eri Yamaki",
+    "flavor_text": "Swift as the wind, Absol races through fields and mountains. Its curved, bow-like horn is acutely sensitive to the warning signs of natural disasters."
+  },
+  "B3a-4": {
+    "hp": 120,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "G",
+          "G",
+          "C"
+        ],
+        "name": "Wildly Writhe",
+        "damage": "120",
+        "effect": "This Pokémon also does 60 damage to itself."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 2,
+    "illustrator": "Anesaki Dynamic",
+    "flavor_text": "This Pokémon somewhat resembles an ancient form of Volcarona that was introduced in a dubious magazine."
+  },
+  "B3a-5": {
+    "hp": 90,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "R",
+          "C"
+        ],
+        "name": "Thermal Gust",
+        "damage": "10+",
+        "effect": "Flip 3 coins. If 1 of them is heads, this attack does 20 more damage. If 2 of them are heads, this attack does 50 more damage. If all of them are heads, this attack does 120 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "water",
+    "retreat": 1,
+    "illustrator": "Kouki Saitou",
+    "flavor_text": "No records exist of this species being caught. Data is lacking, but the Pokémon’s traits match up with an object described in an old book."
+  },
+  "B3a-6": {
+    "hp": 70,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Ram",
+        "damage": "10",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Kouki Saitou",
+    "flavor_text": "If its chronic headache peaks, it may exhibit odd powers. It seems unable to recall such an episode."
+  },
+  "B3a-7": {
+    "hp": 90,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Psyduck",
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Psychic",
+        "damage": "20+",
+        "effect": "This attack does 20 more damage for each Energy attached to your opponent's Active Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Taira Akitsu",
+    "flavor_text": "It swims gracefully along on the quiet, slow- moving rivers and lakes of which it is so fond."
+  },
+  "B3a-8": {
+    "hp": 120,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Eevee",
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "W"
+        ],
+        "name": "Impound",
+        "damage": "60",
+        "effect": "During your opponent's next turn, the Defending Pokémon can't retreat."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 2,
+    "illustrator": "kirisAki",
+    "flavor_text": "Its cell composition is similar to water molecules. As a result, it can’t be seen when it melts away into water."
+  },
+  "B3a-9": {
+    "hp": 70,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "W"
+        ],
+        "name": "Surf",
+        "damage": "40",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Sekio",
+    "flavor_text": "It inflates its flotation sac, keeping its face above water in order to watch for prey movement."
+  },
+  "B3a-10": {
+    "hp": 100,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Buizel",
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "W",
+          "W"
+        ],
+        "name": "Waterfall",
+        "damage": "90",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "kodama",
+    "flavor_text": "It is a common sight around fishing ports. It is known to rescue people and help fishers carry what they caught."
+  },
+  "B3a-11": {
+    "hp": 50,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W"
+        ],
+        "name": "Gnaw",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "metal",
+    "retreat": 1,
+    "illustrator": "Mina Nakai",
+    "flavor_text": "Within its internal organs, Snom amplifies the frigid air it gets from eating snow and then uses this amplified air to create icicle-like spikes."
+  },
+  "B3a-12": {
+    "hp": 100,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Snom",
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "C"
+        ],
+        "name": "Aurora Beam",
+        "damage": "60",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "metal",
+    "retreat": 1,
+    "illustrator": "Kagemaru Himeno",
+    "flavor_text": "It causes blizzards as it flies around with its huge, chill-emanating wings. Clean meltwater is its favorite thing to drink."
+  },
+  "B3a-13": {
+    "hp": 130,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "W",
+          "C"
+        ],
+        "name": "Cold Start",
+        "damage": "60+",
+        "effect": "If this is the first time this Pokémon has used an attack after coming into play, this attack does 20 more damage, and your opponent's Active Pokémon is now Paralyzed."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Ultimateinudog",
+    "flavor_text": null
+  },
+  "B3a-14": {
+    "hp": 50,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L"
+        ],
+        "name": "Bite",
+        "damage": "30",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Tika Matsuno",
+    "flavor_text": "The pads of its paws are electricity-discharging organs. Pawmi fires electricity from its forepaws while standing unsteadily on its hind legs."
+  },
+  "B3a-15": {
+    "hp": 80,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Pawmi",
+    "attacks": [
+      {
+        "cost": [
+          "L"
+        ],
+        "name": "Spark",
+        "damage": "20",
+        "effect": "This attack also does 10 damage to 1 of your opponent's Benched Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Saya Tsuruta",
+    "flavor_text": "Pawmo uses a unique fighting technique in which it uses its forepaws to strike foes and zap them with electricity from its paw pads simultaneously."
+  },
+  "B3a-16": {
+    "hp": 130,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Pawmo",
+    "attacks": [
+      {
+        "cost": [
+          "L"
+        ],
+        "name": "Volt Wave",
+        "damage": "60",
+        "effect": "Flip a coin. If heads, your opponent's Active Pokémon is now Paralyzed."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "GIDORA",
+    "flavor_text": "Pawmot’s fluffy fur acts as a battery. It can store the same amount of electricity as an electric car."
+  },
+  "B3a-17": {
+    "hp": 120,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L",
+          "L",
+          "C"
+        ],
+        "name": "Successive Slapping",
+        "damage": "70x",
+        "effect": "Flip 2 coins. This attack does 70 damage for each heads."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 3,
+    "illustrator": "Nisota Niso",
+    "flavor_text": "This Pokémon shares many similarities with Iron Hands, an object mentioned in a certain expedition journal."
+  },
+  "B3a-18": {
+    "hp": 110,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L",
+          "L"
+        ],
+        "name": "Binary Thunder",
+        "damage": "40+",
+        "effect": "If your opponent's Active Pokémon is a Pokémon ex, this attack does 40 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 3,
+    "illustrator": "matazo",
+    "flavor_text": "Some of its notable features match those of an object named within a certain expedition journal as Iron Thorns."
+  },
+  "B3a-19": {
+    "hp": 140,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Hadron Ray",
+        "damage": "20+",
+        "effect": "This attack does 20 more damage for each [L] Energy attached to this Pokémon."
+      }
+    ],
+    "ability": {
+      "name": "Ability: Legendary Drive",
+      "effect": "Once during your turn, when you put this Pokémon from your hand onto your Bench, you may switch it with your Active Pokémon. If you do, move all of your Energy in play to this Pokémon."
+    },
+    "weakness": "fighting",
+    "retreat": 2,
+    "illustrator": "5ban Graphics",
+    "flavor_text": null
+  },
+  "B3a-20": {
+    "hp": 90,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Eevee",
+    "attacks": [
+      {
+        "cost": [
+          "P"
+        ],
+        "name": "Hypnoblast",
+        "damage": "40",
+        "effect": "Your opponent's Active Pokémon is now Asleep."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 1,
+    "illustrator": "Mizue",
+    "flavor_text": "It uses the fine hair that covers its body to sense air currents and predict its enemy’s actions."
+  },
+  "B3a-21": {
+    "hp": 40,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P"
+        ],
+        "name": "Psy Bolt",
+        "damage": "10",
+        "effect": "Flip a coin. If heads, your opponent's Active Pokémon is now Paralyzed."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 1,
+    "illustrator": "Tika Matsuno",
+    "flavor_text": "It spends its time running around wastelands. If anyone steals its beloved berries, it will chase them down and exact its revenge."
+  },
+  "B3a-22": {
+    "hp": 100,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Flittle",
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "P"
+        ],
+        "name": "Lumina Crash",
+        "damage": "50",
+        "effect": "During your next turn, the Defending Pokémon takes +50 damage from attacks."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 1,
+    "illustrator": "Hitoshi Ariga",
+    "flavor_text": "It emits psychic power from the gaps between its multicolored frills and sprints at speeds greater than 120 mph."
+  },
+  "B3a-23": {
+    "hp": 70,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P"
+        ],
+        "name": "Sharp Fang",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 2,
+    "illustrator": "Shin Nagasawa",
+    "flavor_text": "This friendly Pokémon doesn’t like being alone. Pay it even the slightest bit of attention, and it will follow you forever."
+  },
+  "B3a-24": {
+    "hp": 130,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Greavard",
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "C",
+          "C"
+        ],
+        "name": "Spooky Shot",
+        "damage": "70",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 3,
+    "illustrator": "Saya Tsuruta",
+    "flavor_text": "A lovingly mourned Pokémon was reborn as Houndstone. It doesn’t like anyone touching the protuberance atop its head."
+  },
+  "B3a-25": {
+    "hp": 70,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "P"
+        ],
+        "name": "Shooing Shout",
+        "damage": "",
+        "effect": "Flip 2 coins. If both of them are heads, discard your opponent's Active Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 1,
+    "illustrator": "Ryota Murayama",
+    "flavor_text": "It resembles a mysterious Pokémon described in a paranormal magazine as a Jigglypuff from one billion years ago."
+  },
+  "B3a-26": {
+    "hp": 130,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "P"
+        ],
+        "name": "Spellbinding Start",
+        "damage": "70",
+        "effect": "If this is the first time this Pokémon has used an attack after coming into play, during your opponent's next turn, they can't use any Trainer cards from their hand."
+      }
+    ],
+    "ability": null,
+    "weakness": "metal",
+    "retreat": 1,
+    "illustrator": "PLANETA Igarashi",
+    "flavor_text": null
+  },
+  "B3a-27": {
+    "hp": 100,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "P"
+        ],
+        "name": "Slicing Blade",
+        "damage": "50",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Future System",
+      "effect": "Attacks used by your Future Pokémon cost 1 less [C] Energy."
+    },
+    "weakness": "metal",
+    "retreat": 2,
+    "illustrator": "AKIRA EGAWA",
+    "flavor_text": "It’s possible that this is the object listed as Iron Valiant in a certain expedition journal."
+  },
+  "B3a-28": {
+    "hp": 90,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "C",
+          "C"
+        ],
+        "name": "Avenging Edge",
+        "damage": "50+",
+        "effect": "If any of your Pokémon were Knocked Out by damage from an attack during your opponent's last turn, this attack does 50 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 1,
+    "illustrator": "Kazumasa Yasukuni",
+    "flavor_text": "According to the few eyewitness accounts that exist, it used its shining blades to julienne large trees and boulders."
+  },
+  "B3a-29": {
+    "hp": 120,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "P",
+          "C",
+          "C"
+        ],
+        "name": "Modular Axe",
+        "damage": "80+",
+        "effect": "If this Pokémon has a Pokémon Tool attached, this attack does 40 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 3,
+    "illustrator": "Tonji Matsuno",
+    "flavor_text": "It was named after a mysterious object recorded in an old book. Its body seems to be metallic."
+  },
+  "B3a-30": {
+    "hp": 100,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Enumerating Blade",
+        "damage": "10+",
+        "effect": "This attack does 20 more damage for each of your opponent's Benched Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 2,
+    "illustrator": "Natsumi Miyanose",
+    "flavor_text": "There was supposedly an incident in which it launched shining blades to cut everything around it to pieces. Little else is known about it."
+  },
+  "B3a-31": {
+    "hp": 70,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F"
+        ],
+        "name": "Headbutt",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 2,
+    "illustrator": "Ounishi",
+    "flavor_text": "The ground scrapes its body as it travels, causing it to leave salt behind. Salt is constantly being created and replenished inside Nacli’s body."
+  },
+  "B3a-32": {
+    "hp": 110,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Nacli",
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F"
+        ],
+        "name": "Rock Throw",
+        "damage": "50",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 3,
+    "illustrator": "KEIICHIRO ITO",
+    "flavor_text": "It compresses rock salt inside its body and shoots out hardened salt pellets with enough force to perforate an iron sheet."
+  },
+  "B3a-33": {
+    "hp": 150,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Naclstack",
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F",
+          "F"
+        ],
+        "name": "Land Crush",
+        "damage": "90",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Blessed Salt",
+      "effect": "During Pokémon Checkup, heal 10 damage from each of your Pokémon."
+    },
+    "weakness": "grass",
+    "retreat": 3,
+    "illustrator": "Souichirou Gunjima",
+    "flavor_text": "Many Pokémon gather around Garganacl, hoping to lick at its mineral-rich salt."
+  },
+  "B3a-34": {
+    "hp": 120,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F"
+        ],
+        "name": "Shaking Stomp",
+        "damage": "80",
+        "effect": "This attack also does 20 damage to each of your Benched Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "psychic",
+    "retreat": 3,
+    "illustrator": "Tomoki Sone",
+    "flavor_text": "This creature resembles a mysterious Pokémon that, according to a paranormal magazine, has lived since ancient times."
+  },
+  "B3a-35": {
+    "hp": 100,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F",
+          "C"
+        ],
+        "name": "Pull In and Pound",
+        "damage": "",
+        "effect": "Switch in 1 of your opponent's Benched Pokémon to the Active Spot. If you do, this attack does 50 damage to the new Active Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 2,
+    "illustrator": "Shigenori Negishi",
+    "flavor_text": "It slightly resembles a Magneton that lived for 10,000 years and was featured in an article in a paranormal magazine."
+  },
+  "B3a-36": {
+    "hp": 150,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F",
+          "F"
+        ],
+        "name": "World Wrecker",
+        "damage": "110",
+        "effect": "Discard the top card of your deck."
+      }
+    ],
+    "ability": {
+      "name": "Ability: Legendary Drive",
+      "effect": "Once during your turn, when you put this Pokémon from your hand onto your Bench, you may switch it with your Active Pokémon. If you do, move all of your Energy in play to this Pokémon."
+    },
+    "weakness": "psychic",
+    "retreat": 2,
+    "illustrator": "aky CG Works",
+    "flavor_text": null
+  },
+  "B3a-37": {
+    "hp": 100,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Eevee",
+    "attacks": [
+      {
+        "cost": [
+          "D",
+          "C"
+        ],
+        "name": "Confuse Ray",
+        "damage": "50",
+        "effect": "Your opponent's Active Pokémon is now Confused."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 2,
+    "illustrator": "rika",
+    "flavor_text": "When darkness falls, the rings on the body begin to glow, striking fear in the hearts of anyone nearby."
+  },
+  "B3a-38": {
+    "hp": 60,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "D"
+        ],
+        "name": "Quick Attack",
+        "damage": "10+",
+        "effect": "Flip a coin. If heads, this attack does 20 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "Kagemaru Himeno",
+    "flavor_text": "This is a smart and sneaky Pokémon. A pair may work together to steal eggs by having one lure the parents away."
+  },
+  "B3a-39": {
+    "hp": 90,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Sneasel",
+    "attacks": [
+      {
+        "cost": [
+          "D"
+        ],
+        "name": "Raid",
+        "damage": "40+",
+        "effect": "If this Pokémon evolved from Sneasel during this turn, this attack does 20 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "Misa Tsutsui",
+    "flavor_text": "They travel in groups of four or five, leaving signs for one another on trees and rocks. They bring down their prey with coordinated attacks."
+  },
+  "B3a-40": {
+    "hp": 60,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Jeweled Gift",
+        "damage": "",
+        "effect": "Take a random Energy from among [G], [R], [W], [L], [P], [F], [D], and [M] Energy from your Energy Zone and attach it to 1 of your Benched Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "KEIICHIRO ITO",
+    "flavor_text": "Materials from gems it has eaten float to the surface of its body and can form an infinite number of patterns among individuals."
+  },
+  "B3a-41": {
+    "hp": 50,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "D"
+        ],
+        "name": "Slash",
+        "damage": "30",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "Sumiyoshi Kizuki",
+    "flavor_text": "A pack of these Pokémon forms to serve a Bisharp boss. Each Pawniard trains diligently, dreaming of one day taking the lead."
+  },
+  "B3a-42": {
+    "hp": 80,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Pawniard",
+    "attacks": [
+      {
+        "cost": [
+          "D"
+        ],
+        "name": "Dark Cutter",
+        "damage": "50",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "Kouki Saitou",
+    "flavor_text": "It’s accompanied by a large retinue of Pawniard. Bisharp keeps a keen eye on its minions, ensuring none of them even think of double-crossing it."
+  },
+  "B3a-43": {
+    "hp": 140,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Bisharp",
+    "attacks": [
+      {
+        "cost": [
+          "D",
+          "D"
+        ],
+        "name": "Overlord’s Blade",
+        "damage": "60+",
+        "effect": "This attack does 40 more damage for each time your Pokémon have been Knocked Out during this game."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 3,
+    "illustrator": "Anesaki Dynamic",
+    "flavor_text": "Only a Bisharp that stands above all others in its vast army can evolve into Kingambit."
+  },
+  "B3a-44": {
+    "hp": 60,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "D"
+        ],
+        "name": "Hang Down",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "sowsow",
+    "flavor_text": "Glimmet’s toxic mineral crystals look just like flower petals. This Pokémon scatters poisonous powder like pollen to protect itself."
+  },
+  "B3a-45": {
+    "hp": 90,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Glimmet",
+    "attacks": [
+      {
+        "cost": [
+          "D"
+        ],
+        "name": "Venomous Hit",
+        "damage": "30",
+        "effect": "Your opponent's Active Pokémon is now Poisoned."
+      }
+    ],
+    "ability": {
+      "name": "Ability: Shattering Crystal",
+      "effect": "When this Pokémon is Knocked Out, flip a coin. If heads, your opponent can't get any points for it."
+    },
+    "weakness": "fighting",
+    "retreat": 2,
+    "illustrator": "Shin Nagasawa",
+    "flavor_text": "Glimmora’s petals are made of crystallized poison energy. It has recently become evident that these petals resemble Tera Jewels."
+  },
+  "B3a-46": {
+    "hp": 100,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "D",
+          "D",
+          "C"
+        ],
+        "name": "Blasting Wind",
+        "damage": "70",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Automated Combat",
+      "effect": "If this Pokémon is in the Active Spot and is damaged by an attack from your opponent's Pokémon, do 20 damage to the Attacking Pokémon."
+    },
+    "weakness": "grass",
+    "retreat": 2,
+    "illustrator": "Souichirou Gunjima",
+    "flavor_text": "It’s possible that Iron Jugulis, an object described in an old book, may actually be this Pokémon."
+  },
+  "B3a-47": {
+    "hp": 100,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "D",
+          "D",
+          "C"
+        ],
+        "name": "Wind of Darkness",
+        "damage": "70",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Ancient Roar",
+      "effect": "Once during your turn, when you put this Pokémon from your hand onto your Bench, you may switch out your opponent's Active Pokémon to the Bench. (Your opponent chooses the new Active Pokémon.)"
+    },
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "Takeshi Nakamura",
+    "flavor_text": "According to an article in a dubious magazine, this Pokémon has some connection to a phenomenon that occurs in a certain region."
+  },
+  "B3a-48": {
+    "hp": 140,
+    "element": "metal",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Corvisquire",
+    "attacks": [
+      {
+        "cost": [
+          "M",
+          "M"
+        ],
+        "name": "Metal Claw",
+        "damage": "90",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 2,
+    "illustrator": "Scav",
+    "flavor_text": "Although its wings have partly turned to steel and become heavy as a result, this Pokémon flies through the skies with ease."
+  },
+  "B3a-49": {
+    "hp": 100,
+    "element": "metal",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "M",
+          "C",
+          "C"
+        ],
+        "name": "Strength",
+        "damage": "60",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 3,
+    "illustrator": "Akira Komayama",
+    "flavor_text": "Cufant can lift loads weighing five tons. In the mornings, it heads into caves with its herd, in search of the ore on which these Pokémon feed."
+  },
+  "B3a-50": {
+    "hp": 170,
+    "element": "metal",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Cufant",
+    "attacks": [
+      {
+        "cost": [
+          "M",
+          "M",
+          "C",
+          "C"
+        ],
+        "name": "Iron Swing",
+        "damage": "100x",
+        "effect": "Flip 2 coins. This attack does 100 damage for each heads."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 4,
+    "illustrator": "Hitoshi Ariga",
+    "flavor_text": "Copperajah are prideful, cantankerous Pokémon. Specimens with vibrant green skin command the respect of others of their kind."
+  },
+  "B3a-51": {
+    "hp": 100,
+    "element": "metal",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "M",
+          "M",
+          "C"
+        ],
+        "name": "Roll and Release",
+        "damage": "50+",
+        "effect": "Flip a coin until you get tails. This attack does 30 more damage for each heads."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 2,
+    "illustrator": "nagimiso",
+    "flavor_text": "Sightings of this Pokémon have occurred in recent years. It resembles a mysterious object described in an old expedition journal."
+  },
+  "B3a-52": {
+    "hp": 100,
+    "element": "dragon",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Swablu",
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Fly",
+        "damage": "50",
+        "effect": "Flip a coin. If tails, this attack does nothing. If heads, during your opponent's next turn, prevent all damage from—and effects of—attacks done to this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "none",
+    "retreat": 1,
+    "illustrator": "kurumitsu",
+    "flavor_text": "On sunny days, it flies freely through the sky and blends into the clouds. It sings in a beautiful soprano."
+  },
+  "B3a-53": {
+    "hp": 110,
+    "element": "dragon",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "R",
+          "W"
+        ],
+        "name": "Sweeping Billow",
+        "damage": "60",
+        "effect": "Discard an Energy from this Pokémon, and this attack also does 20 damage to each of your opponent's Benched Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "none",
+    "retreat": 2,
+    "illustrator": "kawayoo",
+    "flavor_text": "It resembles an illustration published in a paranormal magazine, said to be a depiction of a super-ancient Suicune."
+  },
+  "B3a-54": {
+    "hp": 110,
+    "element": "dragon",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "R",
+          "L",
+          "C"
+        ],
+        "name": "Scorching Interruption",
+        "damage": "100",
+        "effect": "Discard 2 Energy from this Pokémon. During your opponent's next turn, this Pokémon takes −30 damage from attacks."
+      }
+    ],
+    "ability": null,
+    "weakness": "none",
+    "retreat": 2,
+    "illustrator": "Uninori",
+    "flavor_text": "It resembles an eerie Pokémon once shown in a paranormal magazine. That Pokémon was said to be an Entei regenerated from a fossil."
+  },
+  "B3a-55": {
+    "hp": 130,
+    "element": "dragon",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "W",
+          "L",
+          "L",
+          "C"
+        ],
+        "name": "Baneful Boom",
+        "damage": "",
+        "effect": "Discard all Energy from this Pokémon. Knock Out your opponent's Active Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "none",
+    "retreat": 3,
+    "illustrator": "matazo",
+    "flavor_text": "It bears resemblance to a Pokémon that became a hot topic for a short while after a paranormal magazine touted it as Raikou’s ancestor."
+  },
+  "B3a-56": {
+    "hp": 50,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Tail Whip",
+        "damage": "",
+        "effect": "Flip a coin. If heads, the Defending Pokémon can't attack during your opponent's next turn."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "saino misaki",
+    "flavor_text": "Its genetic code is irregular. It may mutate if it is exposed to radiation from element stones."
+  },
+  "B3a-57": {
+    "hp": 70,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Headbang",
+        "damage": "30",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Mina Nakai",
+    "flavor_text": "Girafarig’s tail has a small head. It instinctively bites at any foe that approaches the Pokémon from behind."
+  },
+  "B3a-58": {
+    "hp": 120,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Girafarig",
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Double Hit",
+        "damage": "60x",
+        "effect": "Flip 2 coins. This attack does 60 damage for each heads."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Ounishi",
+    "flavor_text": "The hardened head from the tail protects the head of the main body as Farigiraf whips its long neck around to headbutt enemies."
+  },
+  "B3a-59": {
+    "hp": 60,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Rollout",
+        "damage": "30",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "ryoma uratsuka",
+    "flavor_text": "If spotted, it escapes by burrowing with its tail. It can float just slightly using its wings."
+  },
+  "B3a-60": {
+    "hp": 100,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Dunsparce",
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Sudden Drilling",
+        "damage": "60",
+        "effect": "If this Pokémon evolved from Dunsparce during this turn, discard 2 random Energy from your opponent's Active Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 3,
+    "illustrator": "Ounishi",
+    "flavor_text": "It drives enemies out of its nest by sucking in enough air to fill its long, narrow lungs, then releasing the air in an intense blast."
+  },
+  "B3a-61": {
+    "hp": 50,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Fury Attack",
+        "damage": "10x",
+        "effect": "Flip 3 coins. This attack does 10 damage for each heads."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Lee HyunJung",
+    "flavor_text": "It can’t relax if it or its surroundings are not clean. It wipes off dirt with its wings."
+  },
+  "B3a-62": {
+    "hp": 70,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Peck",
+        "damage": "30",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Tomokazu Komiya",
+    "flavor_text": "With its sharp claws, this Pokémon pierces its prey, and then it pecks at them. Although it also consumes berries, it’s a carnivore at heart."
+  },
+  "B3a-63": {
+    "hp": 120,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Rufflet",
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Brave Bird",
+        "damage": "100",
+        "effect": "This Pokémon also does 20 damage to itself."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 2,
+    "illustrator": "match",
+    "flavor_text": "For the sake of its friends, this brave warrior of the sky will not stop battling, even if injured."
+  },
+  "B3a-64": {
+    "hp": 80,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Acrobatics",
+        "damage": "10+",
+        "effect": "Flip 2 coins. This attack does 20 more damage for each heads."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Miki Tanaka",
+    "flavor_text": "Hawlucha live quietly without flocking together. They fight constantly with their natural enemies: noisy groups of Primeape."
+  },
+  "B3a-65": {
+    "hp": 60,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Claw",
+        "damage": "40",
+        "effect": "Flip a coin. If tails, this attack does nothing."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Hitoshi Ariga",
+    "flavor_text": "The females are fussier than the males. If another creature dirties a female Rookidee’s wings, it’ll peck the offender relentlessly in a burning rage."
+  },
+  "B3a-66": {
+    "hp": 70,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Rookidee",
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Flap",
+        "damage": "40",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "kirisAki",
+    "flavor_text": "This intelligent Pokémon will quickly learn how to use any tool it can hold in its beak or its talons."
+  },
+  "B3a-67": {
+    "hp": 90,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Nosedive",
+        "damage": "80",
+        "effect": "This Pokémon also does 20 damage to itself."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Ounishi",
+    "flavor_text": "Thanks to a behavior of theirs known as “synchronizing,” an entire flock of these Pokémon can attack simultaneously in perfect harmony."
+  },
+  "B3a-68": {
+    "hp": 150,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Prism Impact",
+        "damage": "80+",
+        "effect": "This attack does 20 more damage for each type of Energy attached to this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 2,
+    "illustrator": "5ban Graphics",
+    "flavor_text": null
+  },
+  "B3a-69": {
+    "hp": null,
+    "element": null,
+    "card_type": "pokemon",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "5ban Graphics",
+    "flavor_text": null
+  },
+  "B3a-70": {
+    "hp": null,
+    "element": null,
+    "card_type": "pokemon",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "5ban Graphics",
+    "flavor_text": null
+  },
+  "B3a-71": {
+    "hp": null,
+    "element": null,
+    "card_type": "supporter",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "Cona Nitanda",
+    "flavor_text": null
+  },
+  "B3a-72": {
+    "hp": null,
+    "element": null,
+    "card_type": "supporter",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "hncl",
+    "flavor_text": null
+  },
+  "B3a-73": {
+    "hp": null,
+    "element": null,
+    "card_type": "supporter",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "akagi",
+    "flavor_text": null
+  },
+  "B3a-74": {
+    "hp": null,
+    "element": null,
+    "card_type": "stadium",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "MARINA Chikazawa",
+    "flavor_text": null
+  },
+  "B3a-75": {
+    "hp": 50,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W"
+        ],
+        "name": "Gnaw",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "metal",
+    "retreat": 1,
+    "illustrator": "Shinya Komatsu",
+    "flavor_text": "Within its internal organs, Snom amplifies the frigid air it gets from eating snow and then uses this amplified air to create icicle-like spikes."
+  },
+  "B3a-76": {
+    "hp": 40,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P"
+        ],
+        "name": "Psy Bolt",
+        "damage": "10",
+        "effect": "Flip a coin. If heads, your opponent's Active Pokémon is now Paralyzed."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 1,
+    "illustrator": "Kanami Ogata",
+    "flavor_text": "It spends its time running around wastelands. If anyone steals its beloved berries, it will chase them down and exact its revenge."
+  },
+  "B3a-77": {
+    "hp": 120,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "P",
+          "C",
+          "C"
+        ],
+        "name": "Modular Axe",
+        "damage": "80+",
+        "effect": "If this Pokémon has a Pokémon Tool attached, this attack does 40 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 3,
+    "illustrator": "toriyufu",
+    "flavor_text": "It was named after a mysterious object recorded in an old book. Its body seems to be metallic."
+  },
+  "B3a-78": {
+    "hp": 90,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Glimmet",
+    "attacks": [
+      {
+        "cost": [
+          "D"
+        ],
+        "name": "Venomous Hit",
+        "damage": "30",
+        "effect": "Your opponent's Active Pokémon is now Poisoned."
+      }
+    ],
+    "ability": {
+      "name": "Ability: Shattering Crystal",
+      "effect": "When this Pokémon is Knocked Out, flip a coin. If heads, your opponent can't get any points for it."
+    },
+    "weakness": "fighting",
+    "retreat": 2,
+    "illustrator": "takashi shiraishi",
+    "flavor_text": "Glimmora’s petals are made of crystallized poison energy. It has recently become evident that these petals resemble Tera Jewels."
+  },
+  "B3a-79": {
+    "hp": 130,
+    "element": "dragon",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "W",
+          "L",
+          "L",
+          "C"
+        ],
+        "name": "Baneful Boom",
+        "damage": "",
+        "effect": "Discard all Energy from this Pokémon. Knock Out your opponent's Active Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "none",
+    "retreat": 3,
+    "illustrator": "Kazumasa Yasukuni",
+    "flavor_text": "It bears resemblance to a Pokémon that became a hot topic for a short while after a paranormal magazine touted it as Raikou’s ancestor."
+  },
+  "B3a-80": {
+    "hp": 80,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Acrobatics",
+        "damage": "10+",
+        "effect": "Flip 2 coins. This attack does 20 more damage for each heads."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Shigenori Negishi",
+    "flavor_text": "Hawlucha live quietly without flocking together. They fight constantly with their natural enemies: noisy groups of Primeape."
+  },
+  "B3a-81": {
+    "hp": 130,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "W",
+          "C"
+        ],
+        "name": "Cold Start",
+        "damage": "60+",
+        "effect": "If this is the first time this Pokémon has used an attack after coming into play, this attack does 20 more damage, and your opponent's Active Pokémon is now Paralyzed."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Ultimateinudog",
+    "flavor_text": null
+  },
+  "B3a-82": {
+    "hp": 140,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Hadron Ray",
+        "damage": "20+",
+        "effect": "This attack does 20 more damage for each [L] Energy attached to this Pokémon."
+      }
+    ],
+    "ability": {
+      "name": "Ability: Legendary Drive",
+      "effect": "Once during your turn, when you put this Pokémon from your hand onto your Bench, you may switch it with your Active Pokémon. If you do, move all of your Energy in play to this Pokémon."
+    },
+    "weakness": "fighting",
+    "retreat": 2,
+    "illustrator": "5ban Graphics",
+    "flavor_text": null
+  },
+  "B3a-83": {
+    "hp": 130,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "P"
+        ],
+        "name": "Spellbinding Start",
+        "damage": "70",
+        "effect": "If this is the first time this Pokémon has used an attack after coming into play, during your opponent's next turn, they can't use any Trainer cards from their hand."
+      }
+    ],
+    "ability": null,
+    "weakness": "metal",
+    "retreat": 1,
+    "illustrator": "PLANETA Igarashi",
+    "flavor_text": null
+  },
+  "B3a-84": {
+    "hp": 150,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F",
+          "F"
+        ],
+        "name": "World Wrecker",
+        "damage": "110",
+        "effect": "Discard the top card of your deck."
+      }
+    ],
+    "ability": {
+      "name": "Ability: Legendary Drive",
+      "effect": "Once during your turn, when you put this Pokémon from your hand onto your Bench, you may switch it with your Active Pokémon. If you do, move all of your Energy in play to this Pokémon."
+    },
+    "weakness": "psychic",
+    "retreat": 2,
+    "illustrator": "aky CG Works",
+    "flavor_text": null
+  },
+  "B3a-85": {
+    "hp": 150,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Prism Impact",
+        "damage": "80+",
+        "effect": "This attack does 20 more damage for each type of Energy attached to this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 2,
+    "illustrator": "5ban Graphics",
+    "flavor_text": null
+  },
+  "B3a-86": {
+    "hp": null,
+    "element": null,
+    "card_type": "supporter",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "Cona Nitanda",
+    "flavor_text": null
+  },
+  "B3a-87": {
+    "hp": null,
+    "element": null,
+    "card_type": "supporter",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "hncl",
+    "flavor_text": null
+  },
+  "B3a-88": {
+    "hp": null,
+    "element": null,
+    "card_type": "supporter",
+    "stage": null,
+    "evolves_from": null,
+    "attacks": [],
+    "ability": null,
+    "weakness": null,
+    "retreat": null,
+    "illustrator": "akagi",
+    "flavor_text": null
+  },
+  "B3a-89": {
+    "hp": 130,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "W",
+          "C"
+        ],
+        "name": "Cold Start",
+        "damage": "60+",
+        "effect": "If this is the first time this Pokémon has used an attack after coming into play, this attack does 20 more damage, and your opponent's Active Pokémon is now Paralyzed."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Akira Komayama",
+    "flavor_text": null
+  },
+  "B3a-90": {
+    "hp": 140,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Hadron Ray",
+        "damage": "20+",
+        "effect": "This attack does 20 more damage for each [L] Energy attached to this Pokémon."
+      }
+    ],
+    "ability": {
+      "name": "Ability: Legendary Drive",
+      "effect": "Once during your turn, when you put this Pokémon from your hand onto your Bench, you may switch it with your Active Pokémon. If you do, move all of your Energy in play to this Pokémon."
+    },
+    "weakness": "fighting",
+    "retreat": 2,
+    "illustrator": "Nurikabe",
+    "flavor_text": null
+  },
+  "B3a-91": {
+    "hp": 130,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "P"
+        ],
+        "name": "Spellbinding Start",
+        "damage": "70",
+        "effect": "If this is the first time this Pokémon has used an attack after coming into play, during your opponent's next turn, they can't use any Trainer cards from their hand."
+      }
+    ],
+    "ability": null,
+    "weakness": "metal",
+    "retreat": 1,
+    "illustrator": "matazo",
+    "flavor_text": null
+  },
+  "B3a-92": {
+    "hp": 150,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F",
+          "F"
+        ],
+        "name": "World Wrecker",
+        "damage": "110",
+        "effect": "Discard the top card of your deck."
+      }
+    ],
+    "ability": {
+      "name": "Ability: Legendary Drive",
+      "effect": "Once during your turn, when you put this Pokémon from your hand onto your Bench, you may switch it with your Active Pokémon. If you do, move all of your Energy in play to this Pokémon."
+    },
+    "weakness": "psychic",
+    "retreat": 2,
+    "illustrator": "Nurikabe",
+    "flavor_text": null
+  },
+  "B3a-93": {
+    "hp": 150,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Prism Impact",
+        "damage": "80+",
+        "effect": "This attack does 20 more damage for each type of Energy attached to this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 2,
+    "illustrator": "KASSEN",
+    "flavor_text": null
+  },
+  "B3a-94": {
+    "hp": 50,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Ball Roll",
+        "damage": "20x",
+        "effect": "Flip a coin until you get tails. This attack does 20 damage for each heads."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "Souichirou Gunjima",
+    "flavor_text": "It rolls its mud ball around while the energy it needs for evolution matures. Eventually the time comes for it to evolve."
+  },
+  "B3a-95": {
+    "hp": 60,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Punch",
+        "damage": "10",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "water",
+    "retreat": 1,
+    "illustrator": "MAHOU",
+    "flavor_text": "Its firepower increases when it fights, reaching over 1,800 degrees Fahrenheit. It likes berries that are rich in fat."
+  },
+  "B3a-96": {
+    "hp": 50,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Charge",
+        "damage": "",
+        "effect": "Take a [L] Energy from your Energy Zone and attach it to this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Taiga Kasai",
+    "flavor_text": "It floats using the electricity stored in its body. When thunderclouds are around, Tadbulb will float higher off the ground."
+  },
+  "B3a-97": {
+    "hp": 70,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Rellor",
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "P"
+        ],
+        "name": "Psybeam",
+        "damage": "80",
+        "effect": "Your opponent's Active Pokémon is now Confused."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 1,
+    "illustrator": "Souichirou Gunjima",
+    "flavor_text": "An infant sleeps inside the ball. Rabsca rolls the ball soothingly with its legs to ensure the infant sleeps comfortably."
+  },
+  "B3a-98": {
+    "hp": 60,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F"
+        ],
+        "name": "Slight Intrusion",
+        "damage": "30",
+        "effect": "This Pokémon also does 10 damage to itself."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "Taiga Kasai",
+    "flavor_text": "Its skin is very thin. If it is exposed to light, its blood heats up, causing it to grow weak."
+  },
+  "B3a-99": {
+    "hp": 80,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Diglett",
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "C"
+        ],
+        "name": "Mud Bomb",
+        "damage": "60",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 0,
+    "illustrator": "Taiga Kasai",
+    "flavor_text": "In battle, it digs through the ground and strikes the unsuspecting foe from an unexpected direction."
+  },
+  "B3a-100": {
+    "hp": 100,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F"
+        ],
+        "name": "Adrenaline Hammer",
+        "damage": "70",
+        "effect": "This Pokémon is now Confused."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 3,
+    "illustrator": "MAHOU",
+    "flavor_text": "This Pokémon lives on sheer cliffs. It sidesteps opponents’ attacks, then lunges for their weak spots with its claws."
+  },
+  "B3a-101": {
+    "hp": 100,
+    "element": "metal",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "M"
+        ],
+        "name": "Iron Supply",
+        "damage": "10",
+        "effect": "Take a [M] Energy from your Energy Zone and attach it to 1 of your Benched Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 3,
+    "illustrator": "Souichirou Gunjima",
+    "flavor_text": "This Pokémon lives in arid deserts. It maintains its metal body by consuming iron from the soil."
+  },
+  "B3a-102": {
+    "hp": 50,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Sing",
+        "damage": "",
+        "effect": "Your opponent's Active Pokémon is now Asleep."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "whomor Inc.",
+    "flavor_text": "It can’t relax if it or its surroundings are not clean. It wipes off dirt with its wings."
+  },
+  "B3a-103": {
+    "hp": 100,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Swablu",
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Do the Wave",
+        "damage": "20+",
+        "effect": "This attack does 20 more damage for each of your Benched Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "whomor Inc.",
+    "flavor_text": "On sunny days, it flies freely through the sky and blends into the clouds. It sings in a beautiful soprano."
+  },
+  "B3a-104": {
+    "hp": 160,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Floragato",
+    "attacks": [
+      {
+        "cost": [
+          "G"
+        ],
+        "name": "Flower Trick",
+        "damage": "",
+        "effect": "Choose a spot from among your opponent's Active Spot and Bench. At the end of your opponent's next turn, do 70 damage to the Pokémon in the spot you chose."
+      },
+      {
+        "cost": [
+          "G",
+          "G"
+        ],
+        "name": "Solar Beam",
+        "damage": "80",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "5ban Graphics",
+    "flavor_text": null
+  },
+  "B3a-105": {
+    "hp": 140,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Charcadet",
+    "attacks": [
+      {
+        "cost": [
+          "R",
+          "C",
+          "C"
+        ],
+        "name": "Armor Cannon",
+        "damage": "120",
+        "effect": "Discard a [R] Energy from this Pokémon."
+      }
+    ],
+    "ability": {
+      "name": "Ability: Armor",
+      "effect": "This Pokémon takes −30 damage from attacks."
+    },
+    "weakness": "water",
+    "retreat": 2,
+    "illustrator": "takuyoa",
+    "flavor_text": null
+  },
+  "B3a-106": {
+    "hp": 160,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Tadbulb",
+    "attacks": [
+      {
+        "cost": [
+          "L",
+          "L"
+        ],
+        "name": "High-Voltage Cannon",
+        "damage": "70+",
+        "effect": "If you have 4 or more [L] Energy in play, this attack does 70 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 3,
+    "illustrator": "PLANETA Yamashita",
+    "flavor_text": null
+  },
+  "B3a-107": {
+    "hp": 190,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Swablu",
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "P"
+        ],
+        "name": "Mega Harmony",
+        "damage": "40+",
+        "effect": "This attack does 30 more damage for each of your Benched Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "metal",
+    "retreat": 1,
+    "illustrator": "PLANETA Igarashi",
+    "flavor_text": null
+  },
+  "B3a-108": {
+    "hp": 100,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "P"
+        ],
+        "name": "Slicing Blade",
+        "damage": "50",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Future System",
+      "effect": "Attacks used by your Future Pokémon cost 1 less [C] Energy."
+    },
+    "weakness": "metal",
+    "retreat": 2,
+    "illustrator": "PLANETA Igarashi",
+    "flavor_text": "It’s possible that this is the object listed as Iron Valiant in a certain expedition journal."
+  },
+  "B3a-109": {
+    "hp": 100,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "D",
+          "D",
+          "C"
+        ],
+        "name": "Wind of Darkness",
+        "damage": "70",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Ancient Roar",
+      "effect": "Once during your turn, when you put this Pokémon from your hand onto your Bench, you may switch out your opponent's Active Pokémon to the Bench. (Your opponent chooses the new Active Pokémon.)"
+    },
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "PLANETA Mamiya",
+    "flavor_text": "According to an article in a dubious magazine, this Pokémon has some connection to a phenomenon that occurs in a certain region."
+  },
+  "PROMO-B-1": {
+    "hp": 60,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L"
+        ],
+        "name": "Spark",
+        "damage": "10",
+        "effect": "This attack also does 10 damage to 1 of your opponent's Benched Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "You Iribi",
+    "flavor_text": "When it is angered, it immediately discharges the energy stored in the pouches in its cheeks."
+  },
+  "PROMO-B-2": {
+    "hp": 50,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "G"
+        ],
+        "name": "Surprise Attack",
+        "damage": "30",
+        "effect": "Flip a coin. If tails, this attack does nothing."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "Yukiko Baba",
+    "flavor_text": "If the leaves on its head are pruned with regularity, this Pokémon can be grown into a fine plump shape."
+  },
+  "PROMO-B-3": {
+    "hp": 60,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "W"
+        ],
+        "name": "Bubble",
+        "damage": "20",
+        "effect": "Flip a coin. If heads, your opponent's Active Pokémon is now Paralyzed."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Kyoko Umemoto",
+    "flavor_text": "It protects its skin by covering its body in delicate bubbles. Beneath its happy-go-lucky air, it keeps a watchful eye on its surroundings."
+  },
+  "PROMO-B-4": {
+    "hp": 130,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Luxio",
+    "attacks": [
+      {
+        "cost": [
+          "L",
+          "C"
+        ],
+        "name": "Flash Impact",
+        "damage": "110",
+        "effect": "This attack also does 20 damage to 1 of your Benched Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 0,
+    "illustrator": "Hasuno",
+    "flavor_text": "Luxray’s ability to see through objects comes in handy when it’s scouting for danger."
+  },
+  "PROMO-B-5": {
+    "hp": 60,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Peck",
+        "damage": "30",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Tomokazu Komiya",
+    "flavor_text": "It is docile and prefers to avoid conflict. If disturbed, however, it can ferociously strike back."
+  },
+  "PROMO-B-6": {
+    "hp": 210,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Pidgeotto",
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Giant Twister",
+        "damage": "100",
+        "effect": "Flip 3 coins. For each heads, discard a random Energy from your opponent's Active Pokémon. If all of them are tails, this attack does nothing."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 2,
+    "illustrator": "PLANETA CG Works",
+    "flavor_text": null
+  },
+  "PROMO-B-7": {
+    "hp": 60,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "R"
+        ],
+        "name": "Peck",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "water",
+    "retreat": 1,
+    "illustrator": "MAHOU",
+    "flavor_text": "A fire burns inside, so it feels very warm to hug. It launches fireballs of 1,800 degrees Fahrenheit."
+  },
+  "PROMO-B-8": {
+    "hp": 60,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W"
+        ],
+        "name": "Rain Splash",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "OKACHEKE",
+    "flavor_text": "If its chronic headache peaks, it may exhibit odd powers. It seems unable to recall such an episode."
+  },
+  "PROMO-B-9": {
+    "hp": 170,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "D",
+          "D"
+        ],
+        "name": "Darkness Claw",
+        "damage": "80",
+        "effect": "Your opponent reveals their hand. Choose a Supporter card you find there and discard it."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "PLANETA CG Works",
+    "flavor_text": null
+  },
+  "PROMO-B-10": {
+    "hp": 100,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Drifloon",
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "C"
+        ],
+        "name": "Balloon Barrage",
+        "damage": "20+",
+        "effect": "This attack does 20 more damage for each Energy attached to this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 2,
+    "illustrator": "Kyoko Umemoto",
+    "flavor_text": "They carry people and Pokémon, but the wind can catch them, so there can’t be a fixed destination."
+  },
+  "PROMO-B-11": {
+    "hp": 50,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Stampede",
+        "damage": "10",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Boosted Evolution",
+      "effect": "As long as this Pokémon is in the Active Spot, it can evolve during your first turn or the turn you play it."
+    },
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Aya Kusube",
+    "flavor_text": "Its genetic code is irregular. It may mutate if it is exposed to radiation from element stones."
+  },
+  "PROMO-B-12": {
+    "hp": 60,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Copy a Friend",
+        "damage": "",
+        "effect": "Choose 1 of your Benched Pokémon's attacks, except any Pokémon ex, and use it as this attack. If this Pokémon doesn't have the necessary Energy to use that attack, this attack does nothing."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "buchi",
+    "flavor_text": "It can freely recombine its own cellular structure to transform into other life-forms."
+  },
+  "PROMO-B-13": {
+    "hp": 120,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Growlithe",
+    "attacks": [
+      {
+        "cost": [
+          "R",
+          "R"
+        ],
+        "name": "Fire Fang",
+        "damage": "50",
+        "effect": "Flip a coin. If heads, your opponent's Active Pokémon is now Burned."
+      }
+    ],
+    "ability": null,
+    "weakness": "water",
+    "retreat": 3,
+    "illustrator": "Atsuko Nishida",
+    "flavor_text": "Its magnificent bark conveys a sense of majesty. Anyone hearing it can’t help but grovel before it."
+  },
+  "PROMO-B-14": {
+    "hp": 30,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W"
+        ],
+        "name": "Expert Splasher",
+        "damage": "10+",
+        "effect": "Flip 2 coins. If both of them are heads, this attack does 20 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "sui",
+    "flavor_text": "In the distant past, it was somewhat stronger than the horribly weak descendants that exist today."
+  },
+  "PROMO-B-15": {
+    "hp": 70,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L"
+        ],
+        "name": "Rear Kick",
+        "damage": "10",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "okayamatakatoshi",
+    "flavor_text": "Its fleece grows continually. In the summer, the fleece is fully shed, but it grows back in a week."
+  },
+  "PROMO-B-16": {
+    "hp": 160,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Krokorok",
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F",
+          "C"
+        ],
+        "name": "Chomp Chomp Bite",
+        "damage": "90",
+        "effect": "Flip a coin until you get tails. For each heads, discard a random Energy from your opponent's Active Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 3,
+    "illustrator": "match",
+    "flavor_text": "Its unique faculty of sight can detect small prey more than 30 miles away, even in the midst of a sandstorm."
+  },
+  "PROMO-B-17": {
+    "hp": 50,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Find a Friend",
+        "damage": "",
+        "effect": "Put a random Pokémon from your deck into your hand."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Yukiko Baba",
+    "flavor_text": "It can’t relax if it or its surroundings are not clean. It wipes off dirt with its wings."
+  },
+  "PROMO-B-18": {
+    "hp": 100,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Helioptile",
+    "attacks": [
+      {
+        "cost": [
+          "L",
+          "L"
+        ],
+        "name": "Thunderbolt",
+        "damage": "120",
+        "effect": "Discard all Energy from this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Sumiyoshi Kizuki",
+    "flavor_text": "One Heliolisk basking in the sun with its frill outspread is all it would take to produce enough electricity to power a city."
+  },
+  "PROMO-B-19": {
+    "hp": 60,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Double Kick",
+        "damage": "20x",
+        "effect": "Flip 2 coins. This attack does 20 damage for each heads."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "saino misaki",
+    "flavor_text": "Buneary can attack by rolling up their ears and then striking with the force created by unrolling them. This attack becomes stronger with training."
+  },
+  "PROMO-B-20": {
+    "hp": 80,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Charmander",
+    "attacks": [
+      {
+        "cost": [
+          "R",
+          "R",
+          "C"
+        ],
+        "name": "Steady Firebreathing",
+        "damage": "50",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Ignition",
+      "effect": "Once during your turn, when you play this Pokémon from your hand to evolve 1 of your Pokémon, you may take a [R] Energy from your Energy Zone and attach it to your Active [R] Pokémon."
+    },
+    "weakness": "water",
+    "retreat": 2,
+    "illustrator": "Shiburingaru",
+    "flavor_text": "If it becomes agitated during battle, it spouts intense flames, incinerating its surroundings."
+  },
+  "PROMO-B-21": {
+    "hp": 100,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Tail Smash",
+        "damage": "90",
+        "effect": "Flip a coin. If tails, this attack does nothing."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 3,
+    "illustrator": "Hitoshi Ariga",
+    "flavor_text": "It rapidly bores through the ground at 50 mph by squirming and twisting its massive, rugged body."
+  },
+  "PROMO-B-22": {
+    "hp": 70,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Aerial Ace",
+        "damage": "40+",
+        "effect": "Flip a coin. If heads, this attack does 30 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Teeziro",
+    "flavor_text": "Hawlucha live quietly without flocking together. They fight constantly with their natural enemies: noisy groups of Primeape."
+  },
+  "PROMO-B-23": {
+    "hp": 110,
+    "element": "metal",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Metal Blast",
+        "damage": "10+",
+        "effect": "This attack does 20 more damage for each [M] Energy attached to this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 2,
+    "illustrator": "Anesaki Dynamic",
+    "flavor_text": "This ancient bug Pokémon was altered by Team Plasma. They upgraded the cannon on its back."
+  },
+  "PROMO-B-24": {
+    "hp": 180,
+    "element": "dragon",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "W",
+          "P"
+        ],
+        "name": "Sonic Impulse",
+        "damage": "160",
+        "effect": "Discard all Energy from this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "none",
+    "retreat": 2,
+    "illustrator": "PLANETA CG Works",
+    "flavor_text": null
+  },
+  "PROMO-B-25": {
+    "hp": 50,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P"
+        ],
+        "name": "Star Drop",
+        "damage": "",
+        "effect": "This attack does 30 damage to 1 of your opponent's Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 1,
+    "illustrator": "Rond",
+    "flavor_text": "It is said to have the ability to grant any wish for just one week every thousand years."
+  },
+  "PROMO-B-26": {
+    "hp": 60,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W"
+        ],
+        "name": "Surprise Attack",
+        "damage": "40",
+        "effect": "Flip a coin. If tails, this attack does nothing."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Shigenori Negishi",
+    "flavor_text": "When it uses its large tail fin, it picks up speed rapidly in the water. It is strong in spite of its small size."
+  },
+  "PROMO-B-27": {
+    "hp": 70,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L"
+        ],
+        "name": "Electric Tail",
+        "damage": "10",
+        "effect": "Flip a coin. If heads, your opponent's Active Pokémon is now Paralyzed."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Yuka Morii",
+    "flavor_text": "This Pokémon absorbs electricity from telephone poles. It shorts out the electricity stored inside its body to create noises."
+  },
+  "PROMO-B-28": {
+    "hp": 60,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P"
+        ],
+        "name": "Draining Kiss",
+        "damage": "10",
+        "effect": "Heal 10 damage from this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 1,
+    "illustrator": "Hajime Kusajima",
+    "flavor_text": "It is highly attuned to the emotions of people and Pokémon. It hides if it senses hostility."
+  },
+  "PROMO-B-29": {
+    "hp": 180,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Meditite",
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "C",
+          "C"
+        ],
+        "name": "Chakra Fist",
+        "damage": "100+",
+        "effect": "If this Pokémon has any [P] Energy attached, this attack does 40 more damage. This attack's damage isn't affected by any effects on your opponent's Active Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "psychic",
+    "retreat": 1,
+    "illustrator": "PLANETA CG Works",
+    "flavor_text": null
+  },
+  "PROMO-B-30": {
+    "hp": 90,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Blow Through",
+        "damage": "40+",
+        "effect": "If a Stadium is in play, this attack does 40 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Shigenori Negishi",
+    "flavor_text": "Tornadus expels massive energy from its tail, causing severe storms. Its power is great enough to blow houses away."
+  },
+  "PROMO-B-31": {
+    "hp": 130,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Raboot",
+    "attacks": [
+      {
+        "cost": [
+          "R",
+          "R"
+        ],
+        "name": "Fireball Shot",
+        "damage": "120",
+        "effect": "During your next turn, this Pokémon can't attack."
+      }
+    ],
+    "ability": null,
+    "weakness": "water",
+    "retreat": 0,
+    "illustrator": "Shin Nagasawa",
+    "flavor_text": "Using a ball that it made out of flames, Cinderace blinds its opponents and keeps them at bay."
+  },
+  "PROMO-B-32": {
+    "hp": 60,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W"
+        ],
+        "name": "Gnaw",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "metal",
+    "retreat": 1,
+    "illustrator": "nagimiso",
+    "flavor_text": "In hot weather, this Pokémon makes ice shards with its six tails and sprays them around to cool itself off."
+  },
+  "PROMO-B-33": {
+    "hp": 60,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W"
+        ],
+        "name": "Splashing Dodge",
+        "damage": "10",
+        "effect": "Flip a coin. If heads, during your opponent's next turn, prevent all damage from—and effects of—attacks done to this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "buchi",
+    "flavor_text": "Its strong legs let it easily swim around in even fast-flowing rivers. It likes to keep things tidy and is prone to overthinking things."
+  },
+  "PROMO-B-34": {
+    "hp": 60,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "G"
+        ],
+        "name": "Nutrients",
+        "damage": "",
+        "effect": "Heal 20 damage from 1 of your Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "Shibuzoh.",
+    "flavor_text": "This Pokémon converts nutrients into oil, which it stores in the fruit on its head. It can easily go a whole week without eating or drinking."
+  },
+  "PROMO-B-35": {
+    "hp": 60,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Punch",
+        "damage": "10",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "water",
+    "retreat": 1,
+    "illustrator": "Oswaldo KATO",
+    "flavor_text": "Its firepower increases when it fights, reaching over 1,800 degrees Fahrenheit. It likes berries that are rich in fat."
+  },
+  "PROMO-B-36": {
+    "hp": 70,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W"
+        ],
+        "name": "Rally Back",
+        "damage": "20+",
+        "effect": "If any of your Pokémon were Knocked Out by damage from an attack during your opponent's last turn, this attack does 60 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "Shibuzoh.",
+    "flavor_text": "Tatsugiri is an extremely cunning Pokémon. It feigns weakness to lure in prey, then orders its partner to attack."
+  },
+  "PROMO-B-37": {
+    "hp": 60,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W"
+        ],
+        "name": "Stiffen",
+        "damage": "",
+        "effect": "During your opponent's next turn, this Pokémon takes −20 damage from attacks."
+      }
+    ],
+    "ability": null,
+    "weakness": "metal",
+    "retreat": 1,
+    "illustrator": "Akira Komayama",
+    "flavor_text": "This Pokémon lives in forests and craggy areas. Using the power of its dorsal fin, it cools the inside of its nest like a refrigerator."
+  },
+  "PROMO-B-38": {
+    "hp": 150,
+    "element": "metal",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Tinkatuff",
+    "attacks": [
+      {
+        "cost": [
+          "M",
+          "M",
+          "C"
+        ],
+        "name": "Gigaton Hammer",
+        "damage": "140",
+        "effect": "During your next turn, this Pokémon can't use Gigaton Hammer."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 2,
+    "illustrator": "DOM",
+    "flavor_text": "The hammer tops 220 pounds, yet it gets swung around easily by Tinkaton as it steals whatever it pleases and carries its plunder back home."
+  },
+  "PROMO-B-39": {
+    "hp": 60,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L"
+        ],
+        "name": "Random Spark",
+        "damage": "",
+        "effect": "This attack does 10 damage to 1 of your opponent's Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "sowsow",
+    "flavor_text": "The pads of its paws are electricity-discharging organs. Pawmi fires electricity from its forepaws while standing unsteadily on its hind legs."
+  },
+  "PROMO-B-40": {
+    "hp": 120,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Paldean Wooper",
+    "attacks": [
+      {
+        "cost": [
+          "D",
+          "D",
+          "C"
+        ],
+        "name": "Muddy Hammer",
+        "damage": "70",
+        "effect": "Discard the top card of your opponent's deck."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 3,
+    "illustrator": "Kouki Saitou",
+    "flavor_text": "It lives at the bottom of ponds and swamps. It will carry Wooper on its back and ferry them across water from one shore to the other."
+  },
+  "PROMO-B-41": {
+    "hp": 130,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W"
+        ],
+        "name": "Icicle",
+        "damage": "20",
+        "effect": ""
+      },
+      {
+        "cost": [
+          "W",
+          "W",
+          "W"
+        ],
+        "name": "Diving Icicles",
+        "damage": "",
+        "effect": "Discard all [W] Energy from this Pokémon. This attack does 130 damage to 1 of your opponent's Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "metal",
+    "retreat": 1,
+    "illustrator": "aky CG Works",
+    "flavor_text": null
+  },
+  "PROMO-B-42": {
+    "hp": 70,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "C"
+        ],
+        "name": "Headbutt",
+        "damage": "30",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 2,
+    "illustrator": "Yoshimi Miyoshi",
+    "flavor_text": "It is always vacantly lost in thought, but no one knows what it is thinking about. It is good at fishing with its tail."
+  },
+  "PROMO-B-43": {
+    "hp": 60,
+    "element": "lightning",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "L"
+        ],
+        "name": "Reckless Charge",
+        "damage": "30",
+        "effect": "This Pokémon also does 10 damage to itself."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Miki Tanaka",
+    "flavor_text": "It stores electricity in its fur. It gives off sparks from all over its body in seasons when the air is dry."
+  },
+  "PROMO-B-44": {
+    "hp": 60,
+    "element": "metal",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "M"
+        ],
+        "name": "Poison Gas",
+        "damage": "",
+        "effect": "Your opponent's Active Pokémon is now Poisoned."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "Kouki Saitou",
+    "flavor_text": "The steel section is Varoom’s actual body. This Pokémon clings to rocks and converts the minerals within into energy to fuel its activities."
+  },
+  "PROMO-B-45": {
+    "hp": 150,
+    "element": "dragon",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Fraxure",
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "M",
+          "C"
+        ],
+        "name": "Frenzied Blade",
+        "damage": "50+",
+        "effect": "This attack does 20 more damage for each Benched Pokémon (both yours and your opponent's)."
+      }
+    ],
+    "ability": null,
+    "weakness": "none",
+    "retreat": 2,
+    "illustrator": "Uta",
+    "flavor_text": "It overwhelms enemies with its prized tusks, which are sharp enough to cut through a metal transmission tower in one strike."
+  },
+  "PROMO-B-46": {
+    "hp": 70,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Spinning Draw",
+        "damage": "10",
+        "effect": "Draw a card."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 1,
+    "illustrator": "0313",
+    "flavor_text": "It can learn and speak human words. If they gather, they all learn the same saying."
+  },
+  "PROMO-B-47": {
+    "hp": 60,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "D"
+        ],
+        "name": "Mumble",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "kodama",
+    "flavor_text": "Its body is made of gas. Despite lacking substance, it can envelop an opponent of any size and cause suffocation."
+  },
+  "PROMO-B-48": {
+    "hp": 110,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Jigglypuff",
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C",
+          "C"
+        ],
+        "name": "Hammer In",
+        "damage": "80",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 2,
+    "illustrator": "Mizue",
+    "flavor_text": "The rich, fluffy fur that covers its body feels so good that anyone who feels it can’t stop touching it."
+  },
+  "PROMO-B-49": {
+    "hp": 70,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "R",
+          "C"
+        ],
+        "name": "V-Flame",
+        "damage": "40",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Victory Star",
+      "effect": "Once during your turn, after you flip any coins for an attack of 1 of your [R] Pokémon, you may ignore all results of those coin flips and begin flipping those coins again. You can't use more than 1 Victory Star Ability each turn."
+    },
+    "weakness": "water",
+    "retreat": 1,
+    "illustrator": "Orca",
+    "flavor_text": "When it shares the infinite energy it creates, that being’s entire body will be overflowing with power."
+  },
+  "PROMO-B-50": {
+    "hp": 70,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "P"
+        ],
+        "name": "Psyshot",
+        "damage": "50",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Strange Singing",
+      "effect": "At the beginning of your turn, if this Pokémon is in the Active Spot, put a random [P] Pokémon from your deck into your hand."
+    },
+    "weakness": "darkness",
+    "retreat": 1,
+    "illustrator": "Mizue",
+    "flavor_text": "Its melodies are sung with a special vocalization method that can control the feelings of those who hear it."
+  },
+  "PROMO-B-51": {
+    "hp": 80,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F"
+        ],
+        "name": "Bite",
+        "damage": "30",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "Akira Komayama",
+    "flavor_text": "Born when around 10% of Zygarde’s cells have been gathered from all over, this form is skilled in close-range combat."
+  },
+  "PROMO-B-52": {
+    "hp": 120,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F",
+          "C"
+        ],
+        "name": "Cell Storm",
+        "damage": "60",
+        "effect": "Heal 20 damage from this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 2,
+    "illustrator": "Shin Nagasawa",
+    "flavor_text": "Some say it can change to an even more powerful form when battling those who threaten the ecosystem."
+  },
+  "PROMO-B-53": {
+    "hp": 170,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F",
+          "F"
+        ],
+        "name": "Land Laser",
+        "damage": "100x",
+        "effect": "Flip 2 coins. This attack does 100 damage for each heads."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 4,
+    "illustrator": "PLANETA CG Works",
+    "flavor_text": null
+  },
+  "PROMO-B-54": {
+    "hp": 50,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Stampede",
+        "damage": "10",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Boosted Evolution",
+      "effect": "As long as this Pokémon is in the Active Spot, it can evolve during your first turn or the turn you play it."
+    },
+    "weakness": "fighting",
+    "retreat": 1,
+    "illustrator": "Lee HyunJung",
+    "flavor_text": "Its genetic code is irregular. It may mutate if it is exposed to radiation from element stones."
+  },
+  "PROMO-B-55": {
+    "hp": 170,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "F",
+          "F"
+        ],
+        "name": "Land Laser",
+        "damage": "100x",
+        "effect": "Flip 2 coins. This attack does 100 damage for each heads."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 4,
+    "illustrator": "PLANETA CG Works",
+    "flavor_text": null
+  },
+  "PROMO-B-56": {
+    "hp": 180,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "G",
+          "G",
+          "G",
+          "C"
+        ],
+        "name": "Dynamic Horn",
+        "damage": "170",
+        "effect": "Flip a coin. If tails, this Pokémon also does 60 damage to itself."
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 3,
+    "illustrator": "PLANETA CG Works",
+    "flavor_text": null
+  },
+  "PROMO-B-57": {
+    "hp": 70,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "R"
+        ],
+        "name": "Sunny Scorching",
+        "damage": "30",
+        "effect": "If a Stadium is in play, your opponent's Active Pokémon is now Burned."
+      }
+    ],
+    "ability": null,
+    "weakness": "water",
+    "retreat": 1,
+    "illustrator": "Yuka Morii",
+    "flavor_text": "Castform changes to this form when it basks in bright sunlight. When you touch its glowing skin, it feels all dried out!"
+  },
+  "PROMO-B-58": {
+    "hp": 60,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "R"
+        ],
+        "name": "Firebreathing",
+        "damage": "10+",
+        "effect": "Flip a coin. If heads, this attack does 30 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "water",
+    "retreat": 1,
+    "illustrator": "Kouki Saitou",
+    "flavor_text": "This Pokémon is a ravenous glutton. It uses its excellent sense of smell to find food, then cooks it to a crisp before eating."
+  },
+  "PROMO-B-59": {
+    "hp": 70,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "F"
+        ],
+        "name": "Stampede",
+        "damage": "10",
+        "effect": ""
+      }
+    ],
+    "ability": {
+      "name": "Ability: Shell Armor",
+      "effect": "This Pokémon takes −10 damage from attacks."
+    },
+    "weakness": "grass",
+    "retreat": 2,
+    "illustrator": "Akira Komayama",
+    "flavor_text": "It first tries to find a rock to live in, but if there are no suitable rocks to be found, Dwebble may move in to the ports of a Hippowdon."
+  },
+  "PROMO-B-60": {
+    "hp": 90,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "D",
+          "D"
+        ],
+        "name": "Dark Vengeance",
+        "damage": "40+",
+        "effect": "If any of your [D] Pokémon were Knocked Out by damage from an attack during your opponent's last turn, this attack does 80 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "Shin Nagasawa",
+    "flavor_text": "Once the vines on Zarude’s body tear off, they become nutrients in the soil. This helps the plants of the forest grow."
+  },
+  "PROMO-B-61": {
+    "hp": 60,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "G"
+        ],
+        "name": "Pound",
+        "damage": "20",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "Sekio",
+    "flavor_text": "Treecko can quickly scale even vertical surfaces. It senses humidity with its tail to predict the next day’s weather."
+  },
+  "PROMO-B-62": {
+    "hp": 150,
+    "element": "fighting",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Kirlia",
+    "attacks": [
+      {
+        "cost": [
+          "F",
+          "C",
+          "C"
+        ],
+        "name": "Earthen Sword",
+        "damage": "70+",
+        "effect": "If a Stadium is in play, this attack does 70 more damage."
+      }
+    ],
+    "ability": null,
+    "weakness": "psychic",
+    "retreat": 2,
+    "illustrator": "kawayoo",
+    "flavor_text": "When trying to protect someone, it extends its elbows as if they were swords and fights savagely."
+  },
+  "PROMO-B-63": {
+    "hp": 160,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": 2,
+    "evolves_from": "Floragato",
+    "attacks": [
+      {
+        "cost": [
+          "G"
+        ],
+        "name": "Flower Trick",
+        "damage": "",
+        "effect": "Choose a spot from among your opponent's Active Spot and Bench. At the end of your opponent's next turn, do 70 damage to the Pokémon in the spot you chose."
+      },
+      {
+        "cost": [
+          "G",
+          "G"
+        ],
+        "name": "Solar Beam",
+        "damage": "80",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "5ban Graphics",
+    "flavor_text": null
+  },
+  "PROMO-B-64": {
+    "hp": 60,
+    "element": "fire",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Protect",
+        "damage": "",
+        "effect": "Flip a coin. If heads, during your opponent's next turn, prevent all damage from—and effects of—attacks done to this Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "water",
+    "retreat": 1,
+    "illustrator": "takuyoa",
+    "flavor_text": "Its firepower increases when it fights, reaching over 1,800 degrees Fahrenheit. It likes berries that are rich in fat."
+  },
+  "PROMO-B-65": {
+    "hp": 120,
+    "element": "water",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Eevee",
+    "attacks": [
+      {
+        "cost": [
+          "W",
+          "W"
+        ],
+        "name": "Impound",
+        "damage": "60",
+        "effect": "During your opponent's next turn, the Defending Pokémon can't retreat."
+      }
+    ],
+    "ability": null,
+    "weakness": "lightning",
+    "retreat": 2,
+    "illustrator": "kodama",
+    "flavor_text": "Its cell composition is similar to water molecules. As a result, it can’t be seen when it melts away into water."
+  },
+  "PROMO-B-66": {
+    "hp": 150,
+    "element": "psychic",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Charcadet",
+    "attacks": [
+      {
+        "cost": [
+          "P",
+          "C"
+        ],
+        "name": "Shimmering Slash",
+        "damage": "80",
+        "effect": "Discard a random Energy from among the Energy attached to all Pokémon (both yours and your opponent's)."
+      }
+    ],
+    "ability": null,
+    "weakness": "darkness",
+    "retreat": 2,
+    "illustrator": "PLANETA Yamashita",
+    "flavor_text": null
+  },
+  "PROMO-B-67": {
+    "hp": 60,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "D"
+        ],
+        "name": "Call for Family",
+        "damage": "",
+        "effect": "Put 1 random Basic Pokémon from your deck onto your Bench."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "Tomokazu Komiya",
+    "flavor_text": "Any chips in its blades would prove fatal for it. After each battle, it diligently maintains its blades using its favorite sharpening stone."
+  },
+  "PROMO-B-68": {
+    "hp": 100,
+    "element": "colorless",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Dunsparce",
+    "attacks": [
+      {
+        "cost": [
+          "C",
+          "C"
+        ],
+        "name": "Sudden Drilling",
+        "damage": "60",
+        "effect": "If this Pokémon evolved from Dunsparce during this turn, discard 2 random Energy from your opponent's Active Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "fighting",
+    "retreat": 3,
+    "illustrator": "Mina Nakai",
+    "flavor_text": "It drives enemies out of its nest by sucking in enough air to fill its long, narrow lungs, then releasing the air in an intense blast."
+  },
+  "PROMO-B-69": {
+    "hp": 90,
+    "element": "grass",
+    "card_type": "pokemon",
+    "stage": 1,
+    "evolves_from": "Sprigatito",
+    "attacks": [
+      {
+        "cost": [
+          "G"
+        ],
+        "name": "Leaf Step",
+        "damage": "30",
+        "effect": ""
+      }
+    ],
+    "ability": null,
+    "weakness": "fire",
+    "retreat": 1,
+    "illustrator": "nagimiso",
+    "flavor_text": "The hardness of Floragato’s fur depends on the Pokémon’s mood. When Floragato is prepared to battle, its fur becomes pointed and needle sharp."
+  },
+  "PROMO-B-70": {
+    "hp": 60,
+    "element": "darkness",
+    "card_type": "pokemon",
+    "stage": "basic",
+    "evolves_from": null,
+    "attacks": [
+      {
+        "cost": [
+          "C"
+        ],
+        "name": "Jeweled Gift",
+        "damage": "",
+        "effect": "Take a random Energy from among [G], [R], [W], [L], [P], [F], [D], and [M] Energy from your Energy Zone and attach it to 1 of your Benched Pokémon."
+      }
+    ],
+    "ability": null,
+    "weakness": "grass",
+    "retreat": 1,
+    "illustrator": "Nagomi Nijo",
+    "flavor_text": "Materials from gems it has eaten float to the surface of its body and can form an infinite number of patterns among individuals."
   }
 }

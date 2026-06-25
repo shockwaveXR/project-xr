@@ -19,6 +19,7 @@ import BadgesPage from './pages/badges-page';
 import GymLeadersPage from './pages/gym-leaders-page';
 import TCGPocketPage from './pages/tcgp-page';
 import TCGPocketAccessoriesPage from './pages/tcgp-accessories-page';
+import ChangelogPage from './pages/changelog-page';
 import AboutPage from './pages/about-page';
 import SearchPage from './pages/search-page';
 import TransitionVeil from './components/transition-veil';
@@ -89,7 +90,8 @@ const NAV_SECTIONS = [
   {
     divider: true,
     items: [
-      { to: '/about', label: 'about' },
+      { to: '/about',     label: 'about' },
+      { to: '/changelog', label: 'changelog' },
     ],
   },
 ];
@@ -578,6 +580,7 @@ export default function App() {
           <Route path="/team"        element={<TeamPage />} />
           <Route path="/lore"        element={<LorePage />} />
           <Route path="/about"       element={<AboutPage />} />
+          <Route path="/changelog"   element={<ChangelogPage />} />
           <Route path="/search"      element={<SearchPage />} />
         </Routes>
       </main>

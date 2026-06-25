@@ -1,0 +1,351 @@
+[
+  {
+    "date": "2026-06-25",
+    "changes": [
+      "tcg pocket — imported paradox drive (b3a) + promo sets",
+      "fixed promo set-code mismatch in the scraper (limitless P-A/P-B vs flibustier PROMO-A/B) + metadata-only 404 fallback",
+      "tcg pocket — real energy symbols in attack cost, type, and weakness (no more fire = \"R\")",
+      "sourced from bulbagarden into public/assets/energy",
+      "tcg pocket — reset-filters pill, back-to-top, and jump-to-section nav on the long card grid",
+      "accessories — refreshed catalog (+25) + labeled \"how to unlock\" field in the modal",
+      "changelog — new /changelog page (date-segmented, bulleted from git history) + gen-changelog.mjs",
+      "linked from nav + about page",
+      "readme — rewrote: fixed the \"no backend\" framing (news runs on a cloudflare worker), refreshed features + scripts"
+    ],
+    "hashes": [
+      "372bd39"
+    ]
+  },
+  {
+    "date": "2026-06-23",
+    "changes": [
+      "spotlight pick fix — murmur3 avalanche on the day seed so consecutive days stop picking adjacent dex ids",
+      "news refresh morph — fetching pill morphs into the refresh button after the first pull",
+      "minimal arc spinner unified across <Img>, detail loader, news pill",
+      "tcg pocket art wrapped in <Img> so it spins instead of going blank while loading",
+      "header dropdowns anchored — flush drop, tighter radius, quiet open-state, downward shadow",
+      "mega raichu x/y abilities — electric-surge / no-guard"
+    ],
+    "hashes": [
+      "169723d"
+    ]
+  },
+  {
+    "date": "2026-06-01",
+    "changes": [
+      "spotlight cry volume enforcement + tuning",
+      "small cleanups",
+      "news refresh pill (label + spinner, dims while fetching, press feedback) + 2×2 grid header w/ aligned rows",
+      "serebii title — first-sentence hard stop w/ abbreviation lookbehind, no more mid-sentence truncation when boundary found",
+      "spotlight polish — name removed from minimized strip (teaser), date stays top-right in both states, chevrons borderless + always visible, gen+region row",
+      "smooth mobile filter expand/collapse via grid-template-rows 0fr↔1fr + opacity fade",
+      "rename pokemon-of-the-day → spotlight (jsx + scss + classes + localStorage key)"
+    ],
+    "hashes": [
+      "0169799",
+      "73f4ec7"
+    ]
+  },
+  {
+    "date": "2026-05-31",
+    "changes": [
+      "daily pokémon spotlight on news page (date-seeded pick, cry speaker, animated minimize, gen+region w/ hisui override for PLA mons)",
+      "random sort + dropdown reorder w/ separator",
+      "abilities audit — form_data abilities resolve (285 → 310)",
+      "evo-branch alt-form parens via BRANCHING_FORMS",
+      "github rename voltage770 → shockwaveXR",
+      "header buttons + search use var(--bg) for contrast"
+    ],
+    "hashes": [
+      "ebc45a1"
+    ]
+  },
+  {
+    "date": "2026-05-24",
+    "changes": [
+      "worker: cache-version suffix to force-invalidate stale edge entries",
+      "shorten browser cache-control to 2min",
+      "worker: cache key strips ?refresh=1 so a refresh actually overwrites the bare-url entry",
+      "filter serebii 'pokemon of the week' entries out of news feed"
+    ],
+    "hashes": [
+      "98dddd5",
+      "9ffec72",
+      "21bf79f"
+    ]
+  },
+  {
+    "date": "2026-05-19",
+    "changes": [
+      "filter restructure (categories/regionals/forms + starter)",
+      "mobile collapsible sticky strip",
+      "sprite tap-to-zoom modal",
+      "filter-aware prev/next",
+      "UI polish"
+    ],
+    "hashes": [
+      "e171724"
+    ]
+  },
+  {
+    "date": "2026-05-17",
+    "changes": [
+      "global search component + /search page",
+      "a11y bars restyled (taller, white-bg, color-only-on-fill)",
+      "cross-page + style polish",
+      "retro (gen-5 BW via showdown CDN) + gen2 (custom 4-color, 1290 finalized assets) sprite display modes",
+      "filter-panel display options + storage pref",
+      "HOME 3D artwork + female sprite variants across all forms",
+      "pokemon detail polish — form-variant gender suppression, sprite-ready loading gate, shiny sparkle indicator",
+      "no-referrer meta for cloudflare hotlink bypass"
+    ],
+    "hashes": [
+      "01aa0cb",
+      "af421c0",
+      "2bfd4ce"
+    ]
+  },
+  {
+    "date": "2026-05-04",
+    "changes": [
+      "tcg pocket — new /tcgp (3110 cards) + /tcgp-accessories (529 cosmetics) w/ filters + group/sort/asc-desc",
+      "modal scroll ruleon leader + tcgp modals (only title pins)",
+      "jp subtitle .85remw/ [romaji] brackets",
+      "nav reorg — pokedex top-level, world folded into gallery, tcg pocket own section"
+    ],
+    "hashes": [
+      "2d3493f"
+    ]
+  },
+  {
+    "date": "2026-04-30",
+    "changes": [
+      "gym leaders v2 — game-recency portraits, masters ex thumbs, constant-size modal w/ scrollable multi-paragraph flavor, cross-modal nav w/ auto-open",
+      "site-wide japanese translations (pokemon, abilities, items, moves, types)",
+      "ios first-tap scroll fix",
+      "live favicon BASE_URL fix",
+      "nav accordion + collapse-on-nav"
+    ],
+    "hashes": [
+      "71a31de"
+    ]
+  },
+  {
+    "date": "2026-04-28",
+    "changes": [
+      "nav, modal, footer, filter polish",
+      "- modal cycling: reverted swipe to keyboard-only on desktop, tappable",
+      "arrows in header for touch",
+      "X dropped (tap-outside / Esc dismiss)",
+      "- badge modal: bigger sprite, dropped flavor, horizontal bold info rows,",
+      "relabeled (earned by defeating / location / gym type), height 480",
+      "- berries + pokeballs: sprite in front of name with arrows on outside",
+      "- nav: collapsible categories (gallery/tools/world) with persisted",
+      "expand state + grid-row animation, chevron prefix on nested items,",
+      "dividers between every category, browse→gallery, added pokemon",
+      "label, moved type chart + moves into tools",
+      "- header: bigger mobile tap targets (44px), mobile header 52→60px,",
+      "lighter hover (no heavy darkening), :active feedback replacing iOS",
+      "tap-highlight",
+      "- footer: dropped on desktop (deferred)",
+      "standalone shows only the",
+      "env(safe-area-inset-bottom) chrome strip with border-top",
+      "- filter panel: 4 selects in 2x2 grid, merged ↑/↓ into the sort select",
+      "as a right-aligned clickable arrow",
+      "- settings dropdown: scrollable with clip-path-rounded fade scrollbar",
+      "- fixed dev/prod icon swap regex (was missing -prod-light / -prod-32)",
+      "- iOS tap-highlight killed globally",
+      "soft :active states added back"
+    ],
+    "hashes": [
+      "7e4001d"
+    ]
+  },
+  {
+    "date": "2026-04-27",
+    "changes": [
+      "custom favicon + apple-touch-icon system",
+      "real twitch live wiring (worker /live + frontend badge + about embed)",
+      "pull-to-refresh redesign with bg-header reveal",
+      "scroll-container architecture",
+      "modal swipe replaces arrows",
+      "filter panel cleanup",
+      "about page rewrite",
+      "pulse-on-form-switch",
+      "mega-evo scroll-to-top fix",
+      "hover scales bump",
+      "lore→world rename"
+    ],
+    "hashes": [
+      "d49b0db"
+    ]
+  },
+  {
+    "date": "2026-04-26",
+    "changes": [
+      "new badges page + scrape script",
+      "defensive type matchups on pokemon detail with minimal bold/regular/italic chart",
+      "baloo 2 self-hosted site-wide",
+      "font-weight tiers via css vars auto-bump +100 in a11y mode",
+      "pull-to-refresh for ios standalone + white-gap fix",
+      "shared modal-cycle-nav hook + arrows component + pulse util",
+      "about page polish",
+      "news media border"
+    ],
+    "hashes": [
+      "a91547c"
+    ]
+  },
+  {
+    "date": "2026-04-25",
+    "changes": [
+      "refactor: dedupe modal hook + slug/stat/storage helpers",
+      "split main.scss into partials",
+      "extract shared news pipeline"
+    ],
+    "hashes": [
+      "a6f5938"
+    ]
+  },
+  {
+    "date": "2026-04-22",
+    "changes": [
+      "softer radii + darker borders",
+      "accent hover ring + sprite scale on cards",
+      "mirror modal close + fixed-size item modals w/ info-grid",
+      "inline variants/forms toggles",
+      "totem removal",
+      "auto theme",
+      "/about page + news pagination"
+    ],
+    "hashes": [
+      "1fe0b11"
+    ]
+  },
+  {
+    "date": "2026-04-21",
+    "changes": [
+      "berries page: sectioned thumbs + modal like pokeballs",
+      "arrow-key cycling + esc in both modals",
+      "lowercase meta pills",
+      "new pages (types, moves, pokeballs, berries)",
+      "shiny toggle + stat badges on cards",
+      "compare form support + arrow nav",
+      "nitro theme",
+      "filter panel cleanup",
+      "news loading fix",
+      "mega ability patches from champions data"
+    ],
+    "hashes": [
+      "ccb46c9",
+      "74c2d65"
+    ]
+  },
+  {
+    "date": "2026-04-13",
+    "changes": [
+      "smooth header animation for ally toggle",
+      "news: better serebii titles",
+      "scrolling sprite strip in header",
+      "darmanitan galar fixes",
+      "point news page at deployed worker url",
+      "new /news route (default) with pokebeach + nintendo life sources, pokedex moved to /pokedex",
+      "scripts/news/fetch-news.js regenerates bundled fallback",
+      "worker/ serves live data via cloudflare edge",
+      "news-page.jsx: two-tier render (bundled → live fetch with abortcontroller + fallback pill)",
+      "full kebab-case rename across app/src, scripts/, worker refs",
+      "lowercase sweep on all source/label/date display"
+    ],
+    "hashes": [
+      "1cc6aa8",
+      "6dc8a27",
+      "d43159c",
+      "3623093"
+    ]
+  },
+  {
+    "date": "2026-04-12",
+    "changes": [
+      "untrack scripts/.DS_Store",
+      "evo chain polish, flavor text overhaul, tatsugiri/zygarde/basculin/goomy fixes, full mega stone set"
+    ],
+    "hashes": [
+      "afea98c",
+      "e5d86e7"
+    ]
+  },
+  {
+    "date": "2026-04-11",
+    "changes": [
+      "added ability to select the first pokemon sitting in the search queue via the enter button to go right to its detail page. fixed regional variant evo chain visual and added evo conditions. added support for additional forms - regional variants, megas, gmax, etc. evo chain accounts for forms when needed. added new ereader theme and ease visual setting. sorting by pokemon class shows the form and name in the returned cards, dupe entries allowed for pokemon with multiple entries (mega zard x, y, etc).various UI and name formatting fixes and improvements"
+    ],
+    "hashes": [
+      "9568600"
+    ]
+  },
+  {
+    "date": "2026-04-07",
+    "changes": [
+      "fixed options reset after viewing card, fixed card limit ghost cutting results, fixed name parsing, added class filter, filter options, altered visual styles, seeded data to support forms, regional variants, megas, etc. other small ui tweaks and style changes"
+    ],
+    "hashes": [
+      "baaa10c"
+    ]
+  },
+  {
+    "date": "2026-04-06",
+    "changes": [
+      "finish transition from mysql backend to json source, add UI and formatting changes"
+    ],
+    "hashes": [
+      "6d4a237"
+    ]
+  },
+  {
+    "date": "2026-04-05",
+    "changes": [
+      "migrate backend from mysql to json file"
+    ],
+    "hashes": [
+      "bfade76"
+    ]
+  },
+  {
+    "date": "2026-03-30",
+    "changes": [
+      "add basename to BrowserRouter for github pages",
+      "cleanup",
+      "add github pages to CORS origins",
+      "cleanup",
+      "fix API url prefix",
+      "fix reloads rerouting to default pages page",
+      "add nixpacks config to fix railway install",
+      "add missing css file",
+      "add missing index.html and main.jsx",
+      "add deployment config"
+    ],
+    "hashes": [
+      "79b02b7",
+      "9f79780",
+      "995b445",
+      "d3997ef",
+      "c217457",
+      "ac45e6f",
+      "5d552da",
+      "c17e9fc",
+      "b1dc314",
+      "4e75971"
+    ]
+  },
+  {
+    "date": "2026-03-28",
+    "changes": [
+      "Add gitignore and workflows",
+      "Initial commit"
+    ],
+    "hashes": [
+      "5fcd5ba",
+      "7c9a0f1"
+    ]
+  }
+]
