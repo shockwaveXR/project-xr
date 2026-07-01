@@ -4,13 +4,15 @@
 // changelog (/changelog) reads it. each commit's message becomes a set of
 // bullets and commits are grouped by the date they landed, newest-first.
 //
-// commit-message → bullets: two styles live in our history and both are
-// supported —
+// commit-message → bullets: three styles live in our history, all supported —
 //   1. one topic per line (recent commits)
-//   2. a single line with "; "-separated topics (older commits)
-// so we split the message on newlines first, then split each line again on
-// "; ". every resulting fragment is one bullet. this is exactly the
-// "bullet where the line spaces / separators were" behaviour we want.
+//   2. a single line with "; "-separated topics (older prose commits)
+//   3. explicit markdown "- "/"* " bullet lists (some older commits), which
+//      may hard-wrap a single bullet across git's ~72-col body wrap.
+// approach: (a) rejoin hard-wrapped continuation lines (a line beginning with
+// whitespace continues the previous one); (b) a line with an explicit bullet
+// marker is ONE bullet as-authored — "; " inside it is prose, not a boundary;
+// (c) a plain prose line splits on "; " into sub-topic bullets.
 //
 // going forward this is the source of truth: write a normal multi-line (or
 // "; "-separated) commit message and re-run this script before pushing. the
@@ -39,13 +41,32 @@ const raw = execSync(
   { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 },
 );
 
-// split one commit message into bullet fragments: lines first, then "; ".
+// split one commit message into bullet fragments (see the style note above).
 function toBullets(body) {
-  return body
+  // (a) rejoin hard-wrapped continuation lines: a newline followed by
+  //     whitespace is git's body-wrap, not a real line break.
+  const lines = body
+    .replace(/\n[ \t]+/g, ' ')
     .split('\n')
-    .flatMap(line => line.split(/;\s+/))
-    .map(s => s.trim())
+    .map(l => l.trim())
     .filter(Boolean);
+
+  const bullets = [];
+  for (const line of lines) {
+    const isMarker = /^[-*•]\s+/.test(line);
+    const text = line.replace(/^[-*•]\s+/, '').trim();
+    if (isMarker) {
+      // (b) explicit bullet — take it whole; "; " inside is prose.
+      if (text) bullets.push(text);
+    } else {
+      // (c) prose line — "; " separates sub-topics.
+      for (const frag of text.split(/;\s+/)) {
+        const t = frag.trim();
+        if (t) bullets.push(t);
+      }
+    }
+  }
+  return bullets;
 }
 
 const commits = raw

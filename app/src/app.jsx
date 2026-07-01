@@ -109,10 +109,10 @@ const NAV_LABELS = NAV_SECTIONS.reduce((m, s) => {
 function navLabelFor(pathname) {
   // root redirects to /news; label it as news for the brief pre-redirect frame.
   if (pathname === '/') return 'news';
-  // tcg pocket items keep their section as a breadcrumb prefix so "cards" /
-  // "accessories" aren't left contextless once the in-page titles are gone.
-  if (pathname === '/tcgp')             return 'tcgp · cards';
-  if (pathname === '/tcgp-accessories') return 'tcgp · accessories';
+  // tcg pocket items keep their section as a prefix so "cards" / "accessories"
+  // aren't left contextless once the in-page titles are gone.
+  if (pathname === '/tcgp')             return 'tcgp cards';
+  if (pathname === '/tcgp-accessories') return 'tcgp accessories';
   if (NAV_LABELS[pathname]) return NAV_LABELS[pathname];
   if (pathname.startsWith('/pokemon')) return 'pokedex';
   if (pathname.startsWith('/search'))  return 'search';
@@ -466,7 +466,7 @@ function AppHeader({ theme, setTheme, a11y, setA11y }) {
       {/* centered brand wordmark — intentionally not a link and pointer-events:
           none in CSS so it reads as identity, not a clickable nav item. */}
       <span className="site-wordmark" aria-label="project XR">
-        project <span className="site-wordmark__xr">XR</span>
+        <span className="site-wordmark__project">project </span><span className="site-wordmark__xr">XR</span>
       </span>
 
       <div className="header-right">

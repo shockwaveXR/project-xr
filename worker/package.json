@@ -1,5 +1,5 @@
 {
-  "name": "pokedex-news-worker",
+  "name": "project-xr-news-worker",
   "version": "1.0.0",
   "private": true,
   "description": "cloudflare worker that fetches + parses pokemon news for the pokedex site",

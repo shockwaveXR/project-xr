@@ -2,6 +2,15 @@
   {
     "date": "2026-07-01",
     "changes": [
+      "spotlight cry audio — fixed the silent cry on macOS safari: it was hitting the long-standing webkit bug where AudioContext.createMediaElementSource() outputs silence (fine on iphone/ipad, mute on mac). now branches by platform — iOS/ipados keeps ogg through a Web Audio gain node (element.volume is a no-op there, so it's the only way to attenuate), desktop plays showdown mp3 straight through a plain <audio> element (no Web Audio → no CORS, no silence bug), volume via element.volume",
+      "tcg pocket — \"other prints\" (echoes): a card modal now shows a strip of every functionally-identical print — same attacks/hp/type/ability/weakness/retreat, differing only in artwork — tap a thumb to swap the art in place. grouped by a function signature so the two distinct Charizard ex (slash/crimson-storm vs stoke/steam-artillery) stay separate",
+      "cross-set reprints included. 2234 cards across 800 print groups",
+      "each thumb shows its rarity",
+      "mobile header — the wordmark shrinks to just the accent \"XR\" on phones (full \"project\" hidden < 640px",
+      "whole mark hidden < 360px where the longest burger label would collide). tcgp burger labels drop the middot separator → \"tcgp cards\" / \"tcgp accessories\". opening the search still hides the burger label + wordmark to make room",
+      "changelog generator — fixed over-splitting: rejoin hard-wrapped continuation lines, strip markdown \"- \"/\"* \" bullet markers and keep those whole (a \";\" inside an explicit bullet is prose, not a boundary), only split plain prose lines on \";\". removes the spurious mid-sentence bullet fragments in older entries (157 → 145 bullets)",
+      "naming — internal package + lockfile names pokedex-* → project-xr-* to match the rebrand (invisible identifiers",
+      "deploy uses npm install so no lockfile-strictness break)",
       "project XR rebrand + repo→project-xr migration — site retitled to \"project XR\" across tab title, header wordmark, about page, pwa manifests, readme (github handle + shockwavexr.github.io domain left intact)",
       "vite base → /project-xr/, 404 spa fallback rewritten, and /news is now the canonical home with the bare root redirecting there",
       "header restructure — centered non-interactive \"project XR\" wordmark (soft header-bg fade over the sprite strip)",
@@ -16,7 +25,8 @@
       "spotlight — cry button shows a live playing indicator (accent fill + pulse ring + animated sound-waves) driven by the audio element's play/ended events, returning to rest when the cry finishes"
     ],
     "hashes": [
-      "17ca4c0"
+      "0698941",
+      "deaaadd"
     ]
   },
   {
@@ -154,28 +164,16 @@
     "date": "2026-04-28",
     "changes": [
       "nav, modal, footer, filter polish",
-      "- modal cycling: reverted swipe to keyboard-only on desktop, tappable",
-      "arrows in header for touch",
-      "X dropped (tap-outside / Esc dismiss)",
-      "- badge modal: bigger sprite, dropped flavor, horizontal bold info rows,",
-      "relabeled (earned by defeating / location / gym type), height 480",
-      "- berries + pokeballs: sprite in front of name with arrows on outside",
-      "- nav: collapsible categories (gallery/tools/world) with persisted",
-      "expand state + grid-row animation, chevron prefix on nested items,",
-      "dividers between every category, browse→gallery, added pokemon",
-      "label, moved type chart + moves into tools",
-      "- header: bigger mobile tap targets (44px), mobile header 52→60px,",
-      "lighter hover (no heavy darkening), :active feedback replacing iOS",
-      "tap-highlight",
-      "- footer: dropped on desktop (deferred)",
-      "standalone shows only the",
-      "env(safe-area-inset-bottom) chrome strip with border-top",
-      "- filter panel: 4 selects in 2x2 grid, merged ↑/↓ into the sort select",
-      "as a right-aligned clickable arrow",
-      "- settings dropdown: scrollable with clip-path-rounded fade scrollbar",
-      "- fixed dev/prod icon swap regex (was missing -prod-light / -prod-32)",
-      "- iOS tap-highlight killed globally",
-      "soft :active states added back"
+      "modal cycling: reverted swipe to keyboard-only on desktop, tappable arrows in header for touch; X dropped (tap-outside / Esc dismiss)",
+      "badge modal: bigger sprite, dropped flavor, horizontal bold info rows, relabeled (earned by defeating / location / gym type), height 480",
+      "berries + pokeballs: sprite in front of name with arrows on outside",
+      "nav: collapsible categories (gallery/tools/world) with persisted expand state + grid-row animation, chevron prefix on nested items, dividers between every category, browse→gallery, added pokemon label, moved type chart + moves into tools",
+      "header: bigger mobile tap targets (44px), mobile header 52→60px, lighter hover (no heavy darkening), :active feedback replacing iOS tap-highlight",
+      "footer: dropped on desktop (deferred); standalone shows only the env(safe-area-inset-bottom) chrome strip with border-top",
+      "filter panel: 4 selects in 2x2 grid, merged ↑/↓ into the sort select as a right-aligned clickable arrow",
+      "settings dropdown: scrollable with clip-path-rounded fade scrollbar",
+      "fixed dev/prod icon swap regex (was missing -prod-light / -prod-32)",
+      "iOS tap-highlight killed globally; soft :active states added back"
     ],
     "hashes": [
       "7e4001d"

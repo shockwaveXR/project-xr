@@ -12,11 +12,14 @@
 // data fetched via getPokemonById so flavor text + genus + jp/romaji are
 // all there.
 //
-// cry audio: PokeAPI cries hosted via jsdelivr (github raw doesn't set
-// CORS headers needed by Web Audio's createMediaElementSource). played
-// on click of the speaker icon, never autoplayed. routed through a
-// GainNode for true volume control on iOS where HTMLAudioElement.volume
-// is a no-op.
+// cry audio: played on click of the speaker icon, never autoplayed. two paths:
+//   • iOS/ipados safari — HTMLAudioElement.volume is a no-op there, so we route
+//     pokéapi ogg (CORS-clean via jsdelivr) through a Web Audio GainNode to
+//     tame the very-hot cries. createMediaElementSource works fine on iOS.
+//   • everywhere else, incl. macOS safari — a plain <audio> element playing
+//     showdown mp3, attenuated with element.volume. this sidesteps the macOS-
+//     safari webkit bug where createMediaElementSource() outputs silence (why
+//     the cry was mute on the mac but fine on iphone/ipad).
 //
 // minimize: card *defaults to collapsed* on first visit and whenever the
 // date rolls over (less intrusive; expansion is a deliberate engagement).
@@ -128,17 +131,30 @@ function writeMinimizeState(state) {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
 }
 
-// jsdelivr cdn mirror of PokeAPI/cries (github raw doesn't set
-// Access-Control-Allow-Origin: *, which is required when routing the
-// audio through Web Audio API's createMediaElementSource).
-const CRY_URL = (id) =>
+// two cry sources (see the platform note at the top of the file):
+//   ogg — pokéapi via jsdelivr, CORS-clean so it can feed the iOS Web Audio
+//         gain node. keyed by dex id.
+//   mp3 — pokémon showdown, for the desktop plain-element path. keyed by the
+//         species' showdown id (slug with every non-alphanumeric stripped:
+//         ho-oh → hooh, mr-mime → mrmime).
+const CRY_OGG = (id) =>
   `https://cdn.jsdelivr.net/gh/PokeAPI/cries@main/cries/pokemon/latest/${id}.ogg`;
+const CRY_ID  = (slug) => slug.toLowerCase().replace(/[^a-z0-9]/g, '');
+const CRY_MP3 = (slug) =>
+  `https://play.pokemonshowdown.com/audio/cries/${CRY_ID(slug)}.mp3`;
 
-// cries are mastered very hot — even at 0.375 (37.5% of source) they
-// still read as loud in casual contexts. current default of 0.4 × 0.25
-// = 0.1 (~10% of source) errs on the side of caution for headphone
-// listeners. adjust the modifier (or base) if you need finer tuning;
-// the gain is re-read on every play, so changes hot-reload immediately.
+// iOS/iPadOS is the only environment where element.volume is ignored (needs
+// the Web Audio path) AND where createMediaElementSource actually works.
+// iPadOS reports its UA as "Macintosh", so disambiguate real macs (no touch)
+// from ipads via maxTouchPoints.
+const IS_IOS = typeof navigator !== 'undefined' && (
+  /iPhone|iPad|iPod/.test(navigator.userAgent) ||
+  (/Macintosh/.test(navigator.userAgent) && (navigator.maxTouchPoints || 0) > 1)
+);
+
+// cries are mastered very hot, so we attenuate to CRY_VOLUME on playback — via
+// the Web Audio gain node on iOS, or element.volume on desktop (see playCry).
+// tweak the modifier/base to taste.
 const CRY_BASE_VOLUME = 0.4;
 const CRY_VOLUME_MODIFIER = 0.25;
 const CRY_VOLUME = CRY_BASE_VOLUME * CRY_VOLUME_MODIFIER;
@@ -153,8 +169,8 @@ export default function Spotlight() {
   // element's own play/ended events so it reflects real playback, not just
   // the click (which matters when device volume makes the sound inaudible).
   const [playing, setPlaying] = useState(false);
-  // audio + ctx + gain all live in refs since none of them drive renders
-  // — they exist only to be reused across cry-button clicks.
+  // reused across cry-button clicks; none drive renders, so refs. audioCtx +
+  // gain are only populated on the iOS Web Audio path.
   const audioRef    = useRef(null);
   const audioCtxRef = useRef(null);
   const gainRef     = useRef(null);
@@ -187,43 +203,38 @@ export default function Spotlight() {
     let a = audioRef.current;
     if (!a) {
       a = new Audio();
-      a.crossOrigin = 'anonymous';
-      a.src = CRY_URL(todayId);
-
       // reflect actual playback state on the button. attached once (the
-      // element is created once and reused across clicks). 'ended' returns it
-      // to rest; 'pause'/'error' cover the interrupted/failed cases.
+      // element is reused across clicks). 'ended' returns it to rest;
+      // 'pause'/'error' cover the interrupted/failed cases.
       a.addEventListener('playing', () => setPlaying(true));
       a.addEventListener('ended',   () => setPlaying(false));
       a.addEventListener('pause',   () => setPlaying(false));
       a.addEventListener('error',   () => setPlaying(false));
 
-      const Ctx = window.AudioContext || window.webkitAudioContext;
-      if (Ctx) {
-        if (!audioCtxRef.current) audioCtxRef.current = new Ctx();
-        const ctx = audioCtxRef.current;
-        const source = ctx.createMediaElementSource(a);
-        gainRef.current = ctx.createGain();
-        source.connect(gainRef.current).connect(ctx.destination);
+      if (IS_IOS) {
+        // ogg through a Web Audio gain node — the only way to attenuate on iOS,
+        // where element.volume is ignored. createMediaElementSource works here.
+        a.crossOrigin = 'anonymous';
+        a.src = CRY_OGG(todayId);
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (Ctx) {
+          audioCtxRef.current = new Ctx();
+          const source = audioCtxRef.current.createMediaElementSource(a);
+          gainRef.current = audioCtxRef.current.createGain();
+          source.connect(gainRef.current).connect(audioCtxRef.current.destination);
+        }
+      } else {
+        // desktop (incl. macOS safari): plain element mp3, volume via
+        // element.volume — no createMediaElementSource, no macOS silence bug.
+        a.src = CRY_MP3(pokemon.name);
       }
       audioRef.current = a;
     }
-    // re-apply volume on every play so constant changes (HMR or full
-    // refresh) actually take effect — without this the gain value gets
-    // baked in on first creation and stale forever after.
-    if (gainRef.current) {
-      gainRef.current.gain.value = CRY_VOLUME;
-    } else {
-      // no Web Audio support — fall back to HTMLAudio's .volume (no-op
-      // on ios but at least respected elsewhere).
-      a.volume = CRY_VOLUME;
-    }
-    // ios suspends the audio context until a user gesture explicitly
-    // resumes it. the button click IS a gesture; resume here defensively
-    // in case the context auto-suspended between plays.
-    if (audioCtxRef.current?.state === 'suspended') {
-      audioCtxRef.current.resume();
-    }
+    // re-apply volume each play so CRY_VOLUME tweaks hot-reload.
+    if (gainRef.current) gainRef.current.gain.value = CRY_VOLUME;
+    else a.volume = CRY_VOLUME;
+    // ios: the context can auto-suspend between plays; the click is a gesture.
+    if (audioCtxRef.current?.state === 'suspended') audioCtxRef.current.resume();
     a.currentTime = 0;
     a.play().catch(() => {});
   }

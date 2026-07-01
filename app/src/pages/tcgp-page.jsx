@@ -52,6 +52,45 @@ const RARITY_LABELS = {
 const RARITY_ORDER  = ['C','U','R','RR','AR','SR','SAR','IM','UR','S','SSR'];
 const ELEMENT_ORDER = ['fire','water','grass','lightning','psychic','fighting','darkness','metal','colorless','dragon','fairy'];
 
+// ── alt-print "echoes" ─────────────────────────────────────────────────────
+// two cards are echoes (alt prints of one another) when they're functionally
+// IDENTICAL — same name, type, hp, stage, evolves-from, weakness, retreat, and
+// the exact same attacks + ability — differing only in artwork / rarity / set.
+// this is why grouping by name alone is wrong: e.g. "Charizard ex" has two
+// distinct functional cards (Slash/Crimson Storm vs Stoke/Steam Artillery),
+// each with several art prints — the signature keeps them apart. cross-set
+// reprints of an identical card ARE echoes (same function, new art).
+function echoSignature(c) {
+  return JSON.stringify([
+    c.name, c.element, c.card_type, c.stage, c.evolves_from, c.hp,
+    c.weakness, c.retreat,
+    (c.attacks || []).map(a => [a.cost, a.name, a.damage, a.effect]),
+    c.ability ? [c.ability.name, c.ability.effect] : null,
+  ]);
+}
+
+// uid → the full sorted print group (including the card itself), only for cards
+// that actually have >1 print. computed once from the full dataset.
+const ECHOES = (() => {
+  const bySig = new Map();
+  for (const c of cards) {
+    const k = echoSignature(c);
+    let group = bySig.get(k);
+    if (!group) bySig.set(k, group = []);
+    group.push(c);
+  }
+  const byUid = new Map();
+  for (const group of bySig.values()) {
+    if (group.length < 2) continue;
+    const sorted = [...group].sort((a, b) =>
+      a.set_release === b.set_release
+        ? Number(a.number) - Number(b.number)
+        : (a.set_release < b.set_release ? -1 : 1));
+    for (const c of group) byUid.set(c.uid, sorted);
+  }
+  return byUid;
+})();
+
 const RARITY_OPTIONS  = RARITY_ORDER.filter(r  => cards.some(c => c.rarity === r));
 const ELEMENT_OPTIONS = ELEMENT_ORDER.filter(e => cards.some(c => c.element === e));
 
@@ -238,7 +277,7 @@ function sortItems(items, by, dir) {
   return dir === 'desc' ? arr.reverse() : arr;
 }
 
-function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump }) {
+function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump, onEchoSelect }) {
   // cycle-pulse on every prev/next via WAAPI — same pattern as the other modals.
   useEffect(() => {
     if (bump.n === 0) return;
@@ -250,6 +289,8 @@ function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump }) {
   const stageLabel = card.stage === 'basic'
     ? 'Basic'
     : (typeof card.stage === 'number' ? `Stage ${card.stage}` : null);
+  // alt prints of this exact card (same function, different art), or null
+  const prints = ECHOES.get(card.uid) || null;
 
   return (
     <div className={`ability-modal-overlay${closing ? ' closing' : ''}`} onClick={onClose}>
@@ -281,6 +322,37 @@ function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump }) {
               loading="eager"
             />
           </div>
+
+          {/* other prints: functionally-identical cards with different art.
+              tap a thumb to view that print's art in place; the active one
+              tapped again returns to the card the grid opened. */}
+          {prints && (
+            <div className="tcgp-prints">
+              <div className="tcgp-prints__label">
+                other prints · {prints.length} artworks
+              </div>
+              <div className="tcgp-prints__strip">
+                {prints.map((p) => {
+                  const active = p.uid === card.uid;
+                  const label = `${p.set_name} · #${p.number} · ${RARITY_LABELS[p.rarity] || p.rarity}`;
+                  return (
+                    <button
+                      key={p.uid}
+                      type="button"
+                      className={`tcgp-print${active ? ' tcgp-print--active' : ''}`}
+                      onClick={() => onEchoSelect(active ? null : p)}
+                      title={label}
+                      aria-label={label}
+                      aria-pressed={active}
+                    >
+                      <Img src={p.image_url} alt="" loading="lazy" />
+                      <span className="tcgp-print__rarity">{p.rarity}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           {isPokemon && (
             <div className="tcgp-stat-row">
@@ -430,6 +502,13 @@ export default function TCGPocketPage() {
   const { current: currentCard, bump, modalRef, open, close, prev, next } =
     useModalCycleNav(visibleSections, initialOpenId);
   const { displayed: shownCard, isClosing } = useModalAnimation(currentCard);
+
+  // alt-print override: when a print is picked from the modal's "other prints"
+  // strip, show it in place of the grid card. resets whenever the underlying
+  // grid card changes (open / prev / next / close) so the strip stays in sync.
+  const [echoCard, setEchoCard] = useState(null);
+  useEffect(() => { setEchoCard(null); }, [currentCard]);
+  const displayCard = echoCard || shownCard;
 
   useEffect(() => {
     if (!initialOpenId) return;
@@ -697,13 +776,14 @@ export default function TCGPocketPage() {
 
       {shownCard && (
         <CardModal
-          card={shownCard}
+          card={displayCard}
           modalRef={modalRef}
           onClose={close}
           onPrev={prev}
           onNext={next}
           closing={isClosing}
           bump={bump}
+          onEchoSelect={setEchoCard}
         />
       )}
     </div>
