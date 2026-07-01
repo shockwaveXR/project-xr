@@ -2,6 +2,12 @@
   {
     "date": "2026-07-01",
     "changes": [
+      "tcg pocket — key modal + card-cycle polish",
+      "key — moved from an inline dropdown to a modal opened by a small \"key\" button (the page already has enough dropdowns). lowercase names / uppercase codes, dropped fairy (no icon, not in pocket yet), and removed the prize-points section",
+      "card modal — the hero image now reserves its box from the standard card aspect-ratio, so the stats/attacks below no longer jump when the next card's art loads mid-cycle",
+      "the scroll region also resets to the top on every prev/next",
+      "energy icons — load eagerly instead of lazily, so the type / weakness / attack-cost symbols paint immediately (they were sometimes blank while arrow-cycling)",
+      "removed the per-card prize-points chip — the scraper mislabels \"Pokémon Tool\" cards as card_type \"pokemon\", so it wrongly surfaced on tools",
       "tcg pocket — card detail + browse polish",
       "accessory loading fixes",
       "card modal — card number now reads N/total (e.g. 36/286) instead of #36",
@@ -37,7 +43,8 @@
       "spotlight — cry button shows a live playing indicator (accent fill + pulse ring + animated sound-waves) driven by the audio element's play/ended events, returning to rest when the cry finishes"
     ],
     "hashes": [
-      "f32fdd2",
+      "65a0311",
+      "9c17653",
       "b169ad3",
       "deaaadd"
     ]

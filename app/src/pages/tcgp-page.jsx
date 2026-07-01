@@ -106,14 +106,6 @@ const cardNumber = (c) => {
   return total ? `${c.number}/${total}` : `#${c.number}`;
 };
 
-// KO prize points a card is worth in a match (first to 3 points wins): a mega
-// ex is 3, an ex is 2, any other pokémon is 1. trainers aren't knocked out.
-function prizePoints(c) {
-  if (c.card_type !== 'pokemon') return null;
-  if (/\bmega\b/i.test(c.name)) return 3;
-  if (/ ex$/i.test(c.name))     return 2;
-  return 1;
-}
 
 const RARITY_OPTIONS  = RARITY_ORDER.filter(r  => cards.some(c => c.rarity === r));
 const ELEMENT_OPTIONS = ELEMENT_ORDER.filter(e => cards.some(c => c.element === e));
@@ -203,7 +195,6 @@ function EnergyIcon({ element, className }) {
       title={element}
       width="18"
       height="18"
-      loading="lazy"
     />
   );
 }
@@ -309,13 +300,20 @@ function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump, onE
     return () => anim?.cancel();
   }, [bump.n, modalRef]);
 
+  // reset the scroll region to the top whenever the shown card changes (prev/
+  // next cycling or picking another print) — otherwise a card scrolled partway
+  // down lands the next one mid-content.
+  const scrollRef = useRef(null);
+  useEffect(() => {
+    if (scrollRef.current) scrollRef.current.scrollTop = 0;
+  }, [card.uid]);
+
   const isPokemon = card.card_type === 'pokemon';
   const stageLabel = card.stage === 'basic'
     ? 'Basic'
     : (typeof card.stage === 'number' ? `Stage ${card.stage}` : null);
   // alt prints of this exact card (same function, different art), or null
   const prints = ECHOES.get(card.uid) || null;
-  const prizePts = prizePoints(card);
 
   return (
     <div className={`ability-modal-overlay${closing ? ' closing' : ''}`} onClick={onClose}>
@@ -335,7 +333,7 @@ function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump, onE
           <button className="modal-cycle-arrow modal-cycle-arrow--next" onClick={onNext} aria-label="next">›</button>
         </div>
 
-        <div className="tcgp-modal__scroll">
+        <div className="tcgp-modal__scroll" ref={scrollRef}>
           <div className="tcgp-modal__hero">
             {/* newer sets (B3a/B3b onward) don't host the 670px png full — it
                 403s and only the 367px webp exists. fall back to that so the
@@ -345,6 +343,7 @@ function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump, onE
               fallbackSrc={card.image_full.replace(/_EN\.png$/, '_EN.webp')}
               alt={card.name}
               loading="eager"
+              wrapClassName="tcgp-modal__hero-box"
             />
           </div>
 
@@ -384,12 +383,6 @@ function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump, onE
               <span className="tcgp-stat__label">rarity</span>
               <span className="tcgp-stat__value">{card.rarity}</span>
             </span>
-            {prizePts != null && (
-              <span className="tcgp-stat">
-                <span className="tcgp-stat__label">points</span>
-                <span className="tcgp-stat__value">{prizePts}</span>
-              </span>
-            )}
             {card.hp != null && (
               <span className="tcgp-stat">
                 <span className="tcgp-stat__label">hp</span>
@@ -472,6 +465,51 @@ function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump, onE
   );
 }
 
+// reference key shown as a modal (rather than an inline dropdown — the page
+// already has enough dropdowns). decodes rarity codes, names energy types, and
+// lays out the prize-point rules.
+function KeyModal({ onClose }) {
+  useEffect(() => {
+    const h = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', h);
+    return () => window.removeEventListener('keydown', h);
+  }, [onClose]);
+  return (
+    <div className="ability-modal-overlay" onClick={onClose}>
+      <div className="ball-modal tcgp-key-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="tcgp-key-modal__header">
+          <h2>key</h2>
+          <button type="button" className="tcgp-key-modal__close" onClick={onClose} aria-label="close">×</button>
+        </div>
+        <div className="tcgp-key-modal__body">
+          <section className="tcgp-key__group">
+            <h3 className="tcgp-key__heading">rarities</h3>
+            <ul className="tcgp-key__list">
+              {RARITY_ORDER.map((r) => (
+                <li key={r} className="tcgp-key__item">
+                  <span className="tcgp-key__code">{r}</span>
+                  <span className="tcgp-key__name">{RARITY_LABELS[r]}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section className="tcgp-key__group">
+            <h3 className="tcgp-key__heading">energy types</h3>
+            <ul className="tcgp-key__list">
+              {ELEMENT_ORDER.filter((el) => ENERGY_ICONS.has(el)).map((el) => (
+                <li key={el} className="tcgp-key__item">
+                  <EnergyIcon element={el} className="tcgp-energy-icon" />
+                  <span className="tcgp-key__name">{el}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function TCGPocketPage() {
   // selectedSets empty = default progressive mode (newest set + "show previous"
   //                       button to walk older sets in one at a time)
@@ -491,6 +529,7 @@ export default function TCGPocketPage() {
   const [cardSearch, setCardSearch]       = useState('');
   // debounced copy that actually drives filtering (see the effect below).
   const [searchQuery, setSearchQuery]     = useState('');
+  const [keyOpen, setKeyOpen]             = useState(false);
   const [openDropdown, setOpenDropdown]   = useState(null);  // 'sets' | 'attrs' | null
   const setsRef  = useRef(null);
   const attrsRef = useRef(null);
@@ -801,42 +840,10 @@ export default function TCGPocketPage() {
         </label>
       </div>
 
-      <details className="tcgp-key">
-        <summary className="tcgp-key__summary">key — rarities, energy types &amp; prize points</summary>
-        <div className="tcgp-key__body">
-          <section className="tcgp-key__group">
-            <h3 className="tcgp-key__heading">rarities</h3>
-            <ul className="tcgp-key__list">
-              {RARITY_ORDER.map((r) => (
-                <li key={r} className="tcgp-key__item">
-                  <span className="tcgp-key__code">{r}</span>
-                  <span className="tcgp-key__name">{RARITY_LABELS[r]}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
-          <section className="tcgp-key__group">
-            <h3 className="tcgp-key__heading">energy types</h3>
-            <ul className="tcgp-key__list">
-              {ELEMENT_ORDER.map((el) => (
-                <li key={el} className="tcgp-key__item">
-                  <EnergyIcon element={el} className="tcgp-energy-icon" />
-                  <span className="tcgp-key__name">{el}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
-          <section className="tcgp-key__group">
-            <h3 className="tcgp-key__heading">prize points</h3>
-            <ul className="tcgp-key__list">
-              <li className="tcgp-key__item"><span className="tcgp-key__code">1</span><span className="tcgp-key__name">regular pokémon</span></li>
-              <li className="tcgp-key__item"><span className="tcgp-key__code">2</span><span className="tcgp-key__name">ex pokémon</span></li>
-              <li className="tcgp-key__item"><span className="tcgp-key__code">3</span><span className="tcgp-key__name">mega pokémon</span></li>
-            </ul>
-            <p className="tcgp-key__note">first to 3 points wins the match</p>
-          </section>
-        </div>
-      </details>
+      <button type="button" className="tcgp-key-btn" onClick={() => setKeyOpen(true)}>
+        <span className="tcgp-key-btn__glyph" aria-hidden="true">?</span>
+        key
+      </button>
 
       {visibleSections.map((section, sectionIdx) => (
         <div key={section.slug} id={`tcgp-section-${section.slug}`} className="items-section">
@@ -883,6 +890,8 @@ export default function TCGPocketPage() {
           onEchoSelect={setEchoCard}
         />
       )}
+
+      {keyOpen && <KeyModal onClose={() => setKeyOpen(false)} />}
     </div>
   );
 }
