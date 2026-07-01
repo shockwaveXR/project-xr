@@ -2,6 +2,18 @@
   {
     "date": "2026-07-01",
     "changes": [
+      "tcg pocket — card detail + browse polish",
+      "accessory loading fixes",
+      "card modal — card number now reads N/total (e.g. 36/286) instead of #36",
+      "rarity moved out of the subheading down into the attributes row as its letter code (RR/SAR/…, decoded by the new key)",
+      "added a per-card KO prize-points chip (regular = 1, ex = 2, mega = 3)",
+      "cards page key — a collapsible reference that decodes the rarity letter codes → names, names each energy type (with its icon), and lays out the prize-point rules (first to 3 wins)",
+      "card search — a per-page name search distinct from the global header search, debounced 220ms. typing used to fire an image request per intermediate match (~150 thumb requests for \"raichu\" vs 14 real matches), clogging the cdn + connection pool so the actual results loaded last",
+      "now only the settled query filters",
+      "alt-print \"other prints\" strip — tapping the print that's already showing is now a no-op (it used to toggle back to the grid card)",
+      "accessories — thumbnails + the modal hero now render through the shared <Img> so there's a spinner while they load",
+      "the modal hero reserves its box from the item's aspect-ratio so the \"how to unlock\" text no longer jumps down when the image finishes loading",
+      "about page — \"curious what's new?\" (dropped \"changed\" sitting next to \"changelog\")",
       "spotlight cry audio — fixed the silent cry on macOS safari: it was hitting the long-standing webkit bug where AudioContext.createMediaElementSource() outputs silence (fine on iphone/ipad, mute on mac). now branches by platform — iOS/ipados keeps ogg through a Web Audio gain node (element.volume is a no-op there, so it's the only way to attenuate), desktop plays showdown mp3 straight through a plain <audio> element (no Web Audio → no CORS, no silence bug), volume via element.volume",
       "tcg pocket — \"other prints\" (echoes): a card modal now shows a strip of every functionally-identical print — same attacks/hp/type/ability/weakness/retreat, differing only in artwork — tap a thumb to swap the art in place. grouped by a function signature so the two distinct Charizard ex (slash/crimson-storm vs stoke/steam-artillery) stay separate",
       "cross-set reprints included. 2234 cards across 800 print groups",
@@ -25,7 +37,8 @@
       "spotlight — cry button shows a live playing indicator (accent fill + pulse ring + animated sound-waves) driven by the audio element's play/ended events, returning to rest when the cry finishes"
     ],
     "hashes": [
-      "0698941",
+      "f32fdd2",
+      "b169ad3",
       "deaaadd"
     ]
   },

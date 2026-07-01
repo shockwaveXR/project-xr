@@ -1470,6 +1470,115 @@
 // filters land in the left column and the two controls land in the right
 // column without explicit grid-area assignments. collapses to a single
 // stacked column under 480px.
+// collapsible reference key — decodes the rarity letter codes + names the
+// energy types. more sections (e.g. prize points) can slot in as data lands.
+.tcgp-key {
+  margin: 0 0 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+
+  &__summary {
+    padding: 10px 14px;
+    font-size: .82rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: .03em;
+    color: var(--text-muted);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+
+    &::-webkit-details-marker { display: none; }
+    &::before {
+      content: '▸';
+      display: inline-block;
+      margin-right: 8px;
+      transition: transform .15s ease;
+    }
+  }
+  &[open] &__summary::before { transform: rotate(90deg); }
+
+  &__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 24px;
+    padding: 2px 16px 16px;
+
+    @media (max-width: 480px) { grid-template-columns: 1fr; }
+  }
+
+  &__heading {
+    margin: 0 0 8px;
+    font-size: .7rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: .82rem;
+    color: var(--text);
+  }
+
+  &__code {
+    flex: 0 0 auto;
+    min-width: 34px;
+    padding: 1px 5px;
+    text-align: center;
+    font-size: .7rem;
+    font-weight: var(--fw-bold);
+    color: var(--text-muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+
+  &__name { text-transform: capitalize; }
+
+  &__note {
+    margin: 8px 0 0;
+    font-size: .72rem;
+    font-style: italic;
+    color: var(--text-subtle);
+  }
+}
+
+// page-scoped card name search (distinct from the header's global search).
+.tcgp-search {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 14px;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 1rem;              // ≥16px so ios safari doesn't zoom on focus
+  color: var(--text);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color .15s ease, box-shadow .15s ease;
+
+  &::placeholder { color: var(--text-subtle); }
+
+  &:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+}
+
 .tcgp-filters {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1884,7 +1993,9 @@
     &:hover { border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
   }
   &:active { transform: scale(.94); }
-  &--active { border-color: var(--accent); }
+  // the currently-shown print is a no-op — reads as "selected", not tappable.
+  &--active { border-color: var(--accent); cursor: default; }
+  &--active:active { transform: none; }
 }
 
 .tcgp-modal__scroll {
@@ -2131,6 +2242,16 @@
   transition: transform .15s ease, filter .15s ease;
   font-family: inherit;
 
+  // g-img wrapper fills the square cell so its centered spinner sits mid-cell
+  // while the thumb loads.
+  .tcgp-accessory-thumb__img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
   img {
     display: block;
     max-width: 100%;
@@ -2195,15 +2316,23 @@
   display: flex;
   justify-content: center;
 
-  img {
+  // the g-img wrapper carries the reserved box (inline width + aspect-ratio
+  // from the item's dimensions), so the box has its final height before the
+  // image loads — the "how to unlock" text below no longer jumps down on the
+  // first render. capped so tall sleeves / large art still fit the modal.
+  .tcgp-accessory-modal__hero-box {
+    display: block;
     max-width: 100%;
     max-height: 460px;
-    width: auto;
-    height: auto;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     // drop-shadow (not box-shadow) so the shadow follows the rendered alpha
     // — circular icons get circular shadows, portrait sleeves get sleeve-
-    // shaped shadows, etc. box-shadow would paint a rectangular shadow
-    // around the alpha corners and read as "square card behind a circle".
+    // shaped shadows, etc.
     filter: drop-shadow(0 4px 14px color-mix(in srgb, #000 26%, transparent));
   }
 }

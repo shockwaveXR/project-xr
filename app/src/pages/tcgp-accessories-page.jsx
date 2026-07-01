@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useModalAnimation } from '../hooks/use-modal-animation';
 import { useModalCycleNav } from '../hooks/use-modal-cycle-nav';
 import { pulseElement } from '../utils/pulse';
+import Img from '../components/img';
 import accessories from '../data/tcgp-accessories.json';
 
 // section by category in a fixed display order. each section gets
@@ -80,12 +81,14 @@ function AccessoryModal({ item, modalRef, onClose, onPrev, onNext, closing, bump
                 on the element before src triggers the load. without this,
                 React reuses the same <img> across cycles and the initial
                 attribute-application order can race the first request. */}
-            <img
+            <Img
               key={item.uid}
-              referrerPolicy="no-referrer"
+              wrapClassName="tcgp-accessory-modal__hero-box"
               src={item.image_full}
               alt={item.name}
+              referrerPolicy="no-referrer"
               loading="eager"
+              style={item.width && item.height ? { width: `${item.width}px`, aspectRatio: `${item.width} / ${item.height}` } : undefined}
             />
           </div>
           {item.obtain_method && (
@@ -160,7 +163,13 @@ export default function TCGPocketAccessoriesPage() {
                 }}
                 title={item.name}
               >
-                <img src={item.image_url} alt={item.name} loading="lazy" referrerPolicy="no-referrer" />
+                <Img
+                  src={item.image_url}
+                  alt={item.name}
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                  wrapClassName="tcgp-accessory-thumb__img"
+                />
               </button>
             ))}
           </div>

@@ -91,6 +91,30 @@ const ECHOES = (() => {
   return byUid;
 })();
 
+// total cards per set → the "N/total" card-number format (e.g. 36/286). the
+// denominator is the highest number in the set (numbering is contiguous 1..N).
+const SET_TOTALS = (() => {
+  const m = new Map();
+  for (const c of cards) {
+    const n = Number(c.number);
+    if (Number.isFinite(n)) m.set(c.set, Math.max(m.get(c.set) || 0, n));
+  }
+  return m;
+})();
+const cardNumber = (c) => {
+  const total = SET_TOTALS.get(c.set);
+  return total ? `${c.number}/${total}` : `#${c.number}`;
+};
+
+// KO prize points a card is worth in a match (first to 3 points wins): a mega
+// ex is 3, an ex is 2, any other pokémon is 1. trainers aren't knocked out.
+function prizePoints(c) {
+  if (c.card_type !== 'pokemon') return null;
+  if (/\bmega\b/i.test(c.name)) return 3;
+  if (/ ex$/i.test(c.name))     return 2;
+  return 1;
+}
+
 const RARITY_OPTIONS  = RARITY_ORDER.filter(r  => cards.some(c => c.rarity === r));
 const ELEMENT_OPTIONS = ELEMENT_ORDER.filter(e => cards.some(c => c.element === e));
 
@@ -291,6 +315,7 @@ function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump, onE
     : (typeof card.stage === 'number' ? `Stage ${card.stage}` : null);
   // alt prints of this exact card (same function, different art), or null
   const prints = ECHOES.get(card.uid) || null;
+  const prizePts = prizePoints(card);
 
   return (
     <div className={`ability-modal-overlay${closing ? ' closing' : ''}`} onClick={onClose}>
@@ -304,7 +329,7 @@ function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump, onE
           <div className="tcgp-modal__title">
             <h2>{card.name}</h2>
             <span className="tcgp-modal__sub">
-              {card.set_name} · #{card.number} · {RARITY_LABELS[card.rarity] || card.rarity}
+              {card.set_name} · {cardNumber(card)}
             </span>
           </div>
           <button className="modal-cycle-arrow modal-cycle-arrow--next" onClick={onNext} aria-label="next">›</button>
@@ -334,13 +359,13 @@ function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump, onE
               <div className="tcgp-prints__strip">
                 {prints.map((p) => {
                   const active = p.uid === card.uid;
-                  const label = `${p.set_name} · #${p.number} · ${RARITY_LABELS[p.rarity] || p.rarity}`;
+                  const label = `${p.set_name} · ${cardNumber(p)} · ${RARITY_LABELS[p.rarity] || p.rarity}`;
                   return (
                     <button
                       key={p.uid}
                       type="button"
                       className={`tcgp-print${active ? ' tcgp-print--active' : ''}`}
-                      onClick={() => onEchoSelect(active ? null : p)}
+                      onClick={() => { if (!active) onEchoSelect(p); }}
                       title={label}
                       aria-label={label}
                       aria-pressed={active}
@@ -354,52 +379,60 @@ function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump, onE
             </div>
           )}
 
-          {isPokemon && (
-            <div className="tcgp-stat-row">
-              {card.hp != null && (
-                <span className="tcgp-stat">
-                  <span className="tcgp-stat__label">hp</span>
-                  <span className="tcgp-stat__value">{card.hp}</span>
+          <div className="tcgp-stat-row">
+            <span className="tcgp-stat">
+              <span className="tcgp-stat__label">rarity</span>
+              <span className="tcgp-stat__value">{card.rarity}</span>
+            </span>
+            {prizePts != null && (
+              <span className="tcgp-stat">
+                <span className="tcgp-stat__label">points</span>
+                <span className="tcgp-stat__value">{prizePts}</span>
+              </span>
+            )}
+            {card.hp != null && (
+              <span className="tcgp-stat">
+                <span className="tcgp-stat__label">hp</span>
+                <span className="tcgp-stat__value">{card.hp}</span>
+              </span>
+            )}
+            {card.element && (
+              <span className="tcgp-stat">
+                <span className="tcgp-stat__label">type</span>
+                <span className="tcgp-stat__value tcgp-stat__value--type">
+                  <EnergyIcon element={card.element} className="tcgp-energy-icon" />
+                  {card.element}
                 </span>
-              )}
-              {card.element && (
-                <span className="tcgp-stat">
-                  <span className="tcgp-stat__label">type</span>
-                  <span className="tcgp-stat__value tcgp-stat__value--type">
-                    <EnergyIcon element={card.element} className="tcgp-energy-icon" />
-                    {card.element}
-                  </span>
+              </span>
+            )}
+            {stageLabel && (
+              <span className="tcgp-stat">
+                <span className="tcgp-stat__label">stage</span>
+                <span className="tcgp-stat__value">{stageLabel}</span>
+              </span>
+            )}
+            {card.evolves_from && (
+              <span className="tcgp-stat">
+                <span className="tcgp-stat__label">evolves from</span>
+                <span className="tcgp-stat__value">{card.evolves_from}</span>
+              </span>
+            )}
+            {card.weakness && (
+              <span className="tcgp-stat">
+                <span className="tcgp-stat__label">weakness</span>
+                <span className="tcgp-stat__value tcgp-stat__value--type">
+                  <EnergyIcon element={card.weakness} className="tcgp-energy-icon" />
+                  {card.weakness}
                 </span>
-              )}
-              {stageLabel && (
-                <span className="tcgp-stat">
-                  <span className="tcgp-stat__label">stage</span>
-                  <span className="tcgp-stat__value">{stageLabel}</span>
-                </span>
-              )}
-              {card.evolves_from && (
-                <span className="tcgp-stat">
-                  <span className="tcgp-stat__label">evolves from</span>
-                  <span className="tcgp-stat__value">{card.evolves_from}</span>
-                </span>
-              )}
-              {card.weakness && (
-                <span className="tcgp-stat">
-                  <span className="tcgp-stat__label">weakness</span>
-                  <span className="tcgp-stat__value tcgp-stat__value--type">
-                    <EnergyIcon element={card.weakness} className="tcgp-energy-icon" />
-                    {card.weakness}
-                  </span>
-                </span>
-              )}
-              {card.retreat != null && (
-                <span className="tcgp-stat">
-                  <span className="tcgp-stat__label">retreat</span>
-                  <span className="tcgp-stat__value">{card.retreat}</span>
-                </span>
-              )}
-            </div>
-          )}
+              </span>
+            )}
+            {card.retreat != null && (
+              <span className="tcgp-stat">
+                <span className="tcgp-stat__label">retreat</span>
+                <span className="tcgp-stat__value">{card.retreat}</span>
+              </span>
+            )}
+          </div>
 
           {card.ability && (
             <div className="tcgp-ability">
@@ -453,6 +486,11 @@ export default function TCGPocketPage() {
   // (older set first / a→z / common→crown / low hp → high hp); desc reverses.
   const [sortDir, setSortDir]             = useState('desc');
   const [loadedCount, setLoadedCount]     = useState(1);
+  // card-name text search, scoped to this page (distinct from the global site
+  // search in the header). filters by name substring across all sets.
+  const [cardSearch, setCardSearch]       = useState('');
+  // debounced copy that actually drives filtering (see the effect below).
+  const [searchQuery, setSearchQuery]     = useState('');
   const [openDropdown, setOpenDropdown]   = useState(null);  // 'sets' | 'attrs' | null
   const setsRef  = useRef(null);
   const attrsRef = useRef(null);
@@ -460,9 +498,21 @@ export default function TCGPocketPage() {
   const isSetFiltered  = selectedSets.size  > 0;
   const isAttrFiltered = selectedAttrs.size > 0;
 
+  // debounce the card search: without it, each intermediate keystroke
+  // (r → ra → rai…) renders its broad match set and fires a thumbnail request
+  // per card — typing "raichu" spawned ~150 cdn requests for ~14 real matches,
+  // clogging the connection pool so the actual results loaded last. now only
+  // the settled query filters.
+  useEffect(() => {
+    const t = setTimeout(() => setSearchQuery(cardSearch), 220);
+    return () => clearTimeout(t);
+  }, [cardSearch]);
+
   const visibleSections = useMemo(() => {
     // 1. flatten through filters
     let pool = cards;
+    const q = searchQuery.trim().toLowerCase();
+    if (q)              pool = pool.filter(c => c.name.toLowerCase().includes(q));
     if (isSetFiltered)  pool = pool.filter(c => selectedSets.has(c.set));
     if (isAttrFiltered) pool = pool.filter(c => cardMatchesAttrs(c, selectedAttrs));
 
@@ -473,12 +523,12 @@ export default function TCGPocketPage() {
     // 3. progressive disclosure only kicks in for the default set-grouped
     //    view with no explicit set filter. any other group dimension —
     //    rarity, element, none — shows everything that survives the filters.
-    if (groupBy === 'set' && !isSetFiltered) {
+    if (groupBy === 'set' && !isSetFiltered && !q) {
       sections = sections.slice(0, loadedCount);
     }
 
     return sections;
-  }, [isSetFiltered, selectedSets, isAttrFiltered, selectedAttrs, groupBy, sortBy, sortDir, loadedCount]);
+  }, [isSetFiltered, selectedSets, isAttrFiltered, selectedAttrs, groupBy, sortBy, sortDir, loadedCount, searchQuery]);
 
   const visibleCardCount = useMemo(
     () => visibleSections.reduce((n, s) => n + s.items.length, 0),
@@ -571,11 +621,12 @@ export default function TCGPocketPage() {
   // true when any filter / group / sort differs from the page's initial
   // state — drives both the reset button's visibility and what it undoes.
   const isNonDefault =
-    isSetFiltered || isAttrFiltered ||
+    isSetFiltered || isAttrFiltered || cardSearch.trim() !== '' ||
     groupBy !== 'set' || sortBy !== 'number' || sortDir !== 'desc';
   const resetAll = () => {
     setSelectedSets(new Set());
     setSelectedAttrs(new Set());
+    setCardSearch('');
     setGroupBy('set');
     setSortBy('number');
     setSortDir('desc');
@@ -612,7 +663,7 @@ export default function TCGPocketPage() {
     <div className="items-page">
       <p className="items-page__sub">
         {visibleCardCount} cards
-        {groupBy === 'set' && !isSetFiltered && loadedCount < SECTIONED_CARDS.length
+        {groupBy === 'set' && !isSetFiltered && !searchQuery.trim() && loadedCount < SECTIONED_CARDS.length
           && ` (showing ${loadedCount} of ${SECTIONED_CARDS.length} sets)`}
         {isNonDefault && (
           <button type="button" className="tcgp-reset" onClick={resetAll}>
@@ -620,6 +671,15 @@ export default function TCGPocketPage() {
           </button>
         )}
       </p>
+
+      <input
+        type="text"
+        className="tcgp-search"
+        placeholder="search cards by name…"
+        value={cardSearch}
+        onChange={(e) => setCardSearch(e.target.value)}
+        aria-label="search cards by name"
+      />
 
       <div className="tcgp-filters">
         {/* layout: left column = set filter / attribute filter (stacked).
@@ -740,6 +800,43 @@ export default function TCGPocketPage() {
           </div>
         </label>
       </div>
+
+      <details className="tcgp-key">
+        <summary className="tcgp-key__summary">key — rarities, energy types &amp; prize points</summary>
+        <div className="tcgp-key__body">
+          <section className="tcgp-key__group">
+            <h3 className="tcgp-key__heading">rarities</h3>
+            <ul className="tcgp-key__list">
+              {RARITY_ORDER.map((r) => (
+                <li key={r} className="tcgp-key__item">
+                  <span className="tcgp-key__code">{r}</span>
+                  <span className="tcgp-key__name">{RARITY_LABELS[r]}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section className="tcgp-key__group">
+            <h3 className="tcgp-key__heading">energy types</h3>
+            <ul className="tcgp-key__list">
+              {ELEMENT_ORDER.map((el) => (
+                <li key={el} className="tcgp-key__item">
+                  <EnergyIcon element={el} className="tcgp-energy-icon" />
+                  <span className="tcgp-key__name">{el}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section className="tcgp-key__group">
+            <h3 className="tcgp-key__heading">prize points</h3>
+            <ul className="tcgp-key__list">
+              <li className="tcgp-key__item"><span className="tcgp-key__code">1</span><span className="tcgp-key__name">regular pokémon</span></li>
+              <li className="tcgp-key__item"><span className="tcgp-key__code">2</span><span className="tcgp-key__name">ex pokémon</span></li>
+              <li className="tcgp-key__item"><span className="tcgp-key__code">3</span><span className="tcgp-key__name">mega pokémon</span></li>
+            </ul>
+            <p className="tcgp-key__note">first to 3 points wins the match</p>
+          </section>
+        </div>
+      </details>
 
       {visibleSections.map((section, sectionIdx) => (
         <div key={section.slug} id={`tcgp-section-${section.slug}`} className="items-section">

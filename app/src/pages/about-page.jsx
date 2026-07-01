@@ -46,7 +46,7 @@ export default function AboutPage() {
         <p>please, enjoy</p>
         <p>— jackson</p>
         <p className="news-about__changelog">
-          curious what's changed? see the <Link to="/changelog">changelog</Link> →
+          curious what's new? see the <Link to="/changelog">changelog</Link> →
         </p>
         <ul className="news-about__links">
           <li>
