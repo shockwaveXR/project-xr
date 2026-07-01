@@ -11,7 +11,16 @@ export default function GlobalSearch() {
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const wrapRef = useRef(null);
+  const inputRef = useRef(null);
+
+  // collapse back to the magnifier button — closes the dropdown, hides the
+  // field, and clears the query so reopening starts fresh.
+  const collapse = () => { setOpen(false); setExpanded(false); setQuery(''); };
+
+  // focus the field the moment it expands so the user can type immediately.
+  useEffect(() => { if (expanded) inputRef.current?.focus(); }, [expanded]);
 
   // grouped results — memoized so re-renders during typing only recompute
   // when the query actually changes.
@@ -21,19 +30,18 @@ export default function GlobalSearch() {
   // the open-then-immediately-close race when a user clicks straight on a
   // dropdown result (the click would fire on a popup that's already gone).
   useEffect(() => {
-    if (!open) return;
+    if (!open && !expanded) return;
     const handler = (e) => {
       if (wrapRef.current && !wrapRef.current.contains(e.target)) {
-        setOpen(false);
+        collapse();
       }
     };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
-  }, [open]);
+  }, [open, expanded]);
 
   const handleResultClick = (entry) => {
-    setOpen(false);
-    setQuery('');
+    collapse();
     // routeState is set for entries that open a modal on arrival (leaders,
     // tcgp cards) — same state.openId convention the destination pages
     // already understand for cross-page modal nav.
@@ -42,22 +50,34 @@ export default function GlobalSearch() {
 
   const handleKeyDown = (e) => {
     if (e.key === 'Escape') {
-      setOpen(false);
+      collapse();
       e.currentTarget.blur();
     } else if (e.key === 'Enter') {
       // enter takes the user to the full search-results page; clicking an
       // individual dropdown entry still routes to that entity's destination.
       const q = query.trim();
       if (!q) return;
-      setOpen(false);
-      setQuery('');
+      collapse();
       navigate(`/search?q=${encodeURIComponent(q)}`);
     }
   };
 
   return (
-    <div className="global-search" ref={wrapRef}>
+    <div className={`global-search${expanded ? ' is-expanded' : ''}`} ref={wrapRef}>
+      <button
+        type="button"
+        className="settings-btn global-search__toggle"
+        aria-label="search"
+        aria-expanded={expanded}
+        onClick={() => setExpanded(true)}
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+          <circle cx="7" cy="7" r="4.5" />
+          <path d="m13.5 13.5-3-3" />
+        </svg>
+      </button>
       <input
+        ref={inputRef}
         type="text"
         className="global-search__input"
         placeholder="search…"
@@ -66,6 +86,8 @@ export default function GlobalSearch() {
         onFocus={() => setOpen(true)}
         onKeyDown={handleKeyDown}
         aria-label="search site"
+        tabIndex={expanded ? 0 : -1}
+        aria-hidden={!expanded}
       />
       {open && query.trim().length > 0 && (
         <div className="global-search__dropdown" role="listbox">

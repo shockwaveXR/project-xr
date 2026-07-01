@@ -92,7 +92,6 @@ export default function PokeballsPage() {
 
   return (
     <div className="items-page">
-      <h1>pokéballs</h1>
       <p className="items-page__sub">{balls.length} types</p>
 
       {SECTIONED_BALLS.map((section, sectionIdx) => (

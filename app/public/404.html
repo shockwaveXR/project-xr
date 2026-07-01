@@ -2,12 +2,15 @@
 <html>
   <head>
     <script>
-      const path = window.location.pathname;
-      const repo = '/pokedex';
-      if (path.startsWith(repo)) {
-        sessionStorage.setItem('redirect', path);
+      // GitHub Pages project-page SPA fallback: served for any unknown path
+      // (deep links / hard refreshes on client-side routes). save the full
+      // target so index.html can replay it once the SPA boots, then bounce to
+      // the app root at /project-xr/.
+      var loc = window.location;
+      if (loc.pathname !== '/project-xr/') {
+        sessionStorage.setItem('redirect', loc.pathname + loc.search + loc.hash);
       }
-      window.location.replace('https://shockwavexr.github.io/pokedex/');
+      loc.replace('/project-xr/');
     </script>
   </head>
   <body></body>

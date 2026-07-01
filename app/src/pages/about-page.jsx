@@ -26,8 +26,11 @@ export default function AboutPage() {
 
   return (
     <div className="about-page">
-      <h1>about</h1>
       <aside className="news-about">
+        <p className="news-about__brand">
+          <span className="news-about__wordmark">project <span className="news-about__xr">XR</span></span>
+          <span className="news-about__tagline">expand your reality</span>
+        </p>
         <p>
           this is a personal passion project aimed at creating a useful and aesthetically pleasing
           pokemon database — effortlessly traversable across multiple types of devices and input

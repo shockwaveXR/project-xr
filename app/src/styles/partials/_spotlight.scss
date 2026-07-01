@@ -199,6 +199,34 @@ $spotlight-transition: .35s cubic-bezier(.4, 0, .2, 1);
     }
   }
   &:active { transform: scale(.92); }
+
+  // "now playing" — driven by the audio element's play/ended events. the
+  // accent color + fill are the static tell (still visible with animations
+  // off in a11y / reduced-motion); the expanding ring + pulsing sound-waves
+  // add motion on top where allowed.
+  &--playing {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    animation: spotlight-cry-ring 1.1s ease-out infinite;
+  }
+}
+
+// sound-wave arcs of the speaker glyph pulse while the cry plays, staggered so
+// they read as sound radiating outward. at rest they sit at full opacity as a
+// normal icon (no animation applied).
+.spotlight__cry--playing .spotlight__cry-wave {
+  animation: spotlight-cry-wave .7s ease-in-out infinite;
+}
+.spotlight__cry--playing .spotlight__cry-wave--2 { animation-delay: .16s; }
+
+@keyframes spotlight-cry-ring {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); }
+  100% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 0%, transparent); }
+}
+@keyframes spotlight-cry-wave {
+  0%, 100% { opacity: .3; }
+  50%      { opacity: 1; }
 }
 
 // name + type chips share a row so the type info reads as part of the

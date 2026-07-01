@@ -101,7 +101,7 @@
     "height": 256,
     "thumb_w": 250,
     "thumb_h": 250,
-    "obtain_method": "Obtain from a mission Mission: Collect 5 Charizard cards"
+    "obtain_method": "Complete the mission: Collect 5 Charizard cards"
   },
   {
     "uid": "icons-chimchar",
@@ -244,7 +244,20 @@
     "height": 256,
     "thumb_w": 250,
     "thumb_h": 250,
-    "obtain_method": "Obtain from a mission Mission: Collect 3 Electrode Cards"
+    "obtain_method": "Complete the mission: Collect 3 Electrode Cards"
+  },
+  {
+    "uid": "icons-elesa",
+    "category": "icons",
+    "category_label": "profile icons",
+    "name": "Elesa",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/5/54/TCGP_Profile_Icon_Elesa.png/250px-TCGP_Profile_Icon_Elesa.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/5/54/TCGP_Profile_Icon_Elesa.png",
+    "width": 256,
+    "height": 256,
+    "thumb_w": 250,
+    "thumb_h": 250,
+    "obtain_method": null
   },
   {
     "uid": "icons-erika",
@@ -258,6 +271,19 @@
     "thumb_w": 250,
     "thumb_h": 250,
     "obtain_method": "Unlocked from the start"
+  },
+  {
+    "uid": "icons-everyday-wonders-sylveon",
+    "category": "icons",
+    "category_label": "profile icons",
+    "name": "Everyday Wonders Sylveon",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/3/3f/TCGP_Profile_Icon_Everyday_Wonders_Sylveon.png/250px-TCGP_Profile_Icon_Everyday_Wonders_Sylveon.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/3/3f/TCGP_Profile_Icon_Everyday_Wonders_Sylveon.png",
+    "width": 256,
+    "height": 256,
+    "thumb_w": 250,
+    "thumb_h": 250,
+    "obtain_method": null
   },
   {
     "uid": "icons-extradimensional-crisis-buzzwole",
@@ -361,7 +387,7 @@
     "height": 256,
     "thumb_w": 250,
     "thumb_h": 250,
-    "obtain_method": "Obtain from a mission Mission: Collect 5 Gardevoir cards"
+    "obtain_method": "Complete the mission: Collect 5 Gardevoir cards"
   },
   {
     "uid": "icons-gastly",
@@ -453,6 +479,19 @@
     "thumb_w": 250,
     "thumb_h": 250,
     "obtain_method": "Purchase from the Event Shop (Currently Unavailable)"
+  },
+  {
+    "uid": "icons-hisuian-zorua",
+    "category": "icons",
+    "category_label": "profile icons",
+    "name": "Hisuian Zorua",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/d/da/TCGP_Profile_Icon_Hisuian_Zorua.png/250px-TCGP_Profile_Icon_Hisuian_Zorua.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/d/da/TCGP_Profile_Icon_Hisuian_Zorua.png",
+    "width": 256,
+    "height": 256,
+    "thumb_w": 250,
+    "thumb_h": 250,
+    "obtain_method": "Complete Everyday Wonders Themed Collection"
   },
   {
     "uid": "icons-igglybuff",
@@ -634,7 +673,7 @@
     "height": 256,
     "thumb_w": 250,
     "thumb_h": 250,
-    "obtain_method": "Obtain from a mission Mission: Collect 5 Mewtwo cards"
+    "obtain_method": "Complete the mission: Collect 5 Mewtwo cards"
   },
   {
     "uid": "icons-morpeko",
@@ -881,7 +920,7 @@
     "height": 256,
     "thumb_w": 250,
     "thumb_h": 250,
-    "obtain_method": "Complete the Collect 3 Scream Tail cards themed collection mission Mission: To be determined"
+    "obtain_method": "Complete the Collect 3 Scream Tail cards themed collection"
   },
   {
     "uid": "icons-secluded-springs-suicune",
@@ -1233,6 +1272,19 @@
     "thumb_w": 250,
     "thumb_h": 349,
     "obtain_method": "Purchase from the Limited Time Premium Shop (Currently Unavailable)"
+  },
+  {
+    "uid": "sleeves-elesa",
+    "category": "sleeves",
+    "category_label": "card sleeves",
+    "name": "Elesa",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/a/ad/TCGP_Sleeve_Elesa.png/250px-TCGP_Sleeve_Elesa.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/a/ad/TCGP_Sleeve_Elesa.png",
+    "width": 734,
+    "height": 1024,
+    "thumb_w": 250,
+    "thumb_h": 349,
+    "obtain_method": "Special Bundle"
   },
   {
     "uid": "sleeves-erika",
@@ -1664,6 +1716,19 @@
     "obtain_method": "Purchase from the Limited Time Premium Shop (Currently Unavailable)"
   },
   {
+    "uid": "sleeves-piplup",
+    "category": "sleeves",
+    "category_label": "card sleeves",
+    "name": "Piplup",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/9/9d/TCGP_Sleeve_Piplup.png/250px-TCGP_Sleeve_Piplup.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/9/9d/TCGP_Sleeve_Piplup.png",
+    "width": 734,
+    "height": 1024,
+    "thumb_w": 250,
+    "thumb_h": 349,
+    "obtain_method": "6 Premium Tickets"
+  },
+  {
     "uid": "sleeves-pok-mon-30th-celebration-design",
     "category": "sleeves",
     "category_label": "card sleeves",
@@ -1687,7 +1752,7 @@
     "height": 1024,
     "thumb_w": 250,
     "thumb_h": 349,
-    "obtain_method": "Complete 12 missions in the Special Missions 2026 Drop Event Mission: To be determined"
+    "obtain_method": "Complete 12 missions in the Special Missions 2026 Drop Event"
   },
   {
     "uid": "sleeves-professor-oak",
@@ -1963,6 +2028,19 @@
     "obtain_method": "Purchase from the Event Shop (Currently Unavailable)"
   },
   {
+    "uid": "sleeves-yamper-growlithe-lillipup-rockruff-fidough",
+    "category": "sleeves",
+    "category_label": "card sleeves",
+    "name": "Yamper Growlithe Lillipup Rockruff Fidough",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/6/66/TCGP_Sleeve_Yamper_Growlithe_Lillipup_Rockruff_Fidough.png/250px-TCGP_Sleeve_Yamper_Growlithe_Lillipup_Rockruff_Fidough.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/6/66/TCGP_Sleeve_Yamper_Growlithe_Lillipup_Rockruff_Fidough.png",
+    "width": 734,
+    "height": 1024,
+    "thumb_w": 250,
+    "thumb_h": 349,
+    "obtain_method": null
+  },
+  {
     "uid": "sleeves-zoroark",
     "category": "sleeves",
     "category_label": "card sleeves",
@@ -2117,6 +2195,19 @@
     "thumb_w": 250,
     "thumb_h": 250,
     "obtain_method": "Purchase from the Limited Time Premium Shop (Currently Unavailable)"
+  },
+  {
+    "uid": "coins-elesa",
+    "category": "coins",
+    "category_label": "coins",
+    "name": "Elesa",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/c/cf/TCGP_Coin_Elesa.png/250px-TCGP_Coin_Elesa.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/c/cf/TCGP_Coin_Elesa.png",
+    "width": 256,
+    "height": 256,
+    "thumb_w": 250,
+    "thumb_h": 250,
+    "obtain_method": "Special Bundle"
   },
   {
     "uid": "coins-erika-alt",
@@ -2561,6 +2652,19 @@
     "obtain_method": "Purchase Holiday Sale: Poke Gold (paid) x50 + Accessories (The New Year with Pikachu) bundle (Currently Unavailable)"
   },
   {
+    "uid": "coins-piplup",
+    "category": "coins",
+    "category_label": "coins",
+    "name": "Piplup",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/3/32/TCGP_Coin_Piplup.png/250px-TCGP_Coin_Piplup.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/3/32/TCGP_Coin_Piplup.png",
+    "width": 256,
+    "height": 256,
+    "thumb_w": 250,
+    "thumb_h": 250,
+    "obtain_method": "3 Premium Tickets"
+  },
+  {
     "uid": "coins-pok-ball",
     "category": "coins",
     "category_label": "coins",
@@ -2766,7 +2870,7 @@
     "height": 256,
     "thumb_w": 250,
     "thumb_h": 250,
-    "obtain_method": "Complete 9 missions in the Special Missions 2026 Drop Event Mission: To be determined"
+    "obtain_method": "Complete 9 missions in the Special Missions 2026 Drop Event"
   },
   {
     "uid": "coins-solgaleo",
@@ -2897,6 +3001,19 @@
     "thumb_w": 250,
     "thumb_h": 250,
     "obtain_method": "Purchase from the Event Shop (Currently Unavailable)"
+  },
+  {
+    "uid": "coins-yamper",
+    "category": "coins",
+    "category_label": "coins",
+    "name": "Yamper",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/1/15/TCGP_Coin_Yamper.png/250px-TCGP_Coin_Yamper.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/1/15/TCGP_Coin_Yamper.png",
+    "width": 256,
+    "height": 256,
+    "thumb_w": 250,
+    "thumb_h": 250,
+    "obtain_method": null
   },
   {
     "uid": "coins-zoroark",
@@ -3066,6 +3183,19 @@
     "thumb_w": 250,
     "thumb_h": 250,
     "obtain_method": "Purchase from the Limited Time Premium Shop (Currently Unavailable)"
+  },
+  {
+    "uid": "playmats-elesa-emolga",
+    "category": "playmats",
+    "category_label": "playmats",
+    "name": "Elesa Emolga",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/e/e6/TCGP_Playmat_Elesa_Emolga.png/250px-TCGP_Playmat_Elesa_Emolga.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/e/e6/TCGP_Playmat_Elesa_Emolga.png",
+    "width": 1024,
+    "height": 1024,
+    "thumb_w": 250,
+    "thumb_h": 250,
+    "obtain_method": "Special Bundle"
   },
   {
     "uid": "playmats-erika",
@@ -3484,6 +3614,19 @@
     "obtain_method": "Purchase from the Limited Time Premium Shop (Currently Unavailable)"
   },
   {
+    "uid": "playmats-pikachu-piplup-sylveon-greedent-snorlax",
+    "category": "playmats",
+    "category_label": "playmats",
+    "name": "Pikachu Piplup Sylveon Greedent Snorlax",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/1/1a/TCGP_Playmat_Pikachu_Piplup_Sylveon_Greedent_Snorlax.png/250px-TCGP_Playmat_Pikachu_Piplup_Sylveon_Greedent_Snorlax.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/1/1a/TCGP_Playmat_Pikachu_Piplup_Sylveon_Greedent_Snorlax.png",
+    "width": 1024,
+    "height": 1024,
+    "thumb_w": 250,
+    "thumb_h": 250,
+    "obtain_method": "12 Premium Tickets"
+  },
+  {
     "uid": "playmats-pok-mon-30th-celebration-design",
     "category": "playmats",
     "category_label": "playmats",
@@ -3507,7 +3650,7 @@
     "height": 1024,
     "thumb_w": 250,
     "thumb_h": 250,
-    "obtain_method": "Complete 15 missions in the Special Missions 2026 Drop Event Mission: To be determined"
+    "obtain_method": "Complete 15 missions in the Special Missions 2026 Drop Event"
   },
   {
     "uid": "playmats-professor-oak",
@@ -3783,6 +3926,19 @@
     "obtain_method": "Purchase from the Event Shop (Currently Unavailable)"
   },
   {
+    "uid": "playmats-yamper-growlithe-lillipup-rockruff-fidough",
+    "category": "playmats",
+    "category_label": "playmats",
+    "name": "Yamper Growlithe Lillipup Rockruff Fidough",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/b/bd/TCGP_Playmat_Yamper_Growlithe_Lillipup_Rockruff_Fidough.png/250px-TCGP_Playmat_Yamper_Growlithe_Lillipup_Rockruff_Fidough.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/b/bd/TCGP_Playmat_Yamper_Growlithe_Lillipup_Rockruff_Fidough.png",
+    "width": 1024,
+    "height": 1024,
+    "thumb_w": 250,
+    "thumb_h": 250,
+    "obtain_method": null
+  },
+  {
     "uid": "playmats-zoroark-zorua",
     "category": "playmats",
     "category_label": "playmats",
@@ -3926,6 +4082,19 @@
     "obtain_method": "Complete 3 Special Missions during the event (Currently Unavailable)"
   },
   {
+    "uid": "backdrops-calendar",
+    "category": "backdrops",
+    "category_label": "backdrops",
+    "name": "Calendar",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/e/e0/TCGP_Backdrop_Calendar.png/250px-TCGP_Backdrop_Calendar.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/e/e0/TCGP_Backdrop_Calendar.png",
+    "width": 1000,
+    "height": 1750,
+    "thumb_w": 250,
+    "thumb_h": 438,
+    "obtain_method": null
+  },
+  {
     "uid": "backdrops-cave-of-crystals",
     "category": "backdrops",
     "category_label": "backdrops",
@@ -4041,6 +4210,19 @@
     "thumb_w": 250,
     "thumb_h": 438,
     "obtain_method": "Purchase from the Limited Time Premium Shop (Currently Unavailable)"
+  },
+  {
+    "uid": "backdrops-elesa",
+    "category": "backdrops",
+    "category_label": "backdrops",
+    "name": "Elesa",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/5/5c/TCGP_Backdrop_Elesa.png/250px-TCGP_Backdrop_Elesa.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/5/5c/TCGP_Backdrop_Elesa.png",
+    "width": 1000,
+    "height": 1750,
+    "thumb_w": 250,
+    "thumb_h": 438,
+    "obtain_method": null
   },
   {
     "uid": "backdrops-erika",
@@ -4667,6 +4849,19 @@
     "obtain_method": "Purchase from the Limited Time Premium Shop (Currently Unavailable)"
   },
   {
+    "uid": "backdrops-pikachu-piplup-sylveon-greedent-snorlax",
+    "category": "backdrops",
+    "category_label": "backdrops",
+    "name": "Pikachu Piplup Sylveon Greedent Snorlax",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/c/c2/TCGP_Backdrop_Pikachu_Piplup_Sylveon_Greedent_Snorlax.png/250px-TCGP_Backdrop_Pikachu_Piplup_Sylveon_Greedent_Snorlax.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/c/c2/TCGP_Backdrop_Pikachu_Piplup_Sylveon_Greedent_Snorlax.png",
+    "width": 1000,
+    "height": 1750,
+    "thumb_w": 250,
+    "thumb_h": 438,
+    "obtain_method": null
+  },
+  {
     "uid": "backdrops-pink-desk-frame",
     "category": "backdrops",
     "category_label": "backdrops",
@@ -4782,6 +4977,19 @@
     "thumb_w": 250,
     "thumb_h": 438,
     "obtain_method": "Purchase Pokemon coin (Red) + Bonuses B from the Poke Gold Shop (Currently Unavailable)"
+  },
+  {
+    "uid": "backdrops-retro-summer",
+    "category": "backdrops",
+    "category_label": "backdrops",
+    "name": "Retro Summer",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/8/89/TCGP_Backdrop_Retro_Summer.png/250px-TCGP_Backdrop_Retro_Summer.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/8/89/TCGP_Backdrop_Retro_Summer.png",
+    "width": 1000,
+    "height": 1750,
+    "thumb_w": 250,
+    "thumb_h": 438,
+    "obtain_method": null
   },
   {
     "uid": "backdrops-rival",
@@ -5200,6 +5408,19 @@
     "obtain_method": "Participate in the 2024 Holiday Event (Currently Unavailable)"
   },
   {
+    "uid": "backdrops-yamper-growlithe-lillipup-rockruff-fidough",
+    "category": "backdrops",
+    "category_label": "backdrops",
+    "name": "Yamper Growlithe Lillipup Rockruff Fidough",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/3/34/TCGP_Backdrop_Yamper_Growlithe_Lillipup_Rockruff_Fidough.png/250px-TCGP_Backdrop_Yamper_Growlithe_Lillipup_Rockruff_Fidough.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/3/34/TCGP_Backdrop_Yamper_Growlithe_Lillipup_Rockruff_Fidough.png",
+    "width": 1000,
+    "height": 1750,
+    "thumb_w": 250,
+    "thumb_h": 438,
+    "obtain_method": null
+  },
+  {
     "uid": "backdrops-zoroark-zorua",
     "category": "backdrops",
     "category_label": "backdrops",
@@ -5237,6 +5458,19 @@
     "thumb_w": 250,
     "thumb_h": 250,
     "obtain_method": "45 Poké Gold"
+  },
+  {
+    "uid": "binder-covers-all-zoned-out",
+    "category": "binder-covers",
+    "category_label": "binder covers",
+    "name": "All Zoned Out",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/c/c3/TCGP_Cover_All_Zoned_Out.png/250px-TCGP_Cover_All_Zoned_Out.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/c/c3/TCGP_Cover_All_Zoned_Out.png",
+    "width": 1000,
+    "height": 1000,
+    "thumb_w": 250,
+    "thumb_h": 250,
+    "obtain_method": "Themed Collection"
   },
   {
     "uid": "binder-covers-alolan-vulpix-alolan-ninetales",
@@ -5447,6 +5681,19 @@
     "obtain_method": "3 Premium Tickets"
   },
   {
+    "uid": "binder-covers-elesa-emolga",
+    "category": "binder-covers",
+    "category_label": "binder covers",
+    "name": "Elesa Emolga",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/7/76/TCGP_Cover_Elesa_Emolga.png/250px-TCGP_Cover_Elesa_Emolga.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/7/76/TCGP_Cover_Elesa_Emolga.png",
+    "width": 1000,
+    "height": 1000,
+    "thumb_w": 250,
+    "thumb_h": 250,
+    "obtain_method": null
+  },
+  {
     "uid": "binder-covers-erika-vileplume",
     "category": "binder-covers",
     "category_label": "binder covers",
@@ -5471,6 +5718,19 @@
     "thumb_w": 250,
     "thumb_h": 250,
     "obtain_method": "Special Bundle"
+  },
+  {
+    "uid": "binder-covers-everyday-wonders-pikachu",
+    "category": "binder-covers",
+    "category_label": "binder covers",
+    "name": "Everyday Wonders Pikachu",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/3/39/TCGP_Cover_Everyday_Wonders_Pikachu.png/250px-TCGP_Cover_Everyday_Wonders_Pikachu.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/3/39/TCGP_Cover_Everyday_Wonders_Pikachu.png",
+    "width": 1000,
+    "height": 1000,
+    "thumb_w": 250,
+    "thumb_h": 250,
+    "obtain_method": null
   },
   {
     "uid": "binder-covers-extradimensional-crisis-ultra-beast",
@@ -6045,6 +6305,19 @@
     "obtain_method": "3 Premium Tickets"
   },
   {
+    "uid": "binder-covers-pikachu-piplup-sylveon-greedent-snorlax",
+    "category": "binder-covers",
+    "category_label": "binder covers",
+    "name": "Pikachu Piplup Sylveon Greedent Snorlax",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/a/ac/TCGP_Cover_Pikachu_Piplup_Sylveon_Greedent_Snorlax.png/250px-TCGP_Cover_Pikachu_Piplup_Sylveon_Greedent_Snorlax.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/a/ac/TCGP_Cover_Pikachu_Piplup_Sylveon_Greedent_Snorlax.png",
+    "width": 1000,
+    "height": 1000,
+    "thumb_w": 250,
+    "thumb_h": 250,
+    "obtain_method": "3 Premium Tickets"
+  },
+  {
     "uid": "binder-covers-pok-ball",
     "category": "binder-covers",
     "category_label": "binder covers",
@@ -6524,6 +6797,19 @@
     "thumb_w": 250,
     "thumb_h": 250,
     "obtain_method": "15 Shop Tickets"
+  },
+  {
+    "uid": "binder-covers-yamper-growlithe-lillipup-rockruff-fidough",
+    "category": "binder-covers",
+    "category_label": "binder covers",
+    "name": "Yamper Growlithe Lillipup Rockruff Fidough",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/3/37/TCGP_Cover_Yamper_Growlithe_Lillipup_Rockruff_Fidough.png/250px-TCGP_Cover_Yamper_Growlithe_Lillipup_Rockruff_Fidough.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/3/37/TCGP_Cover_Yamper_Growlithe_Lillipup_Rockruff_Fidough.png",
+    "width": 1000,
+    "height": 1000,
+    "thumb_w": 250,
+    "thumb_h": 250,
+    "obtain_method": null
   },
   {
     "uid": "binder-covers-zoroark-zorua",
@@ -7195,6 +7481,19 @@
     "name": "Wishiwashi",
     "image_url": "https://archives.bulbagarden.net/media/upload/thumb/b/bd/TCGP_Emblem_Wishiwashi.png/250px-TCGP_Emblem_Wishiwashi.png",
     "image_full": "https://archives.bulbagarden.net/media/upload/b/bd/TCGP_Emblem_Wishiwashi.png",
+    "width": 256,
+    "height": 256,
+    "thumb_w": 250,
+    "thumb_h": 250,
+    "obtain_method": "Completed Themed Collection"
+  },
+  {
+    "uid": "emblems-yamper",
+    "category": "emblems",
+    "category_label": "emblems",
+    "name": "Yamper",
+    "image_url": "https://archives.bulbagarden.net/media/upload/thumb/e/e6/TCGP_Emblem_Yamper.png/250px-TCGP_Emblem_Yamper.png",
+    "image_full": "https://archives.bulbagarden.net/media/upload/e/e6/TCGP_Emblem_Yamper.png",
     "width": 256,
     "height": 256,
     "thumb_w": 250,

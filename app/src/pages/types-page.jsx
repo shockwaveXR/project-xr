@@ -54,8 +54,6 @@ function Chart({ title, getValueFn, rowLabel, colLabel }) {
 export default function TypesPage() {
   return (
     <div className="types-page">
-      <h1>type matchups</h1>
-
       <div className="tc-legend">
         <span className="tc-cell se">2×</span> super effective
         <span className="tc-cell nve">½</span> not very effective

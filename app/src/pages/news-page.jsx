@@ -222,7 +222,6 @@ export default function NewsPage() {
       <PullToRefresh onRefresh={refreshFresh} />
       <Spotlight />
       <header className="news-page__header">
-        <h1>news</h1>
         <button
           type="button"
           className={`news-page__refresh${isInitialLoad ? ' news-page__refresh--loading' : ''}`}

@@ -68,7 +68,6 @@ export default function ComparePage() {
   return (
     <div className="compare-page">
       <div className="compare-page-header">
-        <h1>compare</h1>
         <p className="compare-subhead">pick up to 3 pokémon to compare side by side</p>
       </div>
 

@@ -131,7 +131,6 @@ export default function BerriesPage() {
 
   return (
     <div className="items-page">
-      <h1>berries</h1>
       <p className="items-page__sub">{berries.length} berry types</p>
 
       {SECTIONED_BERRIES.map((section, sectionIdx) => (

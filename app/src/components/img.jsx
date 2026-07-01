@@ -8,34 +8,53 @@ import { useLayoutEffect, useRef, useState } from 'react';
 // so styling that targets the inner img (width, height, object-fit) keeps
 // working unchanged. add className for the spinner wrapper via wrapClassName
 // only when you need extra layout overrides; most callers won't need it.
-export default function Img({ src, alt = '', className, wrapClassName, style, onLoad, onError, ...rest }) {
+//
+// optional `fallbackSrc`: if the primary `src` fails to load (404/403/decode
+// error), the image transparently retries with this url before giving up. used
+// by the tcg-pocket modal where newer sets only host the smaller webp full and
+// the higher-res png 403s — see cdnFullUrl in scrape-tcg-pocket.js.
+export default function Img({ src, fallbackSrc, alt = '', className, wrapClassName, style, onLoad, onError, ...rest }) {
+  const [currentSrc, setCurrentSrc] = useState(src);
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
   const imgRef = useRef(null);
 
-  // single layout effect handles both the cached-image race AND the src-
-  // change reset in one pass — running both as separate effects was the
-  // original bug: useEffect (reset to false) ran AFTER useLayoutEffect
-  // (detect cached → true), wiping the cached detection on every src change.
-  //
+  // restart from the primary src whenever the src prop itself changes (e.g. the
+  // modal cycling to a different card). the detection effect below then runs
+  // against the freshly-applied currentSrc.
+  useLayoutEffect(() => { setCurrentSrc(src); }, [src]);
+
   // cached-image race: when the browser already has the bytes (return visit,
-  // hot reload, prior page render), the img's `load` event fires before
-  // React attaches the onLoad handler, so state never flips. checking
-  // img.complete after the DOM is committed but before paint catches the
-  // cached case and flips state immediately.
+  // hot reload, prior render), the img's `load` event fires before React
+  // attaches onLoad, so state never flips. checking img.complete after the DOM
+  // is committed but before paint catches the cached case. keyed on currentSrc
+  // so the fallback swap is detected too. a cached *failure* (complete but
+  // naturalWidth 0) escalates to the fallback the same way a live error does.
   useLayoutEffect(() => {
     const img = imgRef.current;
     if (!img) { setLoaded(false); setErrored(false); return; }
     if (img.complete) {
-      if (img.naturalWidth > 0) { setLoaded(true); setErrored(false); }
-      else { setLoaded(false); setErrored(true); }
+      if (img.naturalWidth > 0) {
+        setLoaded(true); setErrored(false);
+      } else if (fallbackSrc && currentSrc !== fallbackSrc) {
+        setCurrentSrc(fallbackSrc); setLoaded(false); setErrored(false);
+      } else {
+        setLoaded(false); setErrored(true);
+      }
     } else {
       setLoaded(false); setErrored(false);
     }
-  }, [src]);
+  }, [currentSrc, fallbackSrc]);
 
   const handleLoad = (e) => { setLoaded(true); onLoad?.(e); };
-  const handleError = (e) => { setErrored(true); onError?.(e); };
+  const handleError = (e) => {
+    // one retry against the fallback before surfacing the error state.
+    if (fallbackSrc && currentSrc !== fallbackSrc) {
+      setCurrentSrc(fallbackSrc);
+    } else {
+      setErrored(true); onError?.(e);
+    }
+  };
 
   return (
     <span
@@ -44,7 +63,7 @@ export default function Img({ src, alt = '', className, wrapClassName, style, on
     >
       <img
         ref={imgRef}
-        src={src}
+        src={currentSrc}
         alt={alt}
         className={className}
         onLoad={handleLoad}

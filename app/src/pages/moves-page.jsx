@@ -80,7 +80,6 @@ export default function MovesPage() {
 
   return (
     <div className="moves-page">
-      <h1>moves</h1>
       <p className="moves-page__sub">{results.length} of {moves.length} moves</p>
 
       <div className="moves-filters">

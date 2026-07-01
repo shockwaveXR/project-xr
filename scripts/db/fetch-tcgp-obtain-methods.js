@@ -83,6 +83,23 @@ function stripHtml(s) {
     .trim();
 }
 
+// tidy run-on strings the source tables produce when a generic method label
+// and its detail line get flattened together (a <br> collapses to a space):
+//   "Obtain from a mission Mission: Collect 3 Electrode Cards"
+//     → "Complete the mission: Collect 3 Electrode Cards"
+//   "...themed collection mission Mission: To be determined"
+//     → "...themed collection"   (drop the unknown-detail placeholder tail)
+//   "...Drop Event Mission: To be determined"  → "...Drop Event"
+// everything else passes through untouched.
+function cleanMethod(s) {
+  if (!s) return s;
+  let m = s.replace(/\s+/g, ' ').trim();
+  m = m.replace(/\s*\bmission\s+Mission:\s*to be determined\.?$/i, '');
+  m = m.replace(/\s*\bMission:\s*to be determined\.?$/i, '');
+  m = m.replace(/^Obtain from a mission\s+Mission:\s*/i, 'Complete the mission: ');
+  return m.replace(/\s+/g, ' ').trim();
+}
+
 function stripCategorySuffix(name) {
   return name
     .replace(/\s+(Card\s+Sleeve|Pokemon\s+Coin|Coin|Playmat|Backdrop|Binder\s+Cover|Cover|Emblem|Profile\s+Icon|Icon)\b/gi, '')
@@ -262,7 +279,7 @@ async function main() {
       sources.primary.get(k1)  || sources.primary.get(k2)
       || sources.fallback.get(k1) || sources.fallback.get(k2);
     if (method) {
-      item.obtain_method = method;
+      item.obtain_method = cleanMethod(method);
       matched++;
     } else {
       item.obtain_method = null;

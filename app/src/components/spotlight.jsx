@@ -149,6 +149,10 @@ export default function Spotlight() {
   const todayId     = useMemo(() => pickTodayId(dateKey), [dateKey]);
 
   const [pokemon, setPokemon] = useState(null);
+  // drives the cry button's "now playing" visual — flipped by the audio
+  // element's own play/ended events so it reflects real playback, not just
+  // the click (which matters when device volume makes the sound inaudible).
+  const [playing, setPlaying] = useState(false);
   // audio + ctx + gain all live in refs since none of them drive renders
   // — they exist only to be reused across cry-button clicks.
   const audioRef    = useRef(null);
@@ -185,6 +189,14 @@ export default function Spotlight() {
       a = new Audio();
       a.crossOrigin = 'anonymous';
       a.src = CRY_URL(todayId);
+
+      // reflect actual playback state on the button. attached once (the
+      // element is created once and reused across clicks). 'ended' returns it
+      // to rest; 'pause'/'error' cover the interrupted/failed cases.
+      a.addEventListener('playing', () => setPlaying(true));
+      a.addEventListener('ended',   () => setPlaying(false));
+      a.addEventListener('pause',   () => setPlaying(false));
+      a.addEventListener('error',   () => setPlaying(false));
 
       const Ctx = window.AudioContext || window.webkitAudioContext;
       if (Ctx) {
@@ -280,10 +292,10 @@ export default function Spotlight() {
               {originText && <span className="spotlight__origin">{originText}</span>}
               <button
                 type="button"
-                className="spotlight__cry"
+                className={`spotlight__cry${playing ? ' spotlight__cry--playing' : ''}`}
                 onClick={playCry}
-                aria-label={`play ${displayName} cry`}
-                title="play cry"
+                aria-label={playing ? `playing ${displayName} cry` : `play ${displayName} cry`}
+                title={playing ? 'playing…' : 'play cry'}
                 tabIndex={minimized ? -1 : 0}
               >
                 <SpeakerIcon />
@@ -329,8 +341,8 @@ function SpeakerIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
       <path d="M8 2.5L4.5 5.5H2v5h2.5L8 13.5V2.5z" />
-      <path d="M10.5 5.5c.8.6 1.3 1.5 1.3 2.5s-.5 1.9-1.3 2.5l-.6-.8c.6-.4.9-1 .9-1.7s-.3-1.3-.9-1.7l.6-.8z" />
-      <path d="M12 3.5c1.8 1.1 3 3 3 4.5s-1.2 3.4-3 4.5l-.6-.8c1.5-.9 2.4-2.3 2.4-3.7s-.9-2.8-2.4-3.7l.6-.8z" />
+      <path className="spotlight__cry-wave spotlight__cry-wave--1" d="M10.5 5.5c.8.6 1.3 1.5 1.3 2.5s-.5 1.9-1.3 2.5l-.6-.8c.6-.4.9-1 .9-1.7s-.3-1.3-.9-1.7l.6-.8z" />
+      <path className="spotlight__cry-wave spotlight__cry-wave--2" d="M12 3.5c1.8 1.1 3 3 3 4.5s-1.2 3.4-3 4.5l-.6-.8c1.5-.9 2.4-2.3 2.4-3.7s-.9-2.8-2.4-3.7l.6-.8z" />
     </svg>
   );
 }

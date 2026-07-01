@@ -12,8 +12,9 @@
  *      reruns only fetch new cards.
  *
  * images come from limitless's digitalocean cdn — urls composed from set +
- * number. thumb (`_EN_SM.webp` ~25KB) for the grid, full (`_EN.png` ~1MB) for
- * the detail modal.
+ * number. thumb (`_EN_SM.webp` ~25KB) for the grid, full (`_EN.png` 670×936)
+ * for the detail modal, with a render-time fallback to the 367px `_EN.webp`
+ * for newer sets (B3a/B3b onward) whose full png isn't uploaded yet.
  *
  * usage:
  *   node db/scrape-tcg-pocket.js                  # all sets
@@ -62,6 +63,11 @@ function stubDetails() {
 function cdnThumbUrl(set, number) {
   return `${LIMIT_CDN}/pocket/${set}/${set}_${pad3(number)}_EN_SM.webp`;
 }
+// full-res 670×936 png for the detail modal. NOTE: some newer sets (B3a/B3b
+// onward) don't have this png uploaded to the cdn yet — the url 403s and only
+// the 367px `_EN.webp` exists. the modal handles that at render time by
+// falling back from this png to the webp variant (see the fullImageFallback
+// helper / <Img fallbackSrc>), so we keep composing the higher-res png here.
 function cdnFullUrl(set, number) {
   return `${LIMIT_CDN}/pocket/${set}/${set}_${pad3(number)}_EN.png`;
 }

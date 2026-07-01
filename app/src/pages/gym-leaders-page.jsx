@@ -259,7 +259,6 @@ export default function GymLeadersPage() {
 
   return (
     <div className="items-page">
-      <h1>gym leaders</h1>
       <p className="items-page__sub">{allLeaders.length} leaders across {SECTIONED_LEADERS.length} regions</p>
 
       {SECTIONED_LEADERS.map((section, sectionIdx) => (

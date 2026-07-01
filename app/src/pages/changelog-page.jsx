@@ -24,7 +24,6 @@ export default function ChangelogPage() {
   return (
     <div className="changelog-page">
       <header className="changelog-page__header">
-        <h1>changelog</h1>
         <p className="changelog-page__sub">
           everything that's shipped, newest first — drawn straight from the project's commit history.
         </p>

@@ -271,7 +271,15 @@ function CardModal({ card, modalRef, onClose, onPrev, onNext, closing, bump }) {
 
         <div className="tcgp-modal__scroll">
           <div className="tcgp-modal__hero">
-            <Img src={card.image_full} alt={card.name} loading="eager" />
+            {/* newer sets (B3a/B3b onward) don't host the 670px png full — it
+                403s and only the 367px webp exists. fall back to that so the
+                modal image always renders. */}
+            <Img
+              src={card.image_full}
+              fallbackSrc={card.image_full.replace(/_EN\.png$/, '_EN.webp')}
+              alt={card.name}
+              loading="eager"
+            />
           </div>
 
           {isPokemon && (
@@ -523,7 +531,6 @@ export default function TCGPocketPage() {
 
   return (
     <div className="items-page">
-      <h1>tcg pocket</h1>
       <p className="items-page__sub">
         {visibleCardCount} cards
         {groupBy === 'set' && !isSetFiltered && loadedCount < SECTIONED_CARDS.length

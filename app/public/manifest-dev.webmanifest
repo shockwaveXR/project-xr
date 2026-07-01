@@ -1,7 +1,7 @@
 {
-  "name": "pokédex (dev)",
-  "short_name": "pokédex dev",
-  "description": "local dev build of the pokédex",
+  "name": "project XR (dev)",
+  "short_name": "project XR dev",
+  "description": "local dev build of project XR",
   "start_url": ".",
   "scope": ".",
   "display": "standalone",

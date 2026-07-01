@@ -123,7 +123,6 @@ export default function TCGPocketAccessoriesPage() {
 
   return (
     <div className="items-page">
-      <h1>tcg pocket accessories</h1>
       <p className="items-page__sub">
         {visibleCount} {visibleSections[0]?.label || 'items'}
       </p>

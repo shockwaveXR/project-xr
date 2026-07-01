@@ -80,8 +80,11 @@
   }
   .header-sprites img { width: 42px; height: 42px; margin-right: 18px; }
 
-  .site-logo {
-    font-size: 1.05rem;
+  // the burger chip already names the current section on phones, and the
+  // header is too tight to center a wordmark between it and the search — so
+  // the centered brand hides below this breakpoint.
+  .site-wordmark {
+    display: none;
   }
 
   // ── header buttons + dropdown nav ──
@@ -90,7 +93,8 @@
   // small to hit reliably with a thumb. SVG icons scale up too so the
   // visual mass matches the larger button frame.
   .settings-btn.settings-cog,
-  .settings-btn.settings-burger {
+  .settings-btn.settings-burger,
+  .settings-btn.global-search__toggle {
     padding: 11px 13px;
 
     svg { width: 22px; height: 22px; }
@@ -127,15 +131,24 @@
   // bumped to 16px specifically so ios safari does NOT zoom the page on
   // focus — anything smaller triggers the autozoom, and there's no
   // user-initiated way to zoom back out once it fires.
+  // while the search is open on a phone, drop the burger's section label so
+  // the expanded field always has room between the burger and the cog — the
+  // icon alone keeps the menu reachable. (:has is supported on all modern
+  // ios/safari; where it isn't, the label simply stays put — a benign
+  // fallback.)
+  .site-header:has(.global-search.is-expanded) .settings-burger__label {
+    display: none;
+  }
+
   .global-search {
-    &__input {
-      width: 110px;
-      // matches the bumped mobile tap-target size of the cog/burger
-      // buttons (padding 11 + 22 svg + 11 + 2 = 46px), keeping the
-      // header row aligned across all three controls.
+    // collapsed, the toggle already matches the 46px cog/burger tap targets
+    // (shared rule above). expanded, the field opens narrower than desktop so
+    // it fits between the burger chip and the cog; 16px font dodges ios's
+    // focus-zoom.
+    &.is-expanded &__input {
+      width: 150px;
       height: 46px;
       font-size: 16px;
-      &:focus { width: 150px; }
     }
     &__dropdown {
       width: calc(100vw - 24px);

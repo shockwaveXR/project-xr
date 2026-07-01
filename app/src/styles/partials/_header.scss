@@ -23,7 +23,6 @@
   // note: we do NOT set overflow:hidden on the header itself because the
   // settings / features dropdowns render as descendants and would be clipped.
   // the sprite strip clips itself via its own overflow:hidden instead.
-  > .site-logo,
   > .header-left,
   > .header-right {
     position: relative;
@@ -96,30 +95,62 @@
 [data-a11y='true'] .header-sprites img {
   opacity: 1;
 }
-[data-a11y='true'] .site-logo,
 [data-a11y='true'] .settings-btn,
 [data-a11y='true'] .global-search__input {
   background: var(--bg);
 }
 
-.site-logo {
-  font-size: .75rem;
+// centered brand wordmark. deliberately NOT interactive — no border, no hover,
+// pointer-events disabled — so it reads as identity, not another nav control.
+// absolutely centered so it stays optically mid-header regardless of the
+// asymmetric burger (left) / search (right) widths flanking it.
+.site-wordmark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  font-size: 1rem;
   font-weight: var(--fw-semibold);
-  letter-spacing: .06em;
-  color: var(--accent);
-  padding: 3px 9px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: transparent;
-  transition: color .15s ease, border-color .15s ease;
+  letter-spacing: .01em;
+  color: var(--text);
 
-  &:hover {
-    border-color: var(--accent);
+  // soft header-bg panel behind the text that fades out at its left/right
+  // edges — punches a clean, legible hole in the scrolling sprite strip
+  // without a hard chip edge that would read as a button.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -6px -20px;
+    z-index: -1;
+    background: var(--bg-header);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%);
   }
 
-  [data-theme='retro'] & {
-    color: var(--text);
+  // "XR" reads as the brand suffix — accent color, a touch heavier, and
+  // italicized so it pops against the lowercase "project" ahead of it. same
+  // treatment in every theme (retro's accent is vivid enough to carry it too).
+  &__xr {
+    color: var(--accent);
+    font-weight: var(--fw-bold);
+    font-style: italic;
   }
+}
+
+// section-name chip living inside the burger button — same bubble as the icon,
+// so the header always names the current section (news, pokedex, cards…).
+.settings-burger__label {
+  margin-left: 7px;
+  font-size: .75rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: .01em;
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: lowercase;
 }
 
 // settings button + modal anchor
@@ -184,7 +215,8 @@
   }
 
   &.settings-cog,
-  &.settings-burger {
+  &.settings-burger,
+  &.global-search__toggle {
     padding: 6px 10px;
     display: flex;
     align-items: center;
@@ -427,47 +459,52 @@
   display: flex;
   align-items: center;
 
-  // input mimics the header buttons (.settings-btn) — same translucent
-  // bg + border + radius so the scrolling sprite strip shows through.
-  // explicit `height` is needed because inputs add a few pixels of native
-  // widget chrome (intrinsic min-height from font metrics) on top of
-  // padding+line-height; without it the search box ends up 1-2px taller
-  // than the icon buttons, which read as 30px (padding 6 + 16 svg + 6 +
-  // 2 border). font-size stays ≥16px on mobile to prevent ios safari's
-  // focus-zoom — see the mobile override in _responsive.scss.
+  // collapsed state: the search is just the magnifier button (sized by the
+  // shared .settings-btn rule to match the cog). expanding hides the button
+  // and animates the field open in its place.
+  &.is-expanded &__toggle { display: none; }
+
+  // input mimics the header buttons (.settings-btn) — same translucent bg +
+  // border + radius. collapsed to width:0 by default; the .is-expanded rule
+  // below animates it open. explicit `height` matches the 30px icon buttons
+  // (native inputs add a couple px of intrinsic chrome otherwise). font-size
+  // stays ≥16px on mobile to dodge ios safari's focus-zoom — see the mobile
+  // override in _responsive.scss.
   &__input {
     box-sizing: border-box;
-    width: 180px;
+    width: 0;
     height: 30px;
-    padding: 0 12px;
+    padding: 0;
     font-family: inherit;
     font-size: .75rem;
     line-height: 1;
     font-weight: var(--fw-medium);
     color: var(--text-muted);
-    // body bg so the input reads as a distinct surface against --bg-header
-    // (same reasoning + caveats as .settings-btn above).
     background: var(--bg);
-    border: 1px solid color-mix(in srgb, var(--text) 30%, transparent);
+    border: 1px solid transparent;
     border-radius: var(--radius-sm);
-    transition: width .2s ease, color .15s ease, border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+    transition: width .22s ease, padding .22s ease, opacity .18s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease;
 
     &::placeholder { color: var(--text-subtle); }
+  }
+
+  // expanded: field opens to full width and takes over the bordered surface
+  // the collapsed button was holding.
+  &.is-expanded &__input {
+    width: 200px;
+    padding: 0 12px;
+    opacity: 1;
+    pointer-events: auto;
+    border-color: color-mix(in srgb, var(--text) 30%, transparent);
 
     &:focus {
       outline: none;
-      width: 220px;
       color: var(--text);
       border-color: var(--accent);
       box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      &:hover:not(:focus) {
-        color: var(--accent);
-        border-color: var(--accent);
-        box-shadow: 0 0 0 1px var(--accent);
-      }
     }
   }
 

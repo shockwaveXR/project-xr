@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo, Fragment } from 'react';
 import { createPortal } from 'react-dom';
-import { BrowserRouter, Routes, Route, Link, useLocation, useNavigationType, useSearchParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Navigate, useLocation, useNavigationType, useSearchParams } from 'react-router-dom';
 import { useModalAnimation } from './hooks/use-modal-animation';
 import { useBodyScrollLock } from './hooks/use-body-scroll-lock';
 import { getAppScroller, scrollPositions } from './utils/app-scroll';
@@ -44,7 +44,7 @@ const NAV_SECTIONS = [
   // distinct anchor points before the labeled sections begin.
   {
     items: [
-      { to: '/', label: 'news' },
+      { to: '/news', label: 'news' },
     ],
   },
   {
@@ -95,6 +95,29 @@ const NAV_SECTIONS = [
     ],
   },
 ];
+
+// flat path → label lookup, derived from NAV_SECTIONS, for the chip shown
+// inside the burger so the header always names the current section.
+const NAV_LABELS = NAV_SECTIONS.reduce((m, s) => {
+  s.items.forEach(it => { m[it.to] = it.label; });
+  return m;
+}, {});
+
+// the section label for the current route. exact nav matches win; sub-routes
+// that have no nav entry of their own fall back to their parent section
+// (pokemon detail pages read as "pokedex", the global search as "search").
+function navLabelFor(pathname) {
+  // root redirects to /news; label it as news for the brief pre-redirect frame.
+  if (pathname === '/') return 'news';
+  // tcg pocket items keep their section as a breadcrumb prefix so "cards" /
+  // "accessories" aren't left contextless once the in-page titles are gone.
+  if (pathname === '/tcgp')             return 'tcgp · cards';
+  if (pathname === '/tcgp-accessories') return 'tcgp · accessories';
+  if (NAV_LABELS[pathname]) return NAV_LABELS[pathname];
+  if (pathname.startsWith('/pokemon')) return 'pokedex';
+  if (pathname.startsWith('/search'))  return 'search';
+  return 'menu';
+}
 
 const THEMES = ['auto', 'light', 'dark', 'ereader', 'retro', 'nitro'];
 
@@ -272,6 +295,8 @@ function AppHeader({ theme, setTheme, a11y, setA11y }) {
   const [visualsOpen,  setVisualsOpen]  = useState(false);
   const [featuresOpen, setFeaturesOpen] = useState(false);
   const { isLive } = useTwitchLive();
+  const location = useLocation();
+  const sectionLabel = navLabelFor(location.pathname);
 
   // expanded state for collapsible nav categories (browse / tools / world).
   // accordion behavior — only one section open at a time. opening a new
@@ -359,12 +384,13 @@ function AppHeader({ theme, setTheme, a11y, setA11y }) {
 
       <div className="header-left">
         <div className="settings-anchor" ref={featuresRef}>
-          <button className="settings-btn settings-burger" onClick={() => setFeaturesOpen(o => !o)} aria-label="menu" aria-expanded={featuresOpen}>
+          <button className="settings-btn settings-burger" onClick={() => setFeaturesOpen(o => !o)} aria-label={`menu — ${sectionLabel}`} aria-expanded={featuresOpen}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
               <rect y="2" width="16" height="2" rx="1"/>
               <rect y="7" width="16" height="2" rx="1"/>
               <rect y="12" width="16" height="2" rx="1"/>
             </svg>
+            <span className="settings-burger__label">{sectionLabel}</span>
           </button>
           {featuresShown && (
             <div className={`settings-modal features-modal${featuresClosing ? ' closing' : ''}`}>
@@ -436,6 +462,12 @@ function AppHeader({ theme, setTheme, a11y, setA11y }) {
           )}
         </div>
       </div>
+
+      {/* centered brand wordmark — intentionally not a link and pointer-events:
+          none in CSS so it reads as identity, not a clickable nav item. */}
+      <span className="site-wordmark" aria-label="project XR">
+        project <span className="site-wordmark__xr">XR</span>
+      </span>
 
       <div className="header-right">
         <GlobalSearch />
@@ -565,7 +597,8 @@ export default function App() {
       <TransitionVeil />
       <main className="app-scroll">
         <Routes>
-          <Route path="/"            element={<NewsPage />} />
+          <Route path="/"            element={<Navigate to="/news" replace />} />
+          <Route path="/news"        element={<NewsPage />} />
           <Route path="/pokedex"     element={<HomePage />} />
           <Route path="/pokemon/:id" element={<PokemonPage />} />
           <Route path="/compare"     element={<ComparePage />} />

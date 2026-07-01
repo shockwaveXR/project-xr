@@ -555,6 +555,35 @@
 
     &:hover { color: var(--accent-hover); text-decoration: underline; }
   }
+
+  // branded intro — wordmark + tagline at the top of the about card. overrides
+  // the base `p` rule (this block is a <p>) to stack the two lines tightly.
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 20px;
+  }
+
+  &__wordmark {
+    font-size: 1.5rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: -.01em;
+    line-height: 1.1;
+    color: var(--text);
+  }
+
+  &__xr {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  &__tagline {
+    font-size: .85rem;
+    font-style: italic;
+    letter-spacing: .02em;
+    color: var(--text-subtle);
+  }
 }
 
 // ereader: flatten shadows (corners match the global rounded radii now)

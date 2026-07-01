@@ -1,5 +1,25 @@
 [
   {
+    "date": "2026-07-01",
+    "changes": [
+      "project XR rebrand + repo→project-xr migration — site retitled to \"project XR\" across tab title, header wordmark, about page, pwa manifests, readme (github handle + shockwavexr.github.io domain left intact)",
+      "vite base → /project-xr/, 404 spa fallback rewritten, and /news is now the canonical home with the bare root redirecting there",
+      "header restructure — centered non-interactive \"project XR\" wordmark (soft header-bg fade over the sprite strip)",
+      "burger now names the current section in-bubble (news, pokedex, tcgp · cards…)",
+      "header search collapses to a magnifier that expands on tap, matching the cog",
+      "redundant in-page h1 titles dropped across pages now that the section lives in the burger",
+      "dev builds get a 🚧 tab-title marker",
+      "wordmark XR is italic+accent in every theme",
+      "tcg pocket — imported set B3b (106 cards) + new promo-b cards (3406 → 3520)",
+      "detail-modal full image falls back png → webp for B3a/B3b whose 670px png 403s on the cdn",
+      "accessories catalog refreshed (554 → 577) + obtain-method run-on strings cleaned (\"obtain from a mission Mission:\" → \"complete the mission:\", stray \"Mission: To be determined\" tails dropped)",
+      "spotlight — cry button shows a live playing indicator (accent fill + pulse ring + animated sound-waves) driven by the audio element's play/ended events, returning to rest when the cry finishes"
+    ],
+    "hashes": [
+      "17ca4c0"
+    ]
+  },
+  {
     "date": "2026-06-25",
     "changes": [
       "tcg pocket — imported paradox drive (b3a) + promo sets",
@@ -13,7 +33,7 @@
       "readme — rewrote: fixed the \"no backend\" framing (news runs on a cloudflare worker), refreshed features + scripts"
     ],
     "hashes": [
-      "372bd39"
+      "9417f2d"
     ]
   },
   {

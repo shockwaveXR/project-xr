@@ -216,7 +216,6 @@ export default function BadgesPage() {
 
   return (
     <div className="items-page">
-      <h1>badges</h1>
       <p className="items-page__sub">{allBadges.length} badges across {SECTIONED_BADGES.length} regions</p>
 
       {SECTIONED_BADGES.map((section, sectionIdx) => (

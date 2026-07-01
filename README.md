@@ -1,8 +1,8 @@
-# pokedex
+# project XR
 
-an ever-expanding passion project aiming to provide a convenient and visually pleasing way to explore the world of pokemon.
+**expand your reality** — an ever-expanding passion project aiming to provide a convenient and visually pleasing way to explore the world of pokemon.
 
-live at [shockwavexr.github.io/pokedex](https://shockwavexr.github.io/pokedex)
+live at [shockwavexr.github.io/project-xr](https://shockwavexr.github.io/project-xr)
 
 ## what's inside
 
